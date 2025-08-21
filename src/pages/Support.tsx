@@ -270,7 +270,7 @@ const Support: React.FC = () => {
 
             {/* Submit Button */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button type="submit" size="lg" className="flex-grow sm:flex-grow-0">
+              <Button type="submit" size="lg" className="flex-grow sm:flex-grow-0 text-white">
                 Enviar Mensagem
               </Button>
               <Button 

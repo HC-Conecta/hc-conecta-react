@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Button from "../components/Button";
 import { ImportantNotice } from "@/components/ImportantNotice";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Paragraph } from "@/components/Paragraph";
 
 const Guide: React.FC = () => {
 
@@ -104,9 +105,9 @@ const Guide: React.FC = () => {
                   <h3 className="text-xl font-semibold text-foreground mb-3">
                     {step.title}
                   </h3>
-                  <p className="text-muted-foreground mb-3 text-lg">
+                  <Paragraph>
                     {step.description}
-                  </p>
+                  </Paragraph>
                   <div className="bg-accent py-3 rounded-lg">
                     <p className="text-sm text-accent-foreground">
                       <strong>Dica:</strong> {step.tip}
