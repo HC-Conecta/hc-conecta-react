@@ -1,8 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import Button from '../components/Button';
 
 const Home: React.FC = () => {
+
+  const {pathname} = useLocation();
+  
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+  
+
   return (
     <div className="bg-white/70">
       {/* Hero Section */}

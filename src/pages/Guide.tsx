@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../components/Button";
 import { ImportantNotice } from "@/components/ImportantNotice";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Guide: React.FC = () => {
+
+  const navigate = useNavigate();
+  
+  const {pathname} = useLocation();
+  
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+  
+
   const steps = [
     {
       number: 1,
@@ -60,7 +71,7 @@ const Guide: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-foreground mb-6">
-            Como Acessar o Site do <b> Hospital das Clínicas </b>
+            Como Acessar o Site do <span className="text-blue-700"> Hospital das Clínicas </span>
           </h1>
           <p className="text-xl text-muted-foreground">
             Siga este guia passo a passo para acessar o site oficial e marcar
@@ -145,7 +156,7 @@ const Guide: React.FC = () => {
           </Button>
           <Button
             className="text-white"
-            onClick={() => (window.location.href = "/appointment")}
+            onClick={() => navigate('/appointment')}
           >
             Próximo: Como Agendar →
           </Button>

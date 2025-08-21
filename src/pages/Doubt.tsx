@@ -1,8 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FAQ } from '../types/global';
+import { CircleQuestionMark } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Button from '@/components/Button';
+import { ImportantNotice } from '@/components/ImportantNotice';
+
 
 const Doubt: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const navigate = useNavigate();
+
+  const {pathname} = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const faqs: FAQ[] = [
     {
@@ -67,31 +80,29 @@ const Doubt: React.FC = () => {
         {/* Search Help */}
         <div className="bg-accent rounded-lg p-6 mb-8">
           <div className="flex items-center space-x-3 mb-3">
-            <div className="w-6 h-6 text-primary">
-              <svg fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
-              </svg>
+            <div>
+            <CircleQuestionMark className='text-blue-700' strokeWidth={2} />
             </div>
-            <h2 className="text-lg font-semibold text-foreground">
+            <h2 className="text-lg text-blue-700 font-semibold text-foreground">
               Não encontrou sua dúvida?
             </h2>
           </div>
           <p className="text-muted-foreground mb-4">
             Entre em contato conosco! Nossa equipe está pronta para ajudar você.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col sm:flex-row gap-3 mt-7">
             <a 
               href="tel:1126616000" 
-              className="inline-flex items-center justify-center px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+              className="flex items-center font-bold"
             >
               📞 (11) 2661-6000
             </a>
-            <a 
-              href="/support" 
-              className="inline-flex items-center justify-center px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary/5 transition-colors"
+            <Button size='sm'
+              onClick={() => navigate('/support')}
+              className="inline-flex items-center justify-center px-4 py-2 border border-primary text-white rounded-lg bg-blue-700"
             >
               💬 Página de Suporte
-            </a>
+            </Button>
           </div>
         </div>
 
@@ -139,12 +150,16 @@ const Doubt: React.FC = () => {
             <p className="text-muted-foreground mb-4">
               Acesse nossos guias passo a passo para usar os serviços online.
             </p>
-            <a 
-              href="/guide" 
-              className="text-primary hover:text-primary/80 font-medium"
+            <Button 
+            size='sm'
+             onClick={() => 
+              navigate('/guide') 
+              
+            }
+              className="text-white hover:text-primary/80 font-medium"
             >
               Ver Guias →
-            </a>
+            </Button>
           </div>
 
           <div className="bg-secondary/5 rounded-lg p-6">
@@ -156,7 +171,7 @@ const Doubt: React.FC = () => {
             </p>
             <a 
               href="tel:1126616000" 
-              className="text-secondary hover:text-secondary/80 font-medium"
+              className="text-blue-700 font-bold hover:text-secondary/80"
             >
               (11) 2661-6000
             </a>
@@ -164,23 +179,12 @@ const Doubt: React.FC = () => {
         </div>
 
         {/* Emergency Notice */}
-        <div className="mt-8 bg-error/10 border border-error/20 rounded-lg p-6">
-          <div className="flex items-start space-x-3">
-            <div className="w-6 h-6 text-error mt-1">
-              <svg fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <div>
-              <h3 className="font-semibold text-foreground mb-2">Em caso de emergência</h3>
-              <p className="text-muted-foreground">
-                Para emergências médicas, dirija-se imediatamente ao Pronto Socorro do Hospital das Clínicas 
-                ou ligue para o SAMU: <strong className="text-error">192</strong>
-              </p>
-            </div>
+          <div className='mt-10'>
+          <ImportantNotice title='Em caso de emergência'> 
+            Para emergências médicas, dirija-se imediatamente ao Pronto Socorro do Hospital das Clínicas ou ligue para o <b> SAMU: 192</b>
+            </ImportantNotice>
           </div>
         </div>
-      </div>
     </div>
   );
 };

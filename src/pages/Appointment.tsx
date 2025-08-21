@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '../components/Button';
 import { ImportantNotice } from '@/components/ImportantNotice';
 import { LiTips } from '@/components/LiTips';
+import { useLocation } from 'react-router-dom';
 
 const Appointment: React.FC = () => {
+
+  const {pathname} = useLocation();
+  
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+  
+
   const steps = [
     {
       icon: "🔐",
