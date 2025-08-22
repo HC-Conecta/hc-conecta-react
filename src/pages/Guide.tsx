@@ -3,6 +3,7 @@ import Button from "../components/Button";
 import { ImportantNotice } from "@/components/ImportantNotice";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Paragraph } from "@/components/Paragraph";
+import H1 from "@/components/H1";
 
 const Guide: React.FC = () => {
 
@@ -71,9 +72,9 @@ const Guide: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-foreground mb-6">
-            Como Acessar o Site do <span className="text-blue-700"> Hospital das Clínicas </span>
-          </h1>
+          <H1>
+            Como Acessar o Site do Hospital das Clínicas
+          </H1>
           <p className="text-xl text-muted-foreground">
             Siga este guia passo a passo para acessar o site oficial e marcar
             suas consultas

@@ -3,6 +3,7 @@ import Button from '../components/Button';
 import { ImportantNotice } from '@/components/ImportantNotice';
 import { LiTips } from '@/components/LiTips';
 import { useLocation } from 'react-router-dom';
+import H1 from "@/components/H1";
 
 const Appointment: React.FC = () => {
 
@@ -96,9 +97,9 @@ const Appointment: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-foreground mb-6">
-            Como Agendar sua Consulta
-          </h1>
+            <H1>
+              Como Agendar sua Consulta
+            </H1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Siga este guia passo a passo para agendar sua consulta médica no Hospital das Clínicas de forma fácil e rápida
           </p>

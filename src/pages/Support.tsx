@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from '../components/Button';
 import { FormData, Contact } from '../types/global';
 import {Phone, Mail,MapPin} from 'lucide-react';
+import H1 from "@/components/H1";
 
 const Support: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -90,9 +91,9 @@ const Support: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-foreground mb-6">
+          <H1>
             Suporte e Contato
-          </h1>
+          </H1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Estamos aqui para ajudar você. Entre em contato conosco por telefone, email ou use o formulário abaixo
           </p>

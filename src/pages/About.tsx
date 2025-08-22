@@ -1,5 +1,6 @@
 import React from 'react';
 import { Developer } from '../types/global';
+import H1 from "@/components/H1";
 
 const About: React.FC = () => {
   const developers: Developer[] = [
@@ -25,9 +26,9 @@ const About: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-foreground mb-6">
+          <H1>
             Sobre Nosso Projeto
-          </h1>
+          </H1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Somos uma equipe dedicada a tornar os serviços de saúde mais acessíveis 
             para pessoas idosas e com dificuldades tecnológicas.

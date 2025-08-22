@@ -7,7 +7,7 @@ const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navigationItems: NavigationItem[] = [
-    { name: 'Início', path: '/' },
+    { name: 'Início', path: '/home' },
     { name: 'Como Acessar', path: '/guide' },
     { name: 'Agendar Consulta', path: '/appointment' },
     { name: 'Dúvidas', path: '/doubt' },

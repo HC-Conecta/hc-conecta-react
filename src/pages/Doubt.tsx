@@ -4,6 +4,7 @@ import { CircleQuestionMark } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '@/components/Button';
 import { ImportantNotice } from '@/components/ImportantNotice';
+import H1 from "@/components/H1";
 
 
 const Doubt: React.FC = () => {
@@ -69,9 +70,9 @@ const Doubt: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-foreground mb-6">
+          <H1>
             Dúvidas Frequentes
-          </h1>
+          </H1>
           <p className="text-xl text-muted-foreground">
             Encontre respostas para as perguntas mais comuns sobre os serviços do Hospital das Clínicas
           </p>
