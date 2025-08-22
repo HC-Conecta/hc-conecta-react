@@ -9,16 +9,16 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-blue-700 border-t border-border mt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col justify-center">
+        <div className="flex flex-col md:flex-row md:justify-between gap-8">
           {/* Brand */}
-          <div>
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="w-full p-4 relative right-14 bg-gradient-primary rounded-lg flex items-center justify-start">
-                <img className='h-14' src="/logo-hc-conecta.png" alt="Logo HC Conecta" />
+          <div className="flex flex-col items-start">
+            <div className="flex items-center space-x-20 mb-4">
+              <div className="w-full relative p-2 right-5 bg-gradient-primary rounded-lg flex items-center justify-start">
+                <img className='h-20' src="/logo-hc-conecta-v2.png" alt="Logo HC Conecta" />
               </div>
             </div>
-            <p className=" text-white/90">
+            <p className="text-white/90 md:max-w-80">
               Site desenvolvido para facilitar o acesso de pessoas idosas aos serviços do Hospital das Clínicas.
             </p>
           </div>
