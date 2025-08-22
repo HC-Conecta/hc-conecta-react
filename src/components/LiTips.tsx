@@ -5,7 +5,7 @@ interface IliTips {
 export const LiTips = ({children}: IliTips): JSX.Element => {
   return (
     <li className="flex items-start space-x-3">
-      <div className="w-5 h-5 text-success text-blue-700">
+      <div className="w-5 h-5 text-success text-white">
         <svg fill="currentColor" viewBox="0 0 20 20">
           <path
             fillRule="evenodd"
