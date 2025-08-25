@@ -1,7 +1,7 @@
 import React from 'react';
 import { Developer } from '../types/global';
 import H1 from "@/components/H1";
-import { CircleCheck, CircleUser, Heart, Lightbulb } from 'lucide-react';
+import { CircleCheck, CircleUser, Heart, Lightbulb, Mail } from 'lucide-react';
 
 const About: React.FC = () => {
   const developers: Developer[] = [
@@ -143,11 +143,8 @@ const About: React.FC = () => {
             href="mailto:equipe@hc-guia.com.br"
             className="inline-flex items-center space-x-2 text-primary hover:text-primary/80 transition-colors"
           >
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-            </svg>
-            <span className="text-lg font-medium">equipe@hc-guia.com.br</span>
+           <Mail className="w-5 h-5 text-blue-700"/>
+            <span className="text-lg text-blue-700 font-medium">equipe@hc-guia.com.br</span>
           </a>
         </div>
       </div>
