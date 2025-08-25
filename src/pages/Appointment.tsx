@@ -143,7 +143,7 @@ const Appointment: React.FC = () => {
                     </ul>
                    {step.existButton === true && (
                      <div className='mt-4'>
-                      <Button className='text-white' href="https://github.com/HC-Conecta/hc-conecta-react">{step.button} → </Button>
+                      <Button className='text-white' size='sm'>{step.button} → </Button>
                     </div>
                    )}
                   </div>

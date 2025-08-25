@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Phone, Mail } from 'lucide-react';
+import { Phone, Mail, MoveUp, ChevronUp } from 'lucide-react';
 import { LiFooter } from './LiFooter';
 
 const Footer: React.FC = () => {
@@ -8,8 +8,16 @@ const Footer: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <footer className="bg-gradient-to-br from-blue-500 to-blue-700 border-t border-border mt-16">
+    <footer className="bg-gradient-to-br from-blue-500 to-blue-700 border-t border-border mt-16 scroll-smooth">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col justify-center">
+        <div className='flex justify-center relative left-1 transform -translate-x-1/2 animate-bounce'>
+          <button className='flex flex-col items-center mb-8 text-white hover:text-white/90' onClick={() => window.scrollTo({ top: 0})}>
+            <span>
+              <ChevronUp className='h-10 w-10'/>
+            </span>
+            Voltar Para o Topo
+            </button>
+        </div>
         <div className="flex flex-col md:flex-row md:justify-between gap-8">
           {/* Brand */}
           <div className="flex flex-col items-start">
