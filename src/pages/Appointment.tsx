@@ -26,7 +26,6 @@ const Appointment: React.FC = () => {
         "Clique em 'Entrar'",
         "Se esquecer a senha, clique em 'Esqueci minha senha'"
       ],
-      navigation: "https://github.com/HC-Conecta/hc-conecta-react",
       button : "Fazer Login",
       existButton : true
     },
@@ -144,7 +143,7 @@ const Appointment: React.FC = () => {
                     </ul>
                    {step.existButton === true && (
                      <div className='mt-4'>
-                      <Button className='text-white' href= "https://github.com/HC-Conecta/hc-conecta-react">{step.button} → </Button>
+                      <Button className='text-white' href="https://github.com/HC-Conecta/hc-conecta-react">{step.button} → </Button>
                     </div>
                    )}
                   </div>
