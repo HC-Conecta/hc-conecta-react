@@ -3,6 +3,7 @@ import Button from '../components/Button';
 import { FormData, Contact } from '../types/global';
 import {Phone, Mail,MapPin} from 'lucide-react';
 import H1 from "@/components/H1";
+import { Paragraph } from '@/components/Paragraph';
 
 const Support: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -122,7 +123,7 @@ const Support: React.FC = () => {
                   <p className="text-primary font-bold text-lg mb-1">
                     {contact.value}
                   </p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-md text-muted-foreground">
                     {contact.description}
                   </p>
                 </div>
@@ -155,16 +156,16 @@ const Support: React.FC = () => {
             <h2 className="text-2xl font-bold text-foreground mb-4">
               Envie sua Mensagem
             </h2>
-            <p className="text-muted-foreground">
+            <Paragraph>
               Preencha o formulário abaixo e nossa equipe entrará em contato com você em breve.
-            </p>
+            </Paragraph>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               {/* Name */}
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="name" className="block text-md font-medium text-foreground mb-2">
                   Nome completo *
                 </label>
                 <input
@@ -181,7 +182,7 @@ const Support: React.FC = () => {
 
               {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="email" className="block text-md font-medium text-foreground mb-2">
                   Email
                 </label>
                 <input
@@ -199,7 +200,7 @@ const Support: React.FC = () => {
             <div className="grid md:grid-cols-2 gap-6">
               {/* Phone */}
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="phone" className="block text-md font-medium text-foreground mb-2">
                   Telefone *
                 </label>
                 <input
@@ -216,7 +217,7 @@ const Support: React.FC = () => {
 
               {/* Service Type */}
               <div>
-                <label htmlFor="serviceType" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="serviceType" className="block text-md font-medium text-foreground mb-2">
                   Tipo de ajuda
                 </label>
                 <select
@@ -239,7 +240,7 @@ const Support: React.FC = () => {
 
             {/* Message */}
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+              <label htmlFor="message" className="block text-md font-medium text-foreground mb-2">
                 Descreva sua dúvida ou problema *
               </label>
               <textarea
@@ -264,7 +265,7 @@ const Support: React.FC = () => {
                 onChange={handleInputChange}
                 className="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
               />
-              <label htmlFor="needsHelp" className="text-sm text-muted-foreground">
+              <label htmlFor="needsHelp" className="text-md text-muted-foreground">
                 Preciso de ajuda urgente (entraremos em contato no mesmo dia)
               </label>
             </div>
@@ -294,22 +295,22 @@ const Support: React.FC = () => {
           <div className="grid md:grid-cols-3 gap-6 text-center">
             <div>
               <div className="text-3xl mb-2">👥</div>
-              <h4 className="font-semibold text-foreground mb-2">Peça Ajuda a um Familiar</h4>
-              <p className="text-sm text-muted-foreground">
+              <h4 className="font-semibold text-foreground mb-2 text-lg">Peça Ajuda a um Familiar</h4>
+              <p className="text-lg text-muted-foreground">
                 Um familiar pode ajudar você a navegar no site ou fazer o agendamento
               </p>
             </div>
             <div>
               <div className="text-3xl mb-2">🏥</div>
-              <h4 className="font-semibold text-foreground mb-2">Vá Pessoalmente</h4>
-              <p className="text-sm text-muted-foreground">
+              <h4 className="font-semibold text-foreground mb-2 text-lg">Vá Pessoalmente</h4>
+              <p className="text-lg text-muted-foreground">
                 Você pode agendar presencialmente no hospital, no setor de agendamento
               </p>
             </div>
             <div>
               <div className="text-3xl mb-2">📚</div>
-              <h4 className="font-semibold text-foreground mb-2">Consulte os Guias</h4>
-              <p className="text-sm text-muted-foreground">
+              <h4 className="font-semibold text-foreground mb-2 text-lg">Consulte os Guias</h4>
+              <p className="text-lg text-muted-foreground">
                 Temos guias passo a passo para ajudar você a usar o site
               </p>
             </div>

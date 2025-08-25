@@ -14,7 +14,7 @@ export const ImportantNotice = ({children, title}: ImportantNoticeProps) => {
           </div>
           <div className="flex flex-col w-full">
             <h3 className=" font-semibold text-foreground mb-2"> {title} </h3>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground text-lg">
               {children}
             </p>
           </div>

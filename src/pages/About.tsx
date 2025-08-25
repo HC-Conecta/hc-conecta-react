@@ -2,6 +2,7 @@ import React from 'react';
 import { Developer } from '../types/global';
 import H1 from "@/components/H1";
 import { CircleCheck, CircleUser, Heart, Lightbulb, Mail } from 'lucide-react';
+import { Paragraph } from '@/components/Paragraph';
 
 const About: React.FC = () => {
   const developers: Developer[] = [
@@ -74,10 +75,10 @@ const About: React.FC = () => {
                 <h3 className="text-xl text-blue-700 font-semibold text-foreground mb-2">
                   {developer.name}
                 </h3>
-                <p className="text-primary font-medium mb-3">
+                <p className="text-lg font-medium mb-3">
                   {developer.role}
                 </p>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground text-md">
                   {developer.description}
                 </p>
               </div>
@@ -96,8 +97,10 @@ const About: React.FC = () => {
                 <CircleCheck className="text-blue-700" />
               </div>
               <div>
-                <h3 className="font-semibold text-foreground mb-1">Acessibilidade</h3>
-                <p className="text-muted-foreground">Criamos soluções que todos podem usar, independente da idade ou habilidade tecnológica.</p>
+                <h3 className="font-semibold text-foreground mb-1 text-lg">Acessibilidade</h3>
+                <Paragraph>
+                  Criamos soluções que todos podem usar, independente da idade ou habilidade tecnológica.
+                </Paragraph>
               </div>
             </div>
             
@@ -106,8 +109,10 @@ const About: React.FC = () => {
                 <Heart className="text-blue-700" />
               </div>
               <div>
-                <h3 className="font-semibold text-foreground mb-1">Empatia</h3>
-                <p className="text-muted-foreground">Entendemos as dificuldades e criamos soluções pensando no usuário em primeiro lugar.</p>
+                <h3 className="font-semibold text-foreground mb-1 text-lg">Empatia</h3>
+                <Paragraph>
+                  Entendemos as dificuldades e criamos soluções pensando no usuário em primeiro lugar.
+                </Paragraph>
               </div>
             </div>
             
@@ -116,8 +121,10 @@ const About: React.FC = () => {
                 <Lightbulb className="text-blue-700"/>
               </div>
               <div>
-                <h3 className="font-semibold text-foreground mb-1">Simplicidade</h3>
-                <p className="text-muted-foreground">Mantemos tudo simples e direto, sem complicações desnecessárias.</p>
+                <h3 className="font-semibold text-foreground mb-1 text-lg">Simplicidade</h3>
+                <Paragraph>
+                  Mantemos tudo simples e direto, sem complicações desnecessárias.
+                </Paragraph>
               </div>
             </div>
             
@@ -126,8 +133,10 @@ const About: React.FC = () => {
                 <CircleUser className="text-blue-700"/>
               </div>
               <div>
-                <h3 className="font-semibold text-foreground mb-1">Suporte</h3>
-                <p className="text-muted-foreground">Oferecemos ajuda personalizada sempre que necessário.</p>
+                <h3 className="font-semibold text-foreground mb-1 text-lg">Suporte</h3>
+                <Paragraph>
+                  Oferecemos ajuda personalizada sempre que necessário.
+                </Paragraph>
               </div>
             </div>
           </div>
@@ -138,9 +147,9 @@ const About: React.FC = () => {
           <h2 className="text-2xl font-bold text-foreground mb-4">
             Quer Saber Mais?
           </h2>
-          <p className="text-muted-foreground mb-6">
-            Entre em contato conosco para sugestões, dúvidas ou feedback sobre nosso projeto.
-          </p>
+          <Paragraph>
+             Entre em contato conosco para sugestões, dúvidas ou feedback sobre nosso projeto.
+          </Paragraph>
           <a 
             href="mailto:equipe@hc-guia.com.br"
             className="inline-flex items-center space-x-2 text-primary hover:text-primary/80 transition-colors"

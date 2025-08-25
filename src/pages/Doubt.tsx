@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '@/components/Button';
 import { ImportantNotice } from '@/components/ImportantNotice';
 import H1 from "@/components/H1";
+import { Paragraph } from '@/components/Paragraph';
 
 
 const Doubt: React.FC = () => {
@@ -88,7 +89,7 @@ const Doubt: React.FC = () => {
               Não encontrou sua dúvida?
             </h2>
           </div>
-          <p className="text-muted-foreground mb-4">
+          <p className="text-muted-foreground mb-4 text-lg">
             Entre em contato conosco! Nossa equipe está pronta para ajudar você.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 mt-7">
@@ -132,9 +133,9 @@ const Doubt: React.FC = () => {
               {activeIndex === index && (
                 <div className="px-6 pb-4">
                   <div className="border-t border-border pt-4">
-                    <p className="text-muted-foreground leading-relaxed">
+                    <Paragraph>
                       {faq.answer}
-                    </p>
+                    </Paragraph>
                   </div>
                 </div>
               )}
@@ -148,9 +149,9 @@ const Doubt: React.FC = () => {
             <h3 className="text-xl font-semibold text-foreground mb-3">
               📚 Guias Úteis
             </h3>
-            <p className="text-muted-foreground mb-4">
+            <Paragraph>
               Acesse nossos guias passo a passo para usar os serviços online.
-            </p>
+            </Paragraph>
             <Button 
             size='sm'
              onClick={() => 
@@ -167,12 +168,12 @@ const Doubt: React.FC = () => {
             <h3 className="text-xl font-semibold text-foreground mb-3">
               📞 Agendamento por Telefone
             </h3>
-            <p className="text-muted-foreground mb-4">
+            <Paragraph>
               Prefere agendar por telefone? Ligue para nossa central.
-            </p>
+            </Paragraph>
             <a 
               href="tel:1126616000" 
-              className="text-blue-700 font-bold hover:text-secondary/80"
+              className="text-blue-700 font-bold hover:text-secondary/80 text-md"
             >
               (11) 2661-6000
             </a>

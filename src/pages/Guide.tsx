@@ -110,7 +110,7 @@ const Guide: React.FC = () => {
                     {step.description}
                   </Paragraph>
                   <div className="bg-accent py-3 rounded-lg">
-                    <p className="text-sm text-accent-foreground">
+                    <p className="text-md text-accent-foreground">
                       <strong>Dica:</strong> {step.tip}
                     </p>
                   </div>
@@ -125,13 +125,13 @@ const Guide: React.FC = () => {
           <h2 className="text-2xl font-bold text-foreground mb-4">
             Precisa de Mais Ajuda?
           </h2>
-          <p className="text-muted-foreground mb-6">
+          <p className="text-muted-foreground mb-6 text-lg">
             Se você seguiu todos os passos e ainda tem dificuldades, não se
             preocupe! Temos outras formas de ajudar você.
           </p>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="bg-primary/5 p-4 rounded-lg">
-              <h3 className="font-semibold text-foreground mb-2">
+              <h3 className="font-semibold text-foreground mb-2 text-md">
                 Telefone de Suporte
               </h3>
               <p className="text-muted-foreground mb-2">
