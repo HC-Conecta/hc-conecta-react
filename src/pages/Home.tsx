@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Button from '../components/Button';
+import { Paragraph } from '@/components/Paragraph';
 
 const Home: React.FC = () => {
 
@@ -64,9 +65,9 @@ const Home: React.FC = () => {
               <h3 className="text-xl font-semibold text-foreground mb-3">
                 Passo a Passo Simples
               </h3>
-              <p className="text-muted-foreground mb-4">
+              <Paragraph>
                 Explicações claras e detalhadas para acessar o site do Hospital das Clínicas.
-              </p>
+              </Paragraph>
               <Link to="/guide">
                 <Button className="bg-blue-700 text-white hover:bg-blue-800 w-full sm:w-auto" size="sm">
                   Ver Guia
@@ -84,9 +85,9 @@ const Home: React.FC = () => {
               <h3 className="text-xl font-semibold text-foreground mb-3">
                 Agendar Consultas
               </h3>
-              <p className="text-muted-foreground mb-4">
+              <Paragraph>
                 Aprenda como marcar suas consultas médicas de forma fácil e rápida.
-              </p>
+              </Paragraph>
               <Link to="/appointment">
                 <Button className="bg-blue-700 text-white hover:bg-blue-800 w-full sm:w-auto" size="sm">
                   Aprender
@@ -104,9 +105,9 @@ const Home: React.FC = () => {
               <h3 className="text-xl font-semibold text-foreground mb-3">
                 Tire suas Dúvidas
               </h3>
-              <p className="text-muted-foreground mb-4">
-                Respostas para as perguntas mais comuns sobre os serviços do hospital.
-              </p>
+              <Paragraph>
+                Encontre respostas para as perguntas mais comuns sobre o Hospital das Clínicas.
+              </Paragraph>
               <Link to="/doubt">
                 <Button className="bg-blue-700 text-white hover:bg-blue-800 w-full sm:w-auto" size="sm">
                   Ver Dúvidas

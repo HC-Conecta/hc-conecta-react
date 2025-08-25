@@ -6,7 +6,7 @@ interface LiFooter {
 export const LiFooter = ({ children, onClick }: LiFooter) => {
     return (
         <li>
-            <button onClick={onClick} className="text-white/90 transition-colors">
+            <button onClick={onClick} className="text-white/90 transition-colors text-lg">
                 {children}
             </button>
         </li>

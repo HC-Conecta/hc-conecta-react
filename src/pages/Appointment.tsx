@@ -5,6 +5,7 @@ import { LiTips } from '@/components/LiTips';
 import { useLocation } from 'react-router-dom';
 import H1 from "@/components/H1";
 import { ISteps} from '@/types/global';
+import { Paragraph } from '@/components/Paragraph';
 
 const Appointment: React.FC = () => {
 
@@ -137,7 +138,7 @@ const Appointment: React.FC = () => {
                       {step.details.map((detail, detailIndex) => (
                         <li key={detailIndex} className="flex items-start space-x-2">
                           <span className="text-sm mt-1">•</span>
-                          <span className="text-muted-foreground">{detail}</span>
+                          <span className="text-muted-foreground text-lg">{detail}</span>
                         </li>
                       ))}
                     </ul>
@@ -159,7 +160,7 @@ const Appointment: React.FC = () => {
             <span className="text-3xl mr-3">📋</span>
             Documentos Necessários
           </h2>
-          <p className="text-muted-foreground mb-6">
+          <p className="text-muted-foreground mb-6 text-lg">
             No dia da consulta, não esqueça de levar estes documentos:
           </p>
           <div className="grid md:grid-cols-2 gap-3">
@@ -170,7 +171,7 @@ const Appointment: React.FC = () => {
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <span className="text-foreground">{doc}</span>
+                <span className="text-foreground text-lg">{doc}</span>
               </div>
             ))}
           </div>
@@ -183,9 +184,9 @@ const Appointment: React.FC = () => {
               <span className="text-2xl mr-2">📞</span>
               Agendamento por Telefone
             </h3>
-            <p className="text-muted-foreground mb-4">
-              Prefere agendar falando com uma pessoa? Ligue para nossa central de agendamento.
-            </p>
+            <Paragraph>
+              Prefere agendar falando com alguma pessoa? Ligue para nossa central de agendamento.
+            </Paragraph>
             <div className="space-y-2">
               <p className="text-blue-700 font-bold text-lg">(11) 2661-6000</p>
               <p className="text-muted-foreground ">
@@ -199,9 +200,9 @@ const Appointment: React.FC = () => {
               <span className="text-2xl mr-2">🏥</span>
               Agendamento Presencial
             </h3>
-            <p className="text-muted-foreground mb-4">
+            <Paragraph>
               Você também pode agendar pessoalmente no hospital. Procure o setor de agendamento.
-            </p>
+            </Paragraph>
             <div className="space-y-2">
               <p className="text-blue-700 font-bold text-lg">Recepção Central</p>
               <p className="text-muted-foreground">

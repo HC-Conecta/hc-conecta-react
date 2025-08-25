@@ -14,7 +14,7 @@ export const LiTips = ({children}: IliTips): JSX.Element => {
           />
         </svg>
       </div>
-      <span className="text-muted-foreground">
+      <span className="text-muted-foreground text-lg">
             {children}
       </span>
     </li>
