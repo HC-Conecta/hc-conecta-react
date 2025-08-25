@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { NavigationItem } from '../types/global';
 
 const Header: React.FC = () => {
@@ -15,17 +15,19 @@ const Header: React.FC = () => {
     { name: 'Sobre Nós', path: '/about' }
   ];
 
+  const navigate = useNavigate();
+
   return (
     <header className="shadow-md border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3">
             <div className="w-full p-4 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <img className='h-14' src="/logo-hc-conecta.png" alt="Logo HC Conecta" />
+              <img onClick={()=> navigate('/home')} className='h-14 cursor-pointer' src="/logo-hc-conecta.png" alt="Logo HC Conecta" />
             </div>
         
-          </Link>
+          </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-1">

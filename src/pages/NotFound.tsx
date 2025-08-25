@@ -24,7 +24,7 @@ const NotFound = () => {
         <div className="w-64 h-auto">
           <img src="/dinosaur-notfound.png" alt="Dinosaurs" />
         </div>
-        <p className="text-xl text-gray-600 mb-4 max-w-[25rem]">Oops! Nosso dinossaurinho médico também não conseguiu achar esse caminho.</p>
+        <p className="text-xl text-gray-600 mb-4 max-w-80 lg:max-w-[25rem]">Oops! Nosso dinossaurinho médico também não conseguiu achar esse caminho.</p>
         <Button className="text-white" variant="primary" onClick={() => navigate("/home")}>
           Voltar para a Home
         </Button>
