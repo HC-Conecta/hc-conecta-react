@@ -12,7 +12,7 @@ const About: React.FC = () => {
       image: "/enrico-image.png"
     },
     {
-      name: "Vitor Diass",
+      name: "Vitor Dias",
       role: "Desenvolvedor Back-end",
       description: "Desenvolvedor Back-End com atuação principal na estrutura do back-end, banco de dados e suporte ao front-end.",
       image: "/vitor-image.png"
@@ -63,11 +63,13 @@ const About: React.FC = () => {
                 key={index}
                 className="bg-surface rounded-xl items-center justify-center p-6 shadow-md border border-border text-center hover:shadow-lg transition-shadow"
               >
-               
-                <div className="w-20 h-20 bg-gradient-primary rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white text-2xl font-bold">
-                    {developer.name.split(' ').map(n => n[0]).join('')}
-                  </span>
+                <div className="bg-gradient-primary rounded-full mx-auto mb-4 flex items-center justify-center">
+                   <div className='w-44 h-44 rounded-full overflow-hidden border-4 border-white'>
+                    <img
+                      src={developer.image}
+                      alt={developer.name}
+                    />
+                  </div>
                 </div>
                 <h3 className="text-xl text-blue-700 font-semibold text-foreground mb-2">
                   {developer.name}
