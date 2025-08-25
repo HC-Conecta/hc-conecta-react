@@ -1,23 +1,27 @@
 import React from 'react';
 import { Developer } from '../types/global';
 import H1 from "@/components/H1";
+import { CircleCheck, CircleUser, Heart, Lightbulb } from 'lucide-react';
 
 const About: React.FC = () => {
   const developers: Developer[] = [
     {
-      name: "Ana Silva",
-      role: "Desenvolvedora Frontend",
-      description: "Especialista em React e acessibilidade web. Focada em criar interfaces simples e intuitivas para todos os usuários."
+      name: "Enrico Delesporte",
+      role: "Desenvolvedor Back-end",
+      description: "Desenvolvedor back-end responsável pela implementação do back-end, banco de dados, e ajuda no front-end. ",
+      image: "/enrico-image.png"
     },
     {
-      name: "Carlos Santos",
-      role: "Designer UX/UI",
-      description: "Designer com experiência em projetos voltados para acessibilidade e usabilidade para pessoas idosas."
+      name: "Vitor Diass",
+      role: "Desenvolvedor Back-end",
+      description: "Desenvolvedor Back-End com atuação principal na estrutura do back-end, banco de dados e suporte ao front-end.",
+      image: "/vitor-image.png"
     },
     {
-      name: "Maria Oliveira",
-      role: "Desenvolvedora Full Stack",
-      description: "Especialista em TypeScript e desenvolvimento de sistemas de saúde, com foco em soluções acessíveis."
+      name: "Iago Liziero",
+      role: "Desenvolvedor Full Stack",
+      description: "Desenvolvedor Full Stack responsável pela implementação do front-end, protótipos do site, e ajuda no back-end.",
+      image: "/iago-image.png"
     }
   ];
 
@@ -57,14 +61,15 @@ const About: React.FC = () => {
             {developers.map((developer, index) => (
               <div 
                 key={index}
-                className="bg-surface rounded-xl p-6 shadow-md border border-border text-center hover:shadow-lg transition-shadow"
+                className="bg-surface rounded-xl items-center justify-center p-6 shadow-md border border-border text-center hover:shadow-lg transition-shadow"
               >
+               
                 <div className="w-20 h-20 bg-gradient-primary rounded-full mx-auto mb-4 flex items-center justify-center">
                   <span className="text-white text-2xl font-bold">
                     {developer.name.split(' ').map(n => n[0]).join('')}
                   </span>
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">
+                <h3 className="text-xl text-blue-700 font-semibold text-foreground mb-2">
                   {developer.name}
                 </h3>
                 <p className="text-primary font-medium mb-3">
@@ -86,9 +91,7 @@ const About: React.FC = () => {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="flex items-start space-x-3">
               <div className="w-6 h-6 text-primary mt-1">
-                <svg fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
+                <CircleCheck className="text-blue-700" />
               </div>
               <div>
                 <h3 className="font-semibold text-foreground mb-1">Acessibilidade</h3>
@@ -98,9 +101,7 @@ const About: React.FC = () => {
             
             <div className="flex items-start space-x-3">
               <div className="w-6 h-6 text-primary mt-1">
-                <svg fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
-                </svg>
+                <Heart className="text-blue-700" />
               </div>
               <div>
                 <h3 className="font-semibold text-foreground mb-1">Empatia</h3>
@@ -110,9 +111,7 @@ const About: React.FC = () => {
             
             <div className="flex items-start space-x-3">
               <div className="w-6 h-6 text-primary mt-1">
-                <svg fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <Lightbulb className="text-blue-700"/>
               </div>
               <div>
                 <h3 className="font-semibold text-foreground mb-1">Simplicidade</h3>
@@ -122,9 +121,7 @@ const About: React.FC = () => {
             
             <div className="flex items-start space-x-3">
               <div className="w-6 h-6 text-primary mt-1">
-                <svg fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
-                </svg>
+                <CircleUser className="text-blue-700"/>
               </div>
               <div>
                 <h3 className="font-semibold text-foreground mb-1">Suporte</h3>

@@ -17,6 +17,7 @@ export interface Developer {
   name: string;
   role: string;
   description: string;
+  image: string;
 }
 
 export interface FAQ {

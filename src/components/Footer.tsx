@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <footer className="bg-blue-700 border-t border-border mt-16">
+    <footer className="bg-gradient-to-br from-blue-500 to-blue-700 border-t border-border mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col justify-center">
         <div className="flex flex-col md:flex-row md:justify-between gap-8">
           {/* Brand */}
