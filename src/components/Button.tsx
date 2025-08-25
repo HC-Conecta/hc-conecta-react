@@ -8,6 +8,7 @@ interface ButtonProps {
   disabled?: boolean;
   className?: string;
   type?: 'button' | 'submit' | 'reset';
+  navigation?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({

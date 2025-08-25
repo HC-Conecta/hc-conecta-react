@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface NavigationItem {
   name: string;
   path: string;
@@ -30,4 +32,13 @@ export interface Contact {
   label: string;
   value: string;
   description?: string;
+}
+
+export interface ISteps {
+  icon: string | React.ReactElement;
+  title: string;
+  description: string;
+  details: string[];
+  button?: string;
+  existButton?: boolean;
 }

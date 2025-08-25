@@ -4,6 +4,7 @@ import { ImportantNotice } from '@/components/ImportantNotice';
 import { LiTips } from '@/components/LiTips';
 import { useLocation } from 'react-router-dom';
 import H1 from "@/components/H1";
+import { ISteps} from '@/types/global';
 
 const Appointment: React.FC = () => {
 
@@ -14,7 +15,7 @@ const Appointment: React.FC = () => {
     }, [pathname]);
   
 
-  const steps = [
+  const steps: ISteps[] = [
     {
       icon: "🔐",
       title: "1. Faça seu Login",
@@ -24,7 +25,10 @@ const Appointment: React.FC = () => {
         "Digite sua senha",
         "Clique em 'Entrar'",
         "Se esquecer a senha, clique em 'Esqueci minha senha'"
-      ]
+      ],
+      navigation: "https://github.com/HC-Conecta/hc-conecta-react",
+      button : "Fazer Login",
+      existButton : true
     },
     {
       icon: "📅",
@@ -138,6 +142,11 @@ const Appointment: React.FC = () => {
                         </li>
                       ))}
                     </ul>
+                   {step.existButton === true && (
+                     <div className='mt-4'>
+                      <Button className='text-white' href= "https://github.com/HC-Conecta/hc-conecta-react">{step.button} → </Button>
+                    </div>
+                   )}
                   </div>
                 </div>
               </div>
