@@ -1,90 +1,89 @@
-import React, { useState } from 'react';
-import Button from '../components/Button';
-import { FormData, Contact } from '../types/global';
-import {Phone, Mail,MapPin} from 'lucide-react';
+import React, { useState } from "react";
+import Button from "../components/Button";
+import { FormData, Contact, FormValues } from "../types/global";
+import { Phone, Mail, MapPin } from "lucide-react";
 import H1 from "@/components/H1";
-import { Paragraph } from '@/components/Paragraph';
+import { Paragraph } from "@/components/Paragraph";
+import { useForm } from "react-hook-form";
 
 const Support: React.FC = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
+
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
+    name: "",
+    email: "",
+    telephone: "",
+    message: "",
     needsHelp: false,
-    serviceType: ''
+    serviceType: "",
   });
 
   const contacts: Contact[] = [
     {
-      type: 'phone',
-      label: 'Agendamento de Consultas',
-      value: '(11) 2661-6000',
-      description: 'Segunda a sexta, das 7h às 17h'
+      type: "phone",
+      label: "Agendamento de Consultas",
+      value: "(11) 2661-6000",
+      description: "Segunda a sexta, das 7h às 17h",
     },
     {
-      type: 'phone',
-      label: 'Suporte Técnico',
-      value: '(11) 2661-0000',
-      description: 'Segunda a sexta, das 8h às 18h'
+      type: "phone",
+      label: "Suporte Técnico",
+      value: "(11) 2661-0000",
+      description: "Segunda a sexta, das 8h às 18h",
     },
     {
-      type: 'phone',
-      label: 'Emergência',
-      value: '192',
-      description: 'SAMU - 24 horas por dia'
+      type: "phone",
+      label: "Emergência",
+      value: "192",
+      description: "SAMU - 24 horas por dia",
     },
     {
-      type: 'email',
-      label: 'Email de Suporte',
-      value: 'suporte@hc.fm.usp.br',
-      description: 'Resposta em até 48 horas'
+      type: "email",
+      label: "Email de Suporte",
+      value: "suporte@hc.fm.usp.br",
+      description: "Resposta em até 48 horas",
     },
     {
-      type: 'email',
-      label: 'Email Geral',
-      value: 'contato@hc.fm.usp.br',
-      description: 'Para informações gerais'
+      type: "email",
+      label: "Email Geral",
+      value: "contato@hc.fm.usp.br",
+      description: "Para informações gerais",
     },
     {
-      type: 'address',
-      label: 'Endereço Principal',
-      value: 'Rua Dr. Ovídio Pires de Campos, 225',
-      description: 'Cerqueira César, São Paulo - SP'
-    }
+      type: "address",
+      label: "Endereço Principal",
+      value: "Rua Dr. Ovídio Pires de Campos, 225",
+      description: "Cerqueira César, São Paulo - SP",
+    },
   ];
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target;
-    
-    if (type === 'checkbox') {
-      const checked = (e.target as HTMLInputElement).checked;
-      setFormData(prev => ({
-        ...prev,
-        [name]: checked
-      }));
-    } else {
-      setFormData(prev => ({
-        ...prev,
-        [name]: value
-      }));
-    }
+  const onSubmit = (): void => {
+    alert("teste");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
-      needsHelp: false,
-      serviceType: ''
-    });
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value, type } = e.target;
+
+    if (type === "checkbox") {
+      const checked = (e.target as HTMLInputElement).checked;
+      setFormData((prev) => ({
+        ...prev,
+        [name]: checked,
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
 
   return (
@@ -92,28 +91,30 @@ const Support: React.FC = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <H1>
-            Suporte e Contato
-          </H1>
+          <H1>Suporte e Contato</H1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Estamos aqui para ajudar você. Entre em contato conosco por telefone, email ou use o formulário abaixo
+            Estamos aqui para ajudar você. Entre em contato conosco por
+            telefone, email ou use o formulário abaixo
           </p>
         </div>
 
         {/* Contact Methods */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {contacts.map((contact, index) => (
-            <div key={index} className="bg-surface rounded-lg p-6 shadow-md border border-border">
+            <div
+              key={index}
+              className="bg-surface rounded-lg p-6 shadow-md border border-border"
+            >
               <div className="flex items-start space-x-3 mb-4">
                 <div className="w-8 h-8 text-primary">
-                  {contact.type === 'phone' && (
-                    <Phone className="text-blue-700"/>
+                  {contact.type === "phone" && (
+                    <Phone className="text-blue-700" />
                   )}
-                  {contact.type === 'email' && (
-                    <Mail className="text-blue-700"/>
+                  {contact.type === "email" && (
+                    <Mail className="text-blue-700" />
                   )}
-                  {contact.type === 'address' && (
-                    <MapPin className="text-blue-700"/>
+                  {contact.type === "address" && (
+                    <MapPin className="text-blue-700" />
                   )}
                 </div>
                 <div>
@@ -128,19 +129,19 @@ const Support: React.FC = () => {
                   </p>
                 </div>
               </div>
-              
-              {contact.type === 'phone' && (
-                <Button 
-                  variant='outline'
+
+              {contact.type === "phone" && (
+                <Button
+                  variant="outline"
                   className="inline-flex items-center justify-center w-full mt-3 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
                 >
                   Ligar Agora
                 </Button>
               )}
-              
-              {contact.type === 'email' && (
-                <Button 
-                  variant='outline'
+
+              {contact.type === "email" && (
+                <Button
+                  variant="outline"
                   className="inline-flex items-center justify-center w-full mt-3 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
                 >
                   Enviar Email
@@ -157,36 +158,45 @@ const Support: React.FC = () => {
               Envie sua Mensagem
             </h2>
             <Paragraph>
-              Preencha o formulário abaixo e nossa equipe entrará em contato com você em breve.
+              Preencha o formulário abaixo e nossa equipe entrará em contato com
+              você em breve.
             </Paragraph>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               {/* Name */}
               <div>
-                <label htmlFor="name" className="block text-md font-medium text-foreground mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-md font-medium text-foreground mb-2"
+                >
                   Nome completo *
                 </label>
                 <input
+                  {...register("name", { required: true })}
                   type="text"
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  required
                   className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="Digite seu nome completo"
                 />
+                {errors.name?.type === "required" && <p className="text-red-500 font-semibold mt-2"> Este campo é obrigátorio!</p>}
               </div>
 
               {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-md font-medium text-foreground mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-md font-medium text-foreground mb-2"
+                >
                   Email
                 </label>
                 <input
-                  type="email"
+                 {...register("email", { required: true })}
+                  type="text"
                   id="email"
                   name="email"
                   value={formData.email}
@@ -194,30 +204,38 @@ const Support: React.FC = () => {
                   className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="seu@email.com"
                 />
+                {errors.email?.type === "required" && <p className="text-red-500 font-semibold mt-2"> Este campo é obrigátorio!</p>}
               </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
               {/* Phone */}
-              <div>
-                <label htmlFor="phone" className="block text-md font-medium text-foreground mb-2">
-                  Telefone *
+               <div>
+                <label
+                  htmlFor="telephone"
+                  className="block text-md font-medium text-foreground mb-2"
+                >
+                  Telefone
                 </label>
                 <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
+                 {...register("telephone", { required: true })}
+                  type="telephone"
+                  id="telephone"
+                  name="telephone"
+                  value={formData.telephone}
                   onChange={handleInputChange}
-                  required
                   className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="(11) 99999-9999"
                 />
+                {errors.telephone?.type === "required" && <p className="text-red-500 font-semibold mt-2"> Este campo é obrigátorio!</p>}
               </div>
 
-              {/* Service Type */}
+              {/* Service Type - WIP */}
               <div>
-                <label htmlFor="serviceType" className="block text-md font-medium text-foreground mb-2">
+                <label
+                  htmlFor="serviceType"
+                  className="block text-md font-medium text-foreground mb-2"
+                >
                   Tipo de ajuda
                 </label>
                 <select
@@ -230,7 +248,9 @@ const Support: React.FC = () => {
                   <option value="">Selecione uma opção</option>
                   <option value="agendamento">Ajuda com agendamento</option>
                   <option value="site">Dificuldades com o site</option>
-                  <option value="cancelamento">Cancelar/remarcar consulta</option>
+                  <option value="cancelamento">
+                    Cancelar/remarcar consulta
+                  </option>
                   <option value="cadastro">Problemas com cadastro</option>
                   <option value="geral">Informações gerais</option>
                   <option value="outros">Outros</option>
@@ -240,19 +260,23 @@ const Support: React.FC = () => {
 
             {/* Message */}
             <div>
-              <label htmlFor="message" className="block text-md font-medium text-foreground mb-2">
+              <label
+                htmlFor="message"
+                className="block text-md font-medium text-foreground mb-2"
+              >
                 Descreva sua dúvida ou problema *
               </label>
               <textarea
+              {...register("message", { required: true })}
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
-                required
                 rows={5}
                 className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-vertical"
                 placeholder="Explique detalhadamente qual ajuda você precisa..."
               />
+              {errors.message?.type === "required" && <p className="text-red-500 font-semibold mt-2"> Este campo é obrigátorio!</p>}
             </div>
 
             {/* Checkbox */}
@@ -265,19 +289,26 @@ const Support: React.FC = () => {
                 onChange={handleInputChange}
                 className="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
               />
-              <label htmlFor="needsHelp" className="text-md text-muted-foreground">
+              <label
+                htmlFor="needsHelp"
+                className="text-md text-muted-foreground"
+              >
                 Preciso de ajuda urgente (entraremos em contato no mesmo dia)
               </label>
             </div>
 
             {/* Submit Button */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button type="submit" size="lg" className="flex-grow sm:flex-grow-0 text-white">
+              <Button
+                type="submit"
+                size="lg"
+                className="flex-grow sm:flex-grow-0 text-white"
+              >
                 Enviar Mensagem
               </Button>
-              <Button 
-                type="button" 
-                variant="outline" 
+              <Button
+                type="button"
+                variant="outline"
                 onClick={() => window.history.back()}
                 className="flex-grow sm:flex-grow-0"
               >
@@ -295,21 +326,29 @@ const Support: React.FC = () => {
           <div className="grid md:grid-cols-3 gap-6 text-center">
             <div>
               <div className="text-3xl mb-2">👥</div>
-              <h4 className="font-semibold text-foreground mb-2 text-lg">Peça Ajuda a um Familiar</h4>
+              <h4 className="font-semibold text-foreground mb-2 text-lg">
+                Peça Ajuda a um Familiar
+              </h4>
               <p className="text-lg text-muted-foreground">
-                Um familiar pode ajudar você a navegar no site ou fazer o agendamento
+                Um familiar pode ajudar você a navegar no site ou fazer o
+                agendamento
               </p>
             </div>
             <div>
               <div className="text-3xl mb-2">🏥</div>
-              <h4 className="font-semibold text-foreground mb-2 text-lg">Vá Pessoalmente</h4>
+              <h4 className="font-semibold text-foreground mb-2 text-lg">
+                Vá Pessoalmente
+              </h4>
               <p className="text-lg text-muted-foreground">
-                Você pode agendar presencialmente no hospital, no setor de agendamento
+                Você pode agendar presencialmente no hospital, no setor de
+                agendamento
               </p>
             </div>
             <div>
               <div className="text-3xl mb-2">📚</div>
-              <h4 className="font-semibold text-foreground mb-2 text-lg">Consulte os Guias</h4>
+              <h4 className="font-semibold text-foreground mb-2 text-lg">
+                Consulte os Guias
+              </h4>
               <p className="text-lg text-muted-foreground">
                 Temos guias passo a passo para ajudar você a usar o site
               </p>

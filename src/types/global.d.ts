@@ -9,7 +9,7 @@ export interface NavigationItem {
 export interface FormData {
   name: string;
   email: string;
-  phone: string;
+  telephone: string;
   message: string;
   needsHelp: boolean;
   serviceType: string;
@@ -42,3 +42,11 @@ export interface ISteps {
   button?: string;
   existButton?: boolean;
 }
+
+export interface FormValues {
+  name: string;
+  email: string;
+  telephone: string;
+  helper: string[];
+  message: string
+};
