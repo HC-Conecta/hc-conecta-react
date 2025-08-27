@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NavigationItem } from "../types/global";
 import Button from "./Button";
-import { LogIn, UserRoundPlus, UserRoundPlusIcon } from "lucide-react";
+import { LogIn, Menu, MenuIcon, UserRoundPlus, UserRoundPlusIcon, X } from "lucide-react";
 import { se } from "date-fns/locale";
 
 const Header: React.FC = () => {
@@ -86,25 +86,23 @@ const Header: React.FC = () => {
             </Button>
           </div>
           {/* Mobile menu button */}
-          <button
+          {isMobileMenuOpen === false ? ( 
+            <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="xl:hidden p-2 rounded-lg text-foreground hover:bg-accent"
             aria-label="Abrir menu"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
+            <MenuIcon />
           </button>
+          ): (
+            <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="xl:hidden p-2 rounded-lg text-foreground hover:bg-accent"
+            aria-label="Fechar menu"
+          >
+            <X />
+          </button>
+          )}
         </div>
 
         {/* Mobile Navigation */}
