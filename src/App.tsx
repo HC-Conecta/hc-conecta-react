@@ -8,6 +8,7 @@ import Appointment from "./pages/Appointment";
 import Support from "./pages/Support";
 import NotFound from "./pages/NotFound";
 import Layout from "./pages/Layout";
+import Login from "./pages/Login";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
         </Route>
 
         <Route path="*" element={<NotFound />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   </QueryClientProvider>
