@@ -41,7 +41,7 @@ const About: React.FC = () => {
         </div>
 
         {/* Mission */}
-        <div className="bg-surface rounded-xl p-8 shadow-md border border-border mb-16">
+        <div className="rounded-xl p-8 shadow-md border border-border mb-16">
           <h2 className="text-2xl font-bold text-foreground mb-4">
             Nossa Missão
           </h2>

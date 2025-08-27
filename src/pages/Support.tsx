@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "../components/Button";
-import { FormData, Contact, FormValues } from "../types/global";
+import { FormData, Contact } from "../types/global";
 import { Phone, Mail, MapPin } from "lucide-react";
 import H1 from "@/components/H1";
 import { Paragraph } from "@/components/Paragraph";
@@ -11,7 +11,7 @@ const Support: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<FormData>();
 
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -183,7 +183,7 @@ const Support: React.FC = () => {
                   className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="Digite seu nome completo"
                 />
-                {errors.name?.type === "required" && <p className="text-red-500 font-semibold mt-2"> Este campo é obrigátorio!</p>}
+                {errors.name?.type === "required" && <p className="text-red-500 font-semibold mt-2"> Nome é obrigátorio!</p>}
               </div>
 
               {/* Email */}
@@ -204,7 +204,7 @@ const Support: React.FC = () => {
                   className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="seu@email.com"
                 />
-                {errors.email?.type === "required" && <p className="text-red-500 font-semibold mt-2"> Este campo é obrigátorio!</p>}
+                {errors.email?.type === "required" && <p className="text-red-500 font-semibold mt-2"> Email é obrigátorio!</p>}
               </div>
             </div>
 
@@ -227,7 +227,7 @@ const Support: React.FC = () => {
                   className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="(11) 99999-9999"
                 />
-                {errors.telephone?.type === "required" && <p className="text-red-500 font-semibold mt-2"> Este campo é obrigátorio!</p>}
+                {errors.telephone?.type === "required" && <p className="text-red-500 font-semibold mt-2"> Telefone é obrigátorio!</p>}
               </div>
 
               {/* Service Type - WIP */}
@@ -239,6 +239,7 @@ const Support: React.FC = () => {
                   Tipo de ajuda
                 </label>
                 <select
+                {...register("serviceType", { required: true, validate: value =>  value !== "Selecione uma opção"})}
                   id="serviceType"
                   name="serviceType"
                   value={formData.serviceType}
@@ -255,7 +256,9 @@ const Support: React.FC = () => {
                   <option value="geral">Informações gerais</option>
                   <option value="outros">Outros</option>
                 </select>
+                {errors.serviceType?.type === "required" && <p className="text-red-500 font-semibold mt-2"> Você precisa selcionar uma opção!</p>}
               </div>
+             
             </div>
 
             {/* Message */}
@@ -276,7 +279,7 @@ const Support: React.FC = () => {
                 className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-vertical"
                 placeholder="Explique detalhadamente qual ajuda você precisa..."
               />
-              {errors.message?.type === "required" && <p className="text-red-500 font-semibold mt-2"> Este campo é obrigátorio!</p>}
+              {errors.message?.type === "required" && <p className="text-red-500 font-semibold mt-2"> Dúvida ou problema é obrigátorio!</p>}
             </div>
 
             {/* Checkbox */}

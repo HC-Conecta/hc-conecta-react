@@ -42,11 +42,3 @@ export interface ISteps {
   button?: string;
   existButton?: boolean;
 }
-
-export interface FormValues {
-  name: string;
-  email: string;
-  telephone: string;
-  helper: string[];
-  message: string
-};
