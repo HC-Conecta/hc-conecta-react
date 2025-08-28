@@ -1,13 +1,16 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import H1 from "@/components/H1";
 import Button from "@/components/Button";
 import { Paragraph } from "@/components/Paragraph";
-import { FileUser, Lock, Mail } from "lucide-react";
+import { Baby, FileUser, Lock } from "lucide-react";
+import { boolean } from "zod/v4";
 import InputLogin from "@/components/InputLogin";
 
-const Login = () => {
+const Register = () => {
   const location = useLocation();
+
+  const [change, setChange] = useState<number |  React.ChangeEvent<HTMLInputElement>>(null);
 
   const navigate = useNavigate();
 
@@ -21,13 +24,13 @@ const Login = () => {
   return (
     <div className="min-h-screen p-5 flex flex-col items-center justify-center bg-gray-100 gap-10">
       <div className="flex flex-col items-center">
-        <H1 gradient={true}>Bem-vindo de volta</H1>
-        <Paragraph>Entre na sua conta para continuar</Paragraph>
+        <H1 gradient={true}>Criar Conta</H1>
+        <Paragraph>Junte-se a nós hoje mesmo</Paragraph>
       </div>
       <div className="bg-surface rounded-xl p-8 shadow-md border border-border">
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-2">Entrar</h2>
-          <Paragraph>Digite suas credenciais para acessar sua conta</Paragraph>
+          <h2 className="text-2xl font-bold text-foreground mb-2">Cadastro</h2>
+          <Paragraph>Preencha os dados abaixo para criar sua conta</Paragraph>
         </div>
 
         <form className="space-y-6">
@@ -36,12 +39,23 @@ const Login = () => {
             <InputLogin 
             icon={<FileUser size={20}
             className="absolute left-3 top-12 text-gray-500" />} id="cpf" label="CPF *" placeholder="132.123.213-21" name="cpf" type="text"/>
+            {/* AGE */}
+            <InputLogin 
+            icon={<Baby size={20} className="absolute left-3 top-12 text-gray-500
+            " />} id="age" label="Idade *" placeholder="Sua Idade" name="age" type="number"
+            />
             {/* Password */}
             <InputLogin 
             passwordExist={true}
             icon={<Lock size={20} className="absolute left-3 top-12 text-gray-500" />} id="password" label="Senha *" placeholder="Digite sua senha" name="password" type="password"
             />
+            
           </div>
+          {/* Confirm Password */}
+          <InputLogin 
+            passwordExist={true}
+            icon={<Lock size={20} className="absolute left-3 top-12 text-gray-500" />} id="confirmPassword" label="Confirmar Senha *" placeholder="Confirme sua senha" name="confirmPassword" type="password"
+            />
           {/* Submit Button */}
           <div className="flex w-full flex-col sm:flex-row gap-4">
             <Button
@@ -52,14 +66,14 @@ const Login = () => {
           </div>
           <div className="text-center mt-4 flex gap-2 justify-center">
             <p className="text-lg text-muted-foreground">
-              Não tem uma conta?
+            Já tem uma conta?
             </p>
             <button
               type="button"
               className="text-lg text-blue-700 font-medium hover:underline"
-              onClick={() => navigate("/register")}
+              onClick={() => navigate("/login")}
             >
-              Criar Conta
+              Fazer login
             </button>
           </div>
         </form>
@@ -68,4 +82,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
