@@ -9,6 +9,7 @@ import Support from "./pages/Support";
 import NotFound from "./pages/NotFound";
 import Layout from "./pages/Layout";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
 
         <Route path="*" element={<NotFound />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   </QueryClientProvider>
