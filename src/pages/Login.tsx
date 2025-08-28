@@ -7,6 +7,7 @@ import { FileUser, Lock, Mail } from "lucide-react";
 import InputLogin from "@/components/InputLogin";
 import { NameValues } from "@/types/global";
 import { useForm } from "react-hook-form";
+import { cpfMask } from "@/utils/cpfMask";
 
 const Login = () => {
   const location = useLocation();
@@ -18,8 +19,11 @@ const Login = () => {
   } = useForm<NameValues>();
 
   const onSubmit = (data: NameValues) => {
-    alert(JSON.stringify(data));
-    navigate("/home");
+    if (data) {
+      data.cpf = data.cpf.replace(/\D/g, '');
+      alert(JSON.stringify(data));
+      navigate("/home");
+    }
   };
 
   const navigate = useNavigate();
@@ -46,40 +50,65 @@ const Login = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="flex flex-col gap-6">
             {/* CPF */}
-            <InputLogin
-              register={register}
-              requiredInput={true}
-              icon={
-                <FileUser
-                  size={20}
-                  className="absolute left-3 top-12 text-gray-500"
-                />
-              }
-              id="cpf"
-              label="CPF *"
-              placeholder="132.123.213-21"
-              name="cpf"
-              type="text"
-              errors={errors}
-            />
+            <div className="flex flex-col gap-2 relative">
+              {/* CPF */}
+              <FileUser
+                size={20}
+                className="absolute left-3 top-4 text-gray-500"
+              />
+              <input
+                {...register("cpf", { required: true, maxLength: 14 })}
+                onChange={(e) => {
+                  e.target.value = cpfMask(e.target.value);
+                }}
+                type="text"
+                id="cpf"
+                name="cpf"
+                className="w-full px-10 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="123.456.789-00"
+              />
+              {errors.cpf?.type === "required" && (
+                <p className="text-red-500 font-medium text-sm">
+                  CPF é obrigatório.
+                </p>
+              )}
+              {errors.cpf?.type === "maxLength" && (
+                <p className="text-red-500 font-medium text-sm">
+                  Máximo de 11 caracteres permitido.
+                </p>
+              )}
+            </div>
             {/* Password */}
-            <InputLogin
-              register={register}
-              requiredInput={true}
-              passwordExist={true}
-              icon={
-                <Lock
-                  size={20}
-                  className="absolute left-3 top-12 text-gray-500"
-                />
-              }
-              id="password"
-              label="Senha *"
-              placeholder="Digite sua senha"
-              name="password"
-              type="password"
-              errors={errors}
-            />
+            <div className="flex flex-col gap-2">
+              {/* Password */}
+              <InputLogin
+                register={register}
+                passwordExist={true}
+                rules={{ required: true, minLength: 8 }}
+                icon={
+                  <Lock
+                    size={20}
+                    className="absolute left-3 top-12 text-gray-500"
+                  />
+                }
+                id="password"
+                label="Senha *"
+                placeholder="Digite sua senha"
+                name="password"
+                type="password"
+                errors={errors}
+              />
+              {errors.password?.type === "required" && (
+                <p className="text-red-500 font-medium text-sm">
+                  Senha é obrigatório.
+                </p>
+              )}
+              {errors.password?.type === "minLength" && (
+                <p className="text-red-500 font-medium text-sm">
+                  Mínimo de 8 caracteres.
+                </p>
+              )}
+            </div>
           </div>
           {/* Submit Button */}
           <div className="flex w-full flex-col sm:flex-row gap-4">

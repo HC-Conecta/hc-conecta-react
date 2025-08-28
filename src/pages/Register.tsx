@@ -7,6 +7,7 @@ import { Baby, FileUser, Lock } from "lucide-react";
 import InputLogin from "@/components/InputLogin";
 import { useForm } from "react-hook-form";
 import { NameValues } from "@/types/global";
+import { cpfMask } from "@/utils/cpfMask";
 
 const Register = () => {
   const location = useLocation();
@@ -21,11 +22,11 @@ const Register = () => {
   const watchPassword = watch("password");
 
   const onSubmit = (data: NameValues, e: React.FormEvent<HTMLFormElement>) => {
-    if(data) {
+    if (data) {
+      data.cpf = data.cpf.replace(/\D/g, '');
       alert(JSON.stringify(data));
       navigate("/home");
     } else alert("Erro no cadastro");
-    
   };
 
   const navigate = useNavigate();
@@ -52,23 +53,18 @@ const Register = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="flex flex-col gap-6">
             {/* CPF */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 relative">
               {/* CPF */}
-              <InputLogin
-                register={register}
-                rules={{ required: true,  maxLength: 14}}
-                icon={
-                  <FileUser
-                    size={20}
-                    className="absolute left-3 top-12 text-gray-500"
-                  />
-                }
-                id="cpf"
-                label="CPF *"
-                placeholder="132.123.213-21"
-                name="cpf"
+              <FileUser size={20} className="absolute left-3 top-4 text-gray-500"/>
+              <input
+                {...register("cpf", { required: true, maxLength: 14 })}
+                onChange={(e) => { 
+                  e.target.value = cpfMask(e.target.value) }}
                 type="text"
-                errors={errors}
+                id="cpf"
+                name="cpf"
+                className="w-full px-10 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="123.456.789-00"
               />
               {errors.cpf?.type === "required" && (
                 <p className="text-red-500 font-medium text-sm">
@@ -82,102 +78,104 @@ const Register = () => {
               )}
             </div>
 
-           <div className="flex flex-col gap-2">
-             {/* AGE */}
-             <InputLogin
-              register={register}
-              rules={{ required: true, validate: (value: number) => value > 15 && value < 130 }}
-              icon={
-                <Baby
-                  size={20}
-                  className="absolute left-3 top-12 text-gray-500
-            "
-                />
-              }
-              id="age"
-              label="Idade *"
-              placeholder="Sua Idade"
-              name="age"
-              type="number"
-              errors={errors}
-            />
-            {errors.age?.type === "required" && (
-              <p className="text-red-500 font-medium text-sm">
-                Idade é obrigatório.
-              </p>
-            )}
+            <div className="flex flex-col gap-2">
+              {/* AGE */}
+              <InputLogin
+                register={register}
+                rules={{
+                  required: true,
+                  validate: (value: number) => value > 15 && value < 130,
+                }}
+                icon={
+                  <Baby
+                    size={20}
+                    className="absolute left-3 top-12 text-gray-500"
+                  />
+                }
+                id="age"
+                label="Idade *"
+                placeholder="Sua Idade"
+                name="age"
+                type="number"
+                errors={errors}
+              />
+              {errors.age?.type === "required" && (
+                <p className="text-red-500 font-medium text-sm">
+                  Idade é obrigatório.
+                </p>
+              )}
 
-            {errors.age?.type === "validate" && (
-              <p className="text-red-500 font-medium text-sm">
-                Idade deve ser entre 16 e 120 anos
-              </p>
-            )}
-              
+              {errors.age?.type === "validate" && (
+                <p className="text-red-500 font-medium text-sm">
+                  Idade deve ser entre 16 e 120 anos
+                </p>
+              )}
+            </div>
 
-           </div>
-            
+            <div className="flex flex-col gap-2">
+              {/* Password */}
+              <InputLogin
+                register={register}
+                passwordExist={true}
+                rules={{ required: true, minLength: 8 }}
+                icon={
+                  <Lock
+                    size={20}
+                    className="absolute left-3 top-12 text-gray-500"
+                  />
+                }
+                id="password"
+                label="Senha *"
+                placeholder="Digite sua senha"
+                name="password"
+                type="password"
+                errors={errors}
+              />
+              {errors.password?.type === "required" && (
+                <p className="text-red-500 font-medium text-sm">
+                  Senha é obrigatório.
+                </p>
+              )}
+              {errors.password?.type === "minLength" && (
+                <p className="text-red-500 font-medium text-sm">
+                  Mínimo de 8 caracteres.
+                </p>
+              )}
+            </div>
+          </div>
           <div className="flex flex-col gap-2">
-
-            {/* Password */}
+            {/* Confirm Password */}
             <InputLogin
               register={register}
+              rules={{
+                required: true,
+                minLength: 8,
+                validate: (value: string) => value === watchPassword
+              }}
               passwordExist={true}
-              rules={{ required: true, minLength: 8 }}
               icon={
                 <Lock
                   size={20}
                   className="absolute left-3 top-12 text-gray-500"
                 />
               }
-              id="password"
-              label="Senha *"
-              placeholder="Digite sua senha"
-              name="password"
+              id="confirmPassword"
+              label="Confirmar Senha *"
+              placeholder="Confirme sua senha"
+              name="confirmPassword"
               type="password"
               errors={errors}
             />
-            {errors.password?.type === "required" && (
+            {errors.confirmPassword?.type === "required" && (
               <p className="text-red-500 font-medium text-sm">
-                Senha é obrigatório.
+                Confirmação de senha é obrigatório.
               </p>
             )}
-            {errors.password?.type === "minLength" && (
+            {errors.confirmPassword?.type === "validate" && (
               <p className="text-red-500 font-medium text-sm">
-                Mínimo de 8 caracteres.
+                As senhas não coincidem.
               </p>
             )}
-          </div>
-            
-          </div>
-          <div className="flex flex-col gap-2">
-            {/* Confirm Password */}
-          <InputLogin
-            register={register}
-            rules={{ required: true, minLength: 8, validate: (value: string) => value === watchPassword }}
-            passwordExist={true}
-            icon={
-              <Lock
-                size={20}
-                className="absolute left-3 top-12 text-gray-500"
-              />
-            }
-            id="confirmPassword"
-            label="Confirmar Senha *"
-            placeholder="Confirme sua senha"
-            name="confirmPassword"
-            type="password"
-            errors={errors}
-          />
-          {errors.confirmPassword?.type === "required" && (
-            <p className="text-red-500 font-medium text-sm">
-              Confirmação de senha é obrigatório.
-            </p>
-          )}
-          {errors.confirmPassword?.type === "validate" && (
-            <p className="text-red-500 font-medium text-sm">
-              As senhas não coincidem.
-            </p>
-          )}
           </div>
           {/* Submit Button */}
           <div className="flex w-full flex-col sm:flex-row gap-4">

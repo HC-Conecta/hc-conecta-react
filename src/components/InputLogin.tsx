@@ -39,7 +39,6 @@ const InputLogin = ({
   return (
     <div className="relative">
       <label
-        htmlFor="password"
         className="block text-md font-medium text-foreground mb-2"
       >
         {label}
