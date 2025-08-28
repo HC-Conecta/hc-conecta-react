@@ -4,13 +4,23 @@ import H1 from "@/components/H1";
 import Button from "@/components/Button";
 import { Paragraph } from "@/components/Paragraph";
 import { Baby, FileUser, Lock } from "lucide-react";
-import { boolean } from "zod/v4";
 import InputLogin from "@/components/InputLogin";
+import { useForm } from "react-hook-form";
+import { NameValues } from "@/types/global";
 
 const Register = () => {
   const location = useLocation();
 
-  const [change, setChange] = useState<number |  React.ChangeEvent<HTMLInputElement>>(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<NameValues>();
+
+  const onSubmit = (data: NameValues, e: React.FormEvent<HTMLFormElement>) => {
+    alert(JSON.stringify(data));
+    navigate("/home");
+  };
 
   const navigate = useNavigate();
 
@@ -33,41 +43,88 @@ const Register = () => {
           <Paragraph>Preencha os dados abaixo para criar sua conta</Paragraph>
         </div>
 
-        <form className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="flex flex-col gap-6">
             {/* CPF */}
-            <InputLogin 
-            icon={<FileUser size={20}
-            className="absolute left-3 top-12 text-gray-500" />} id="cpf" label="CPF *" placeholder="132.123.213-21" name="cpf" type="text"/>
+            <InputLogin
+              register={register}
+              requiredInput={true}
+              icon={
+                <FileUser
+                  size={20}
+                  className="absolute left-3 top-12 text-gray-500"
+                />
+              }
+              id="cpf"
+              label="CPF *"
+              placeholder="132.123.213-21"
+              name="cpf"
+              type="text"
+              errors={errors}
+            />
             {/* AGE */}
-            <InputLogin 
-            icon={<Baby size={20} className="absolute left-3 top-12 text-gray-500
-            " />} id="age" label="Idade *" placeholder="Sua Idade" name="age" type="number"
+            <InputLogin
+              register={register}
+              requiredInput={true}
+              icon={
+                <Baby
+                  size={20}
+                  className="absolute left-3 top-12 text-gray-500
+            "
+                />
+              }
+              id="age"
+              label="Idade *"
+              placeholder="Sua Idade"
+              name="age"
+              type="number"
+              errors={errors}
             />
             {/* Password */}
-            <InputLogin 
-            passwordExist={true}
-            icon={<Lock size={20} className="absolute left-3 top-12 text-gray-500" />} id="password" label="Senha *" placeholder="Digite sua senha" name="password" type="password"
+            <InputLogin
+              register={register}
+              requiredInput={true}
+              passwordExist={true}
+              icon={
+                <Lock
+                  size={20}
+                  className="absolute left-3 top-12 text-gray-500"
+                />
+              }
+              id="password"
+              label="Senha *"
+              placeholder="Digite sua senha"
+              name="password"
+              type="password"
+              errors={errors}
             />
-            
           </div>
           {/* Confirm Password */}
-          <InputLogin 
+          <InputLogin
+            register={register}
+            requiredInput={true}
             passwordExist={true}
-            icon={<Lock size={20} className="absolute left-3 top-12 text-gray-500" />} id="confirmPassword" label="Confirmar Senha *" placeholder="Confirme sua senha" name="confirmPassword" type="password"
-            />
+            icon={
+              <Lock
+                size={20}
+                className="absolute left-3 top-12 text-gray-500"
+              />
+            }
+            id="confirmPassword"
+            label="Confirmar Senha *"
+            placeholder="Confirme sua senha"
+            name="confirmPassword"
+            type="password"
+            errors={errors}
+          />
           {/* Submit Button */}
           <div className="flex w-full flex-col sm:flex-row gap-4">
-            <Button
-            onClick={() => navigate("/home")}
-            type="submit" size="lg" className="text-white w-full">
+            <Button type="submit" size="lg" className="text-white w-full">
               Entrar
             </Button>
           </div>
           <div className="text-center mt-4 flex gap-2 justify-center">
-            <p className="text-lg text-muted-foreground">
-            Já tem uma conta?
-            </p>
+            <p className="text-lg text-muted-foreground">Já tem uma conta?</p>
             <button
               type="button"
               className="text-lg text-blue-700 font-medium hover:underline"

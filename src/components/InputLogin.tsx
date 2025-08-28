@@ -1,5 +1,8 @@
+import { NameValues } from "@/types/global";
+import { cpfMask } from "@/utils/cpfMask";
 import { Eye, EyeClosed } from "lucide-react";
 import { useState } from "react";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 type InputLoginProps = {
   label: string;
@@ -7,9 +10,12 @@ type InputLoginProps = {
   icon: React.ReactNode;
   type?: string;
   id: string;
-  name: string;
+  name: keyof NameValues;
   value?: string;
   passwordExist?: boolean;
+  register?: UseFormRegister<NameValues>;
+  errors?: FieldErrors<NameValues>;
+  requiredInput?: boolean;
 };
 
 const InputLogin = ({
@@ -21,8 +27,10 @@ const InputLogin = ({
   name,
   value,
   passwordExist,
+  register,
+  errors,
+  requiredInput = false,
 }: InputLoginProps) => {
-    
   const [showPassword, setShowPassword] = useState<boolean>(true);
 
   const handleClick = () => {
@@ -50,6 +58,7 @@ const InputLogin = ({
       )}
 
       <input
+        {...(register ? register(name, { required: requiredInput }) : {})}
         type={passwordExist && !showPassword ? "text" : type}
         id={id}
         name={name}
@@ -57,6 +66,11 @@ const InputLogin = ({
         placeholder={placeholder}
         value={value}
       />
+      {errors && errors[name] && (
+        <p className="text-red-500 font-medium text-sm mt-2">
+          {label.replace("*", "")} é obrigatório.
+        </p>
+      )}
     </div>
   );
 };
