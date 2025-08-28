@@ -1,5 +1,4 @@
 import { NameValues } from "@/types/global";
-import { cpfMask } from "@/utils/cpfMask";
 import { Eye, EyeClosed } from "lucide-react";
 import { useState } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
@@ -15,7 +14,7 @@ type InputLoginProps = {
   passwordExist?: boolean;
   register?: UseFormRegister<NameValues>;
   errors?: FieldErrors<NameValues>;
-  requiredInput?: boolean;
+  rules?: object;
 };
 
 const InputLogin = ({
@@ -29,7 +28,7 @@ const InputLogin = ({
   passwordExist,
   register,
   errors,
-  requiredInput = false,
+  rules,
 }: InputLoginProps) => {
   const [showPassword, setShowPassword] = useState<boolean>(true);
 
@@ -58,7 +57,7 @@ const InputLogin = ({
       )}
 
       <input
-        {...(register ? register(name, { required: requiredInput }) : {})}
+        {...(register ? register(name, rules) : {})}
         type={passwordExist && !showPassword ? "text" : type}
         id={id}
         name={name}
@@ -66,11 +65,7 @@ const InputLogin = ({
         placeholder={placeholder}
         value={value}
       />
-      {errors && errors[name] && (
-        <p className="text-red-500 font-medium text-sm mt-2">
-          {label.replace("*", "")} é obrigatório.
-        </p>
-      )}
+      
     </div>
   );
 };
