@@ -61,8 +61,8 @@ const Support: React.FC = () => {
     },
   ];
 
-  const onSubmit = (): void => {
-    alert("teste");
+  const onSubmit = (data: FormData): void => {
+    alert(data);
   };
 
   const handleInputChange = (
@@ -183,7 +183,12 @@ const Support: React.FC = () => {
                   className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="Digite seu nome completo"
                 />
-                {errors.name?.type === "required" && <p className="text-red-500 font-semibold mt-2"> Nome é obrigátorio!</p>}
+                {errors.name?.type === "required" && (
+                  <p className="text-red-500 font-semibold mt-2">
+                    {" "}
+                    Nome é obrigátorio!
+                  </p>
+                )}
               </div>
 
               {/* Email */}
@@ -195,7 +200,7 @@ const Support: React.FC = () => {
                   Email
                 </label>
                 <input
-                 {...register("email", { required: true })}
+                  {...register("email", { required: true })}
                   type="text"
                   id="email"
                   name="email"
@@ -204,13 +209,18 @@ const Support: React.FC = () => {
                   className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="seu@email.com"
                 />
-                {errors.email?.type === "required" && <p className="text-red-500 font-semibold mt-2"> Email é obrigátorio!</p>}
+                {errors.email?.type === "required" && (
+                  <p className="text-red-500 font-semibold mt-2">
+                    {" "}
+                    Email é obrigátorio!
+                  </p>
+                )}
               </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
               {/* Phone */}
-               <div>
+              <div>
                 <label
                   htmlFor="telephone"
                   className="block text-md font-medium text-foreground mb-2"
@@ -218,7 +228,7 @@ const Support: React.FC = () => {
                   Telefone
                 </label>
                 <input
-                 {...register("telephone", { required: true })}
+                  {...register("telephone", { required: true })}
                   type="telephone"
                   id="telephone"
                   name="telephone"
@@ -227,7 +237,12 @@ const Support: React.FC = () => {
                   className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="(11) 99999-9999"
                 />
-                {errors.telephone?.type === "required" && <p className="text-red-500 font-semibold mt-2"> Telefone é obrigátorio!</p>}
+                {errors.telephone?.type === "required" && (
+                  <p className="text-red-500 font-semibold mt-2">
+                    {" "}
+                    Telefone é obrigátorio!
+                  </p>
+                )}
               </div>
 
               {/* Service Type - WIP */}
@@ -239,7 +254,10 @@ const Support: React.FC = () => {
                   Tipo de ajuda
                 </label>
                 <select
-                {...register("serviceType", { required: true, validate: value =>  value !== "Selecione uma opção"})}
+                  {...register("serviceType", {
+                    required: true,
+                    validate: (value) => value !== "Selecione uma opção",
+                  })}
                   id="serviceType"
                   name="serviceType"
                   value={formData.serviceType}
@@ -256,9 +274,13 @@ const Support: React.FC = () => {
                   <option value="geral">Informações gerais</option>
                   <option value="outros">Outros</option>
                 </select>
-                {errors.serviceType?.type === "required" && <p className="text-red-500 font-semibold mt-2"> Você precisa selcionar uma opção!</p>}
+                {errors.serviceType?.type === "required" && (
+                  <p className="text-red-500 font-semibold mt-2">
+                    {" "}
+                    Você precisa selcionar uma opção!
+                  </p>
+                )}
               </div>
-             
             </div>
 
             {/* Message */}
@@ -270,7 +292,7 @@ const Support: React.FC = () => {
                 Descreva sua dúvida ou problema *
               </label>
               <textarea
-              {...register("message", { required: true })}
+                {...register("message", { required: true })}
                 id="message"
                 name="message"
                 value={formData.message}
@@ -279,7 +301,12 @@ const Support: React.FC = () => {
                 className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-vertical"
                 placeholder="Explique detalhadamente qual ajuda você precisa..."
               />
-              {errors.message?.type === "required" && <p className="text-red-500 font-semibold mt-2"> Dúvida ou problema é obrigátorio!</p>}
+              {errors.message?.type === "required" && (
+                <p className="text-red-500 font-semibold mt-2">
+                  {" "}
+                  Dúvida ou problema é obrigátorio!
+                </p>
+              )}
             </div>
 
             {/* Checkbox */}

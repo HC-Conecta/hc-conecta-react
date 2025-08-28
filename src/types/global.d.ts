@@ -42,3 +42,19 @@ export interface ISteps {
   button?: string;
   existButton?: boolean;
 }
+
+export interface IformValues {
+  cpf: string;
+  age: number;
+  password: string;
+  confirmPassword: string;
+}
+
+export type NameValues = {
+  email: string;
+  password: string;
+  cpf: string;
+  name: string;
+  age: string;
+  confirmPassword: string;
+};
