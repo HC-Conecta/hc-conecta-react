@@ -50,6 +50,16 @@ export interface IformValues {
   confirmPassword: string;
 }
 
+export interface Ilocations {
+  id: number;
+  title: string;
+  street: string;
+  img: string;
+  description: string;
+  map: string;
+  invertStyle?: boolean;
+}
+
 export type NameValues = {
   email: string;
   password: string;

@@ -150,7 +150,7 @@ const Register = () => {
               rules={{
                 required: true,
                 minLength: 8,
-                validate: (value: string) => value === watchPassword
+                validate: (value: string) => value == watchPassword
               }}
               passwordExist={true}
               icon={
@@ -166,16 +166,17 @@ const Register = () => {
               type="password"
               errors={errors}
             />
-            {errors.confirmPassword?.type === "required" && (
-              <p className="text-red-500 font-medium text-sm">
-                Confirmação de senha é obrigatório.
-              </p>
-            )}
             {errors.confirmPassword?.type === "validate" && (
               <p className="text-red-500 font-medium text-sm">
                 As senhas não coincidem.
               </p>
             )}
+            {errors.confirmPassword?.type === "required" && (
+              <p className="text-red-500 font-medium text-sm">
+                Confirmação de senha é obrigatório.
+              </p>
+            )}
+            
           </div>
           {/* Submit Button */}
           <div className="flex w-full flex-col sm:flex-row gap-4">

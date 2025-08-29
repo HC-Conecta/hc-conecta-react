@@ -144,7 +144,7 @@ const Appointment: React.FC = () => {
                     </ul>
                    {step.existButton === true && (
                      <div className='mt-4'>
-                      <Button className='text-white' size='sm'>{step.button} → </Button>
+                      <Button className='text-white' size='sm'><a href="https://portaldopaciente.hc.fm.usp.br/" target='_blank'> {step.button} →</a> </Button>
                     </div>
                    )}
                   </div>
