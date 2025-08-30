@@ -1,14 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { Paragraph } from "@/components/Paragraph";
-import { Ilocations } from "@/types/global";
+import { Ilocations } from "@/interfaces/global";
 import { MapIcon } from "lucide-react";
+import { log } from "console";
 
 const Home: React.FC = () => {
   const { pathname } = useLocation();
 
   const navigate = useNavigate();
+
 
   const locations: Ilocations[] = [
     {
@@ -24,7 +26,7 @@ const Home: React.FC = () => {
       id: 2,
       title: "Hospital das Clínicas de Ribeirão Preto (HC - USP)",
       street: "Av. Bandeirantes, 3900 - Ribeirão Preto - SP.",
-      img: "/img-hc2.png",
+      img: "/img-location/img-hc2.png",
       description:
         "O HC de Ribeirão Preto, ligado à Universidade de São Paulo, é um centro de excelência em atendimento à saúde e realiza diversas pesquisas clínicas e científicas.",
       map: "https://www.bing.com/maps?pglt=2083&q=Hospital+das+Cl%C3%ADnicas+de+Ribeir%C3%A3o+Preto&cvid=8ccbc7777d2c43e589246ba585983981&DAF0=1&PC=U531",
@@ -34,7 +36,7 @@ const Home: React.FC = () => {
       id: 3,
       title: "Hospital das Clínicas de Porto Alegre (HCPA)",
       street: "Rua Ramiro Barcelos, 2350 - Porto Alegre - RS.",
-      img: "/img-hc3.png",
+      img: "/img-location/img-hc3.png",
       description:
         "O HCPA é um hospital de referência no Rio Grande do Sul, oferecendo atendimento médico em diversas especialidades e realizando pesquisas avançadas na área da saúde.",
       map: "https://www.bing.com/maps?pglt=2083&q=Hospital+das+Cl%C3%ADnicas+de+Porto+Alegre&cvid=cf1758e3b8084fcdb86d48c2423b8cbb&DAF0=1&PC=U531",
@@ -236,20 +238,20 @@ const Home: React.FC = () => {
           locations.map((location) => (
             <div
               key={location.id}
-              className={`flex flex-col md:flex-row p-6 justify-center gap-5 md:gap-20 items-center ${location.invertStyle === true ? "md:flex-row-reverse" : ""}`}
+              className={`flex flex-col md:flex-row p-6 justify-center gap-5 md:gap-20 xl:gap-32 items-center ${location.invertStyle === true ? "md:flex-row-reverse" : ""}`}
             >
               <figure>
                 <img
-                  className="rounded-xl w-[25rem]"
+                  className="rounded-xl w-[25rem] xl:w-[28rem]"
                   src={location.img}
                   alt={location.title}
                 />
               </figure>
-              <div className="flex flex-col max-w-sm items-start justify-center text-start">
+              <div className="flex flex-col max-w-md items-start justify-center text-start">
                 <h3 className="font-semibold text-xl text-foreground mb-1 text-blue-700">
                   {location.title}
                 </h3>
-                <div className="flex flex-col">
+                <div className="flex flex-col gap-3">
                   <div className="flex gap-2 items-center">
                     <i className="relative bottom-1">
                       {" "}
@@ -260,9 +262,7 @@ const Home: React.FC = () => {
                       <b>{location.street}</b>{" "}
                     </Paragraph>
                   </div>
-                  <p className="text-md text-muted-foreground text-start">
-                    {location.description}
-                  </p>
+                  <Paragraph>{location.description} </Paragraph>
                 </div>
                 <Button className="text-white mt-5" size="sm">
                   <a href={location.map} target="_blank">

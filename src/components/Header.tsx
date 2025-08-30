@@ -1,13 +1,23 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { NavigationItem } from "../types/global";
+import { NavigationItem } from "../interfaces/global";
 import Button from "./Button";
-import { LogIn, Menu, MenuIcon, UserRoundPlus, UserRoundPlusIcon, X } from "lucide-react";
+import {
+  LogIn,
+  Menu,
+  MenuIcon,
+  UserCog,
+  UserRoundPlus,
+  UserRoundPlusIcon,
+  X,
+} from "lucide-react";
 import { se } from "date-fns/locale";
 
 const Header: React.FC = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const [isLoggedIn] = useState<string>(localStorage.getItem("loggedIn"));
 
   const navigationItems: NavigationItem[] = [
     { name: "Início", path: "/home" },
@@ -40,8 +50,10 @@ const Header: React.FC = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden xl:flex space-x-1">
-          {navigationItems.map((item) =>
-                item.name !== "Entrar" && item.name !== "Criar Conta" && (
+            {navigationItems.map(
+              (item) =>
+                item.name !== "Entrar" &&
+                item.name !== "Criar Conta" && (
                   <button
                     key={item.path}
                     onClick={() => {
@@ -56,61 +68,79 @@ const Header: React.FC = () => {
                   >
                     {item.name}
                   </button>
-                ) 
-              )}
+                )
+            )}
           </nav>
-          <div className="flex gap-3">
+          {isLoggedIn !== "true" ? (
+            <div className="flex gap-3">
+              <Button
+                onClick={() => navigate("/login")}
+                size="sm"
+                className="hidden xl:flex gap-2 items-center justify-center "
+                variant="outline"
+              >
+                {" "}
+                <i>
+                  <LogIn size={18} />{" "}
+                </i>{" "}
+                Entrar{" "}
+              </Button>
+              <Button
+                onClick={() => navigate("/register")}
+                size="sm"
+                className="hidden xl:flex gap-2 items-center text-white justify-center"
+                variant="primary"
+              >
+                {" "}
+                <i>
+                  <UserRoundPlus size={18} className="text-white" />{" "}
+                </i>{" "}
+                Criar Conta{" "}
+              </Button>
+            </div>
+          ) : (
             <Button
-              onClick={() => navigate("/login")}
-              size="sm"
-              className="hidden xl:flex gap-2 items-center justify-center "
-              variant="outline"
+              onClick={() => navigate("/profile")}
+              variant="ghost"
+              className="hidden xl:flex gap-2"
             >
-              {" "}
               <i>
-                <LogIn size={18} />{" "}
-              </i>{" "}
-              Entrar{" "}
+                {" "}
+                <UserCog size={25} className="text-blue-700" />{" "}
+              </i>
+              <p className="text-blue-700 font-medium "> Acessar Perfil </p>
             </Button>
-            <Button
-              onClick={() => navigate("/register")}
-              size="sm"
-              className="hidden xl:flex gap-2 items-center text-white justify-center"
-              variant="primary"
-            >
-              {" "}
-              <i>
-                <UserRoundPlus size={18} className="text-white" />{" "}
-              </i>{" "}
-              Criar Conta{" "}
-            </Button>
-          </div>
+          )}
           {/* Mobile menu button */}
-          {isMobileMenuOpen === false ? ( 
+          {isMobileMenuOpen === false ? (
             <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="xl:hidden p-2 rounded-lg text-foreground hover:bg-accent"
-            aria-label="Abrir menu"
-          >
-            <MenuIcon />
-          </button>
-          ): (
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="xl:hidden p-2 rounded-lg text-foreground hover:bg-accent"
+              aria-label="Abrir menu"
+            >
+              <MenuIcon />
+            </button>
+          ) : (
             <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="xl:hidden p-2 rounded-lg text-foreground hover:bg-accent"
-            aria-label="Fechar menu"
-          >
-            <X />
-          </button>
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="xl:hidden p-2 rounded-lg text-foreground hover:bg-accent"
+              aria-label="Fechar menu"
+            >
+              <X />
+            </button>
           )}
         </div>
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="xl:hidden py-4 border-t border-border ">
+          <div className="xl:hidden py-4 border-t border-border">
             <nav className="space-y-2">
-              {navigationItems.map((item) =>
-                item.name !== "Entrar" && item.name !== "Criar Conta" ? (
+              {navigationItems
+                .filter(
+                  (item) =>
+                    item.name !== "Entrar" && item.name !== "Criar Conta"
+                )
+                .map((item) => (
                   <button
                     key={item.path}
                     onClick={() => {
@@ -125,33 +155,55 @@ const Header: React.FC = () => {
                   >
                     {item.name}
                   </button>
-                ) : item.name === "Entrar" ? (
+                ))}
+
+              {isLoggedIn !== "true" ? (
+                <>
                   <div className="flex items-center px-2 py-3 gap-2">
-                    <i> <LogIn size={18} className="text-blue-700" /></i>
+                    <i>
+                      <LogIn size={20} className="text-blue-700" />
+                    </i>
                     <button
-                    key={item.path}
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      navigate(item.path);
-                    }}
-                    className="block rounded-lg font-medium transition-colors text-blue-700"
-                  > {item.name} </button>
-                  
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        navigate("/login");
+                      }}
+                      className="block rounded-lg font-medium transition-colors text-blue-700"
+                    >
+                      Entrar
+                    </button>
                   </div>
+                  <div className="flex items-center px-2 py-3 gap-2">
+                    <i>
+                      <UserRoundPlusIcon size={20} className="text-blue-700" />
+                    </i>
+                    <button
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        navigate("/register");
+                      }}
+                      className="block rounded-lg font-medium transition-colors text-blue-700"
+                    >
+                      Criar Conta
+                    </button>
+                  </div>
+                </>
               ) : (
-                <div className="flex items-center px-2 py-3 gap-2">
-                    <i> <UserRoundPlusIcon size={18} className="text-blue-700" /></i>
-                    <button
-                    key={item.path}
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      navigate(item.path);
-                    }}
-                    className="block rounded-lg font-medium transition-colors text-blue-700 "
-                  > {item.name} </button>
-                  
-                  </div>
-              ))}
+                <div className="flex items-center px-3 py-3 gap-2">
+                <i>
+                  <UserCog size={20} className="text-blue-700" />
+                </i>
+                <button
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    navigate("/profile");
+                  }}
+                  className="block rounded-lg font-medium transition-colors text-blue-700"
+                >
+                 Acessar Perfil
+                </button>
+              </div>
+              )}
             </nav>
           </div>
         )}
