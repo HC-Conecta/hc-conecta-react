@@ -60,7 +60,7 @@ export interface Ilocations {
   invertStyle?: boolean;
 }
 
-export type NameValues = {
+export interface NameValues  {
   email: string;
   password: string;
   cpf: string;
@@ -68,3 +68,8 @@ export type NameValues = {
   age: string;
   confirmPassword: string;
 };
+
+interface ILoginContext {
+  loggedIn: boolean;
+  setLoggedIn: (loggedIn: boolean) => void;
+}

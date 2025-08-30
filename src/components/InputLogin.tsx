@@ -1,4 +1,4 @@
-import { NameValues } from "@/types/global";
+import { NameValues } from "@/interfaces/global";
 import { Eye, EyeClosed } from "lucide-react";
 import { useState } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";

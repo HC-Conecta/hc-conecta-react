@@ -5,7 +5,7 @@ import Button from "@/components/Button";
 import { Paragraph } from "@/components/Paragraph";
 import { FileUser, Lock, Mail } from "lucide-react";
 import InputLogin from "@/components/InputLogin";
-import { NameValues } from "@/types/global";
+import { NameValues } from "@/interfaces/global";
 import { useForm } from "react-hook-form";
 import { cpfMask } from "@/utils/cpfMask";
 

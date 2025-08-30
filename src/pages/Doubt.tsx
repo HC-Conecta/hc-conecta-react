@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FAQ } from '../types/global';
+import { FAQ } from '../interfaces/global';
 import { CircleQuestionMark } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '@/components/Button';

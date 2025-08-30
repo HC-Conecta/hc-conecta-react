@@ -1,5 +1,5 @@
 import React from 'react';
-import { Developer } from '../types/global';
+import { Developer } from '../interfaces/global';
 import H1 from "@/components/H1";
 import { CircleCheck, CircleUser, Heart, Lightbulb, Mail } from 'lucide-react';
 import { Paragraph } from '@/components/Paragraph';

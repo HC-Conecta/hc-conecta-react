@@ -4,7 +4,7 @@ import { ImportantNotice } from '@/components/ImportantNotice';
 import { LiTips } from '@/components/LiTips';
 import { useLocation } from 'react-router-dom';
 import H1 from "@/components/H1";
-import { ISteps} from '@/types/global';
+import { ISteps} from '@/interfaces/global';
 import { Paragraph } from '@/components/Paragraph';
 
 const Appointment: React.FC = () => {
