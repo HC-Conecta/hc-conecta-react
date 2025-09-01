@@ -6,7 +6,7 @@ import { Paragraph } from "@/components/Paragraph";
 import { Baby, FileUser, Lock } from "lucide-react";
 import InputLogin from "@/components/InputLogin";
 import { useForm } from "react-hook-form";
-import { NameValues } from "@/interfaces/global";
+import { ILoginContext, NameValues } from "@/interfaces/global";
 import { cpfMask } from "@/utils/cpfMask";
 
 const Register = () => {
@@ -21,9 +21,6 @@ const Register = () => {
 
   const watchPassword = watch("password");
 
-  interface ILoginContext {
-    loggedIn: "true" | "false";
-  }
 
   const [isLoggedIn, setIsLoggedIn] = useState<ILoginContext>(() => {
     const stored = localStorage.getItem("loggedIn");

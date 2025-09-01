@@ -69,7 +69,6 @@ export interface NameValues  {
   confirmPassword: string;
 };
 
-interface ILoginContext {
-  loggedIn: boolean;
-  setLoggedIn: (loggedIn: boolean) => void;
+export interface ILoginContext {
+    loggedIn: "true" | "false";
 }

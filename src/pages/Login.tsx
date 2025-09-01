@@ -1,16 +1,31 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import H1 from "@/components/H1";
 import Button from "@/components/Button";
 import { Paragraph } from "@/components/Paragraph";
 import { FileUser, Lock, Mail } from "lucide-react";
 import InputLogin from "@/components/InputLogin";
-import { NameValues } from "@/interfaces/global";
+import { ILoginContext, NameValues } from "@/interfaces/global";
 import { useForm } from "react-hook-form";
 import { cpfMask } from "@/utils/cpfMask";
 
 const Login = () => {
   const location = useLocation();
+
+  const [isLoggedIn, setIsLoggedIn] = useState<ILoginContext>(() => {
+      const stored = localStorage.getItem("loggedIn");
+      return { loggedIn: stored === "true" ? "true" : "false" };
+    });
+  
+    const handleLogin = () => {
+      setIsLoggedIn({ loggedIn: "true" });
+      return localStorage.setItem("loggedIn", "true");
+    };
+  
+    const handleLogout = () => {
+      setIsLoggedIn({ loggedIn: "false" });
+      return localStorage.setItem("loggedIn", "false");
+    };
 
   const {
     register,
@@ -22,7 +37,11 @@ const Login = () => {
     if (data) {
       data.cpf = data.cpf.replace(/\D/g, '');
       alert(JSON.stringify(data));
+      handleLogin();
       navigate("/home");
+    } else {
+      alert('error submit');
+      handleLogout()
     }
   };
 
