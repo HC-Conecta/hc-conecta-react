@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../components/Button";
 import { FormData, Contact } from "../interfaces/global";
 import { Phone, Mail, MapPin } from "lucide-react";
 import H1 from "@/components/H1";
 import { Paragraph } from "@/components/Paragraph";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 
 const Support: React.FC = () => {
   const {
@@ -12,6 +13,12 @@ const Support: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const [formData, setFormData] = useState<FormData>({
     name: "",
