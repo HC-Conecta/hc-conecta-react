@@ -11,7 +11,6 @@ import {
   UserRoundPlusIcon,
   X,
 } from "lucide-react";
-import { se } from "date-fns/locale";
 
 const Header: React.FC = () => {
   const location = useLocation();

@@ -27,7 +27,6 @@ const InputLogin = ({
   value,
   passwordExist,
   register,
-  errors,
   rules,
 }: InputLoginProps) => {
   const [showPassword, setShowPassword] = useState<boolean>(true);
