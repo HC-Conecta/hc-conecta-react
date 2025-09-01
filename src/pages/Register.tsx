@@ -111,7 +111,7 @@ const Register = () => {
                   register={register}
                   rules={{
                     required: true,
-                    validate: (value: number) => value > 15 && value < 130,
+                    validate: (value: number) => value > 15 && value <= 120,
                   }}
                   icon={
                     <Baby
