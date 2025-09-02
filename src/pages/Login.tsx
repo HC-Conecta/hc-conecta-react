@@ -13,19 +13,19 @@ const Login = () => {
   const location = useLocation();
 
   const [isLoggedIn, setIsLoggedIn] = useState<ILoginContext>(() => {
-      const stored = localStorage.getItem("loggedIn");
-      return { loggedIn: stored === "true" ? "true" : "false" };
-    });
-  
-    const handleLogin = () => {
-      setIsLoggedIn({ loggedIn: "true" });
-      return localStorage.setItem("loggedIn", "true");
-    };
-  
-    const handleLogout = () => {
-      setIsLoggedIn({ loggedIn: "false" });
-      return localStorage.setItem("loggedIn", "false");
-    };
+    const stored = localStorage.getItem("loggedIn");
+    return { loggedIn: stored === "true" ? "true" : "false" };
+  });
+
+  const handleLogin = () => {
+    setIsLoggedIn({ loggedIn: "true" });
+    return localStorage.setItem("loggedIn", "true");
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn({ loggedIn: "false" });
+    return localStorage.setItem("loggedIn", "false");
+  };
 
   const {
     register,
@@ -35,13 +35,13 @@ const Login = () => {
 
   const onSubmit = (data: NameValues) => {
     if (data) {
-      data.cpf = data.cpf.replace(/\D/g, '');
+      data.cpf = data.cpf.replace(/\D/g, "");
       alert(JSON.stringify(data));
       handleLogin();
       navigate("/home");
     } else {
-      alert('error submit');
-      handleLogout()
+      alert("error submit");
+      handleLogout();
     }
   };
 
@@ -56,7 +56,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen p-5 flex flex-col items-center justify-center bg-gray-100 gap-10">
-      <div className="flex flex-col items-center">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <H1 gradient={true}>Bem-vindo de volta</H1>
         <Paragraph>Entre na sua conta para continuar</Paragraph>
       </div>
@@ -71,9 +71,12 @@ const Login = () => {
             {/* CPF */}
             <div className="flex flex-col gap-2 relative">
               {/* CPF */}
+              <label className="block text-md font-medium text-foreground">
+                CPF *
+              </label>
               <FileUser
                 size={20}
-                className="absolute left-3 top-4 text-gray-500"
+                className="absolute left-3 top-14 text-gray-500"
               />
               <input
                 {...register("cpf", { required: true, maxLength: 14 })}
@@ -138,7 +141,7 @@ const Login = () => {
           <div className="text-center mt-4 flex gap-2 justify-center">
             <p className="text-lg text-muted-foreground">Não tem uma conta?</p>
             <button
-            onClick={() => navigate('/register')}
+              onClick={() => navigate("/register")}
               type="button"
               className="text-lg text-blue-700 font-medium hover:underline"
             >

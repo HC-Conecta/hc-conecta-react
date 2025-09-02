@@ -21,7 +21,6 @@ const Register = () => {
 
   const watchPassword = watch("password");
 
-
   const [isLoggedIn, setIsLoggedIn] = useState<ILoginContext>(() => {
     const stored = localStorage.getItem("loggedIn");
     return { loggedIn: stored === "true" ? "true" : "false" };
@@ -78,9 +77,12 @@ const Register = () => {
               {/* CPF */}
               <div className="flex flex-col gap-2 relative">
                 {/* CPF */}
+                <label className="block text-md font-medium text-foreground">
+                  CPF *
+                </label>
                 <FileUser
                   size={20}
-                  className="absolute left-3 top-4 text-gray-500"
+                  className="absolute left-3 top-14 text-gray-500"
                 />
                 <input
                   {...register("cpf", { required: true, maxLength: 14 })}
