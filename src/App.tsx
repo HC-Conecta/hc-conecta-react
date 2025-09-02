@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import Layout from "./pages/Layout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/doubt" element={<Doubt />} />
           <Route path="/appointment" element={<Appointment />} />
           <Route path="/support" element={<Support />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />

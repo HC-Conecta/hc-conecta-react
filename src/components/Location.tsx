@@ -77,7 +77,7 @@ const Location = () => {
                   </div>
                   <Paragraph>{location.description} </Paragraph>
                 </div>
-                <Button className="text-white mt-5" size="sm">
+                <Button className="text-white mt-2" size="sm">
                   <a href={location.map} target="_blank">
                     {" "}
                     Acessar no Mapa →
