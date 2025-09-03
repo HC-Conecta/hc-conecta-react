@@ -4,6 +4,7 @@ import { NavigationItem } from "../interfaces/global";
 import Button from "./Button";
 import {
   LogIn,
+  LogOut,
   Menu,
   MenuIcon,
   UserCog,
@@ -98,17 +99,37 @@ const Header: React.FC = () => {
               </Button>
             </div>
           ) : (
-            <Button
-              onClick={() => navigate("/profile")}
-              variant="ghost"
-              className="hidden xl:flex gap-2"
+            <div className="flex gap-2">
+              <Button
+              size="sm"
+              onClick={() => {
+                navigate("/home");
+                localStorage.setItem("loggedIn", "false");
+                window.location.reload();
+              }}
+              variant="outline"
+              className="hidden xl:flex gap-2 items-center"
             >
               <i>
                 {" "}
-                <UserCog size={25} className="text-blue-700" />{" "}
+                <LogOut size={18}  />{" "}
               </i>
-              <p className="text-blue-700 font-medium "> Acessar Perfil </p>
+              <p className="font-medium "> Sair</p>
             </Button>
+              <Button
+              size="sm"
+              onClick={() => navigate("/profile")}
+              variant="primary"
+              className="hidden xl:flex gap-2 items-center"
+            >
+              <i>
+                {" "}
+                <UserCog size={18} className="text-white" />{" "}
+              </i>
+              <p className="text-white font-medium "> Acessar Perfil </p>
+            </Button>
+            
+            </div>
           )}
           {/* Mobile menu button */}
           {isMobileMenuOpen === false ? (
@@ -188,7 +209,8 @@ const Header: React.FC = () => {
                   </div>
                 </>
               ) : (
-                <div className="flex items-center px-3 py-3 gap-2">
+                <div className="flex flex-col justify-center items-start px-3 py-2 gap-5">
+                <div className="flex items-center gap-2">
                 <i>
                   <UserCog size={20} className="text-blue-700" />
                 </i>
@@ -201,6 +223,24 @@ const Header: React.FC = () => {
                 >
                  Acessar Perfil
                 </button>
+                </div>
+                <div className="flex items-center gap-2">
+                <i>
+                  <LogOut size={20} className="text-blue-700" />
+                </i>
+                <button
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    navigate("/home");
+                    localStorage.setItem("loggedIn", "false");
+                    window.location.reload();
+                  }}
+                  className="block rounded-lg font-medium transition-colors text-blue-700"
+                >
+                Sair
+                </button>
+                </div>
+                
               </div>
               )}
             </nav>
