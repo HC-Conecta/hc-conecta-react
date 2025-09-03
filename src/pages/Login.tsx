@@ -39,19 +39,19 @@ const Login = () => {
     if (data) {
       data.cpf = data.cpf.replace(/\D/g, "");
       handleLogin();
-      
-      
+
       const BASE_URL: string = `http://localhost:3001/posts?cpf=${data.cpf}&password=${data.password}`;
 
       try {
-        const response = await fetch(BASE_URL, {method: 'GET'});
+        const response = await fetch(BASE_URL, { method: "GET" });
         const data = await response.json();
-       if(data.length > 0) {
-        navigate("/home");
-        setLoginExist(true);
-       } else {
-        setLoginExist(false);
-       }
+        if (data.length > 0) {
+          setLoginExist(true);
+
+          navigate("/home");
+        } else {
+          setLoginExist(false);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -155,9 +155,12 @@ const Login = () => {
             </Button>
             {loginExist != true && (
               <div>
-              <p className="text-red-500 font-medium text-sm"> Email ou senha inválidos!</p>
-            </div>
-              )}
+                <p className="text-red-500 font-medium text-sm">
+                  {" "}
+                  Email ou senha inválidos!
+                </p>
+              </div>
+            )}
           </div>
           <div className="text-center mt-4 flex gap-2 justify-center">
             <p className="text-lg text-muted-foreground">Não tem uma conta?</p>
