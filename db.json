@@ -1,0 +1,25 @@
+{
+  "posts": [
+    {
+      "id": "1d53",
+      "cpf": "44741361870",
+      "age": "19",
+      "password": "iago124566",
+      "confirmPassword": "iago124566"
+    },
+    {
+      "id": "a7c0",
+      "cpf": "12121212121",
+      "age": "18",
+      "password": "iago23332323",
+      "confirmPassword": "iago23332323"
+    },
+    {
+      "id": "d658",
+      "cpf": "12345678910",
+      "age": "18",
+      "password": "enrico123",
+      "confirmPassword": "enrico123"
+    }
+  ]
+}

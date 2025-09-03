@@ -12,6 +12,8 @@ import { cpfMask } from "@/utils/cpfMask";
 const Login = () => {
   const location = useLocation();
 
+  const [loginExist, setLoginExist] = useState<boolean>(true);
+
   const [isLoggedIn, setIsLoggedIn] = useState<ILoginContext>(() => {
     const stored = localStorage.getItem("loggedIn");
     return { loggedIn: stored === "true" ? "true" : "false" };
@@ -33,12 +35,26 @@ const Login = () => {
     formState: { errors },
   } = useForm<NameValues>();
 
-  const onSubmit = (data: NameValues) => {
+  const onSubmit = async (data: NameValues) => {
     if (data) {
       data.cpf = data.cpf.replace(/\D/g, "");
-      alert(JSON.stringify(data));
       handleLogin();
-      navigate("/home");
+      
+      
+      const BASE_URL: string = `http://localhost:3001/posts?cpf=${data.cpf}&password=${data.password}`;
+
+      try {
+        const response = await fetch(BASE_URL, {method: 'GET'});
+        const data = await response.json();
+       if(data.length > 0) {
+        navigate("/home");
+        setLoginExist(true);
+       } else {
+        setLoginExist(false);
+       }
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       alert("error submit");
       handleLogout();
@@ -133,10 +149,15 @@ const Login = () => {
             </div>
           </div>
           {/* Submit Button */}
-          <div className="flex w-full flex-col sm:flex-row gap-4">
+          <div className="flex w-full flex-col gap-4">
             <Button type="submit" size="lg" className="text-white w-full">
               Entrar
             </Button>
+            {loginExist != true && (
+              <div>
+              <p className="text-red-500 font-medium text-sm"> Email ou senha inválidos!</p>
+            </div>
+              )}
           </div>
           <div className="text-center mt-4 flex gap-2 justify-center">
             <p className="text-lg text-muted-foreground">Não tem uma conta?</p>

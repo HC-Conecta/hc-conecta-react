@@ -36,12 +36,32 @@ const Register = () => {
     return localStorage.setItem("loggedIn", "false");
   };
 
-  const onSubmit = (data: NameValues) => {
+  const onSubmit = async (data: NameValues) => {
     if (data) {
       handleLogin();
       data.cpf = data.cpf.replace(/\D/g, "");
-      alert(JSON.stringify(data));
-      navigate("/home");
+
+      const BASE_URL: string = "http://localhost:3001/posts";
+
+      try {
+        const response = await fetch(BASE_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data), 
+        });
+
+        if(response.status != 201) {
+          console.error('Failed to create post:', response.statusText);
+        } else {
+          const data = await response.json();
+        }
+      } catch(error) {
+        console.log(`Error create User: ${error}`);
+      }
+
+      navigate("/login");
     } else {
       alert("Erro no cadastro, tente novamente.");
       handleLogout();
