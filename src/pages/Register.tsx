@@ -82,7 +82,7 @@ const Register = () => {
                 </label>
                 <FileUser
                   size={20}
-                  className="absolute left-3 top-14 text-gray-500"
+                  className="absolute left-3 top-12 text-gray-500"
                 />
                 <input
                   {...register("cpf", { required: true, maxLength: 14 })}

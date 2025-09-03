@@ -15,6 +15,7 @@ type InputLoginProps = {
   register?: UseFormRegister<NameValues>;
   errors?: FieldErrors<NameValues>;
   rules?: object;
+  disabled?: boolean;
 };
 
 const InputLogin = ({
@@ -28,6 +29,7 @@ const InputLogin = ({
   passwordExist,
   register,
   rules,
+  disabled
 }: InputLoginProps) => {
   const [showPassword, setShowPassword] = useState<boolean>(true);
 
@@ -56,6 +58,7 @@ const InputLogin = ({
 
       <input
         {...(register ? register(name, rules) : {})}
+        disabled={disabled}
         type={passwordExist && !showPassword ? "text" : type}
         id={id}
         name={name}

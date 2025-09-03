@@ -111,6 +111,7 @@ const Profile: React.FC = () => {
                   className="absolute left-3 top-12 text-gray-500"
                 />
                 <input
+                  disabled={showButton == true}
                   {...register("cpf", { required: true, maxLength: 14 })}
                   onChange={(e) => {
                     e.target.value = cpfMask(e.target.value);
@@ -136,8 +137,9 @@ const Profile: React.FC = () => {
               <div className="flex flex-col gap-2">
                 {/* Password */}
                 <InputLogin
+                  disabled={showButton == true}
                   register={register}
-                  passwordExist={true}
+                  passwordExist={showButton != true}
                   rules={{ required: true, minLength: 8 }}
                   icon={
                     <Lock
