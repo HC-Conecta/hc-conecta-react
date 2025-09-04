@@ -5,7 +5,7 @@ import Button from "@/components/Button";
 import { Paragraph } from "@/components/Paragraph";
 import { FileUser, Lock, Mail } from "lucide-react";
 import InputLogin from "@/components/InputLogin";
-import { ILoginContext, NameValues } from "@/interfaces/global";
+import { ILoginContext, IprofileData, NameValues } from "@/interfaces/global";
 import { useForm } from "react-hook-form";
 import { cpfMask } from "@/utils/cpfMask";
 
@@ -40,14 +40,15 @@ const Login = () => {
       data.cpf = data.cpf.replace(/\D/g, "");
       handleLogin();
 
-      const BASE_URL: string = `http://localhost:3001/posts?cpf=${data.cpf}&password=${data.password}`;
+      const BASE_URL: string = `http://localhost:3000/posts?cpf=${data.cpf}&password=${data.password}`;
 
       try {
         const response = await fetch(BASE_URL, { method: "GET" });
         const data = await response.json();
         if (data.length > 0) {
           setLoginExist(true);
-
+          const user: IprofileData = data[0];
+          localStorage.setItem("userId", user.id);
           navigate("/home");
         } else {
           setLoginExist(false);

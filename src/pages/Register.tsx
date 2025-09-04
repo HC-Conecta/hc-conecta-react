@@ -41,7 +41,7 @@ const Register = () => {
       handleLogin();
       data.cpf = data.cpf.replace(/\D/g, "");
 
-      const BASE_URL: string = "http://localhost:3001/posts";
+      const BASE_URL: string = "http://localhost:3000/posts";
 
       try {
         const response = await fetch(BASE_URL, {
@@ -55,13 +55,14 @@ const Register = () => {
         if(response.status != 201) {
           console.error('Failed to create post:', response.statusText);
         } else {
+          navigate("/login");
           const data = await response.json();
+          return data;
         }
       } catch(error) {
         console.log(`Error create User: ${error}`);
       }
 
-      navigate("/login");
     } else {
       alert("Erro no cadastro, tente novamente.");
       handleLogout();
