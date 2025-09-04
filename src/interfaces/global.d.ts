@@ -72,3 +72,11 @@ export interface NameValues  {
 export interface ILoginContext {
     loggedIn: "true" | "false";
 }
+
+export interface IprofileData {
+    id: string,
+    cpf: string,
+    age: number,
+    password: string,
+    confirmPassword: string
+}

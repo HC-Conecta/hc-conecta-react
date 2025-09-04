@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Button from "../components/Button";
-import { FormData, Contact, NameValues } from "../interfaces/global";
+import { FormData, Contact, NameValues, IprofileData } from "../interfaces/global";
 import {
   Phone,
   Mail,
@@ -11,11 +11,12 @@ import {
   Pencil,
   X,
   Save,
+  Baby,
 } from "lucide-react";
 import H1 from "@/components/H1";
 import { Paragraph } from "@/components/Paragraph";
 import { useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import InputLogin from "@/components/InputLogin";
 import { cpfMask } from "@/utils/cpfMask";
 
@@ -37,6 +38,25 @@ const Profile: React.FC = () => {
     }
   };
 
+  const {id} = useParams();
+
+  const [profile, setProfile] = useState<IprofileData | null>(null);
+
+  const BASE_URL: string = `http://localhost:3000/posts/${id}`;
+
+  useEffect(() => {
+    const getProfile = async () => {
+      const response = await fetch(BASE_URL, {method: 'GET'});
+      if(response.status != 200) {
+        console.error('Failed to Get profile:', response.statusText);
+      } else {
+        const data = await response.json();
+        setProfile(data);
+      }
+    };
+    getProfile();
+  }, [id])
+
   const [showButton, setShowButton] = useState<boolean>(true);
 
   const navigate = useNavigate();
@@ -49,7 +69,7 @@ const Profile: React.FC = () => {
   }, [location.pathname]);
 
   return (
-    <div className="bg-background py-16">
+    <div className="p-5 flex flex-col items-center justify-center gap-10 mb-10 mt-10">
       <div className="flex flex-col items-center justify-center gap-10">
         <div className="flex flex-col items-center">
           <H1 gradient={true}>Informações Pessoais</H1>
@@ -99,7 +119,8 @@ const Profile: React.FC = () => {
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <div className="flex flex-col gap-6">
+           {profile ? (
+              <div key={profile.id} className="flex flex-col gap-6">
               {/* CPF */}
               <div className="flex flex-col gap-2 relative">
                 {/* CPF */}
@@ -119,8 +140,9 @@ const Profile: React.FC = () => {
                   type="text"
                   id="cpf"
                   name="cpf"
+                  value={!showButton ? profile.cpf : ""}
                   className="w-full px-10 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="123.456.789-00"
+                  placeholder={profile.cpf}
                 />
                 {errors.cpf?.type === "required" && (
                   <p className="text-red-500 font-medium text-sm">
@@ -130,6 +152,42 @@ const Profile: React.FC = () => {
                 {errors.cpf?.type === "maxLength" && (
                   <p className="text-red-500 font-medium text-sm">
                     Máximo de 11 caracteres permitido.
+                  </p>
+                )}
+              </div>
+
+              <div className="flex flex-col gap-2">
+                {/* AGE */}
+                <InputLogin
+                  disabled={showButton == true}
+                  register={register}
+                  rules={{
+                    required: true,
+                    validate: (value: number) => value > 15 && value <= 120,
+                  }}
+                  icon={
+                    <Baby
+                      size={20}
+                      className="absolute left-3 top-12 text-gray-500"
+                    />
+                  }
+                  id="age"
+                  label="Idade *"
+                  placeholder={profile.age.toString()}
+                  name="age"
+                  type="number"
+                  errors={errors}
+                  value={!showButton ? profile.age.toString() : ""}
+                />
+                {errors.age?.type === "required" && (
+                  <p className="text-red-500 font-medium text-sm">
+                    Idade é obrigatório.
+                  </p>
+                )}
+
+                {errors.age?.type === "validate" && (
+                  <p className="text-red-500 font-medium text-sm">
+                    Idade deve ser entre 16 e 120 anos
                   </p>
                 )}
               </div>
@@ -149,10 +207,11 @@ const Profile: React.FC = () => {
                   }
                   id="password"
                   label="Alterar Senha *"
-                  placeholder="Digite sua senha"
+                  placeholder={profile.password}
                   name="password"
                   type="password"
                   errors={errors}
+                  value={!showButton ? profile.password : ""}
                 />
                 {errors.password?.type === "required" && (
                   <p className="text-red-500 font-medium text-sm">
@@ -166,6 +225,7 @@ const Profile: React.FC = () => {
                 )}
               </div>
             </div>
+           ): ""}
             {/* Submit Button */}
             {showButton != true && (
               <div className="flex w-full flex-col sm:flex-row gap-4">

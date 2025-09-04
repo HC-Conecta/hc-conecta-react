@@ -29,6 +29,15 @@ const Header: React.FC = () => {
     { name: "Entrar", path: "/login" },
     { name: "Criar Conta", path: "/register" },
   ];
+  
+  const navigateProfile = (): void => {
+    const userId: string | null = localStorage.getItem("userId");
+     if(!userId) {
+      alert("User not found")
+      return;
+     }
+     navigate(`/profile/${userId}`);
+  }
 
   const navigate = useNavigate();
 
@@ -118,7 +127,7 @@ const Header: React.FC = () => {
             </Button>
               <Button
               size="sm"
-              onClick={() => navigate("/profile")}
+              onClick={() => navigateProfile()}
               variant="primary"
               className="hidden xl:flex gap-2 items-center"
             >
