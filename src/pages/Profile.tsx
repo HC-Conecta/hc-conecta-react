@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Button from "../components/Button";
-import { FormData, Contact, NameValues, IprofileData } from "../interfaces/global";
+import { NameValues, IprofileData } from "../interfaces/global";
 import {
   Lock,
   FileUser,
-  Pin,
   Pencil,
   X,
   Save,
   Baby,
+  Loader,
 } from "lucide-react";
 import H1 from "@/components/H1";
 import { Paragraph } from "@/components/Paragraph";
@@ -80,8 +80,11 @@ const Profile: React.FC = () => {
           <H1 gradient={true}>Informações Pessoais</H1>
           <Paragraph>Gerencie suas informações de perfil</Paragraph>
         </div>
+        {profile ? (
         <div className="bg-surface rounded-xl p-8 shadow-md border border-border">
+       
           <div className="mb-8">
+            
             <div className="flex  items-center justify-between">
               <h2 className="text-2xl font-bold text-foreground mb-2">
                 Alterar Perfil
@@ -124,7 +127,6 @@ const Profile: React.FC = () => {
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-           {profile ? (
               <div key={profile.id} className="flex flex-col gap-6">
               {/* CPF */}
               <div className="flex flex-col gap-2 relative">
@@ -230,7 +232,7 @@ const Profile: React.FC = () => {
                 )}
               </div>
             </div>
-           ): ""}
+
             {/* Submit Button */}
             {showButton != true && (
               <div className="flex w-full flex-col sm:flex-row gap-4">
@@ -242,6 +244,10 @@ const Profile: React.FC = () => {
             )}
           </form>
         </div>
+          ):   <div className="text-center flex flex-row items-center justify-center gap-3">
+            <i> <Loader size={20} className="text-blue-700" /></i>
+           <h3 className="text-xl text-muted-foreground font-medium text-blue-700"> Preparando seu Perfil...</h3>
+        </div>}
       </div>
     </div>
   );
