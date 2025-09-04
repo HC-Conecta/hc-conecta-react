@@ -226,7 +226,7 @@ const Header: React.FC = () => {
                 <button
                   onClick={() => {
                     setIsMobileMenuOpen(false);
-                    navigate("/profile");
+                    navigate(`profile/${localStorage.getItem("userId")}`);
                   }}
                   className="block rounded-lg font-medium transition-colors text-blue-700"
                 >
