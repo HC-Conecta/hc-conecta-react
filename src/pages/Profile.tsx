@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import Button from "../components/Button";
 import { FormData, Contact, NameValues, IprofileData } from "../interfaces/global";
 import {
-  Phone,
-  Mail,
-  MapPin,
   Lock,
   FileUser,
   Pin,
@@ -37,6 +34,14 @@ const Profile: React.FC = () => {
       alert("error submit");
     }
   };
+
+  const maskPassword = (password: string) => {
+    let add: string = "";
+    for(let i: number = 0; i < password.length; i++) {
+        add += "•";
+    } 
+    return add
+  }
 
   const {id} = useParams();
 
@@ -207,7 +212,7 @@ const Profile: React.FC = () => {
                   }
                   id="password"
                   label="Alterar Senha *"
-                  placeholder={profile.password}
+                  placeholder={maskPassword(profile.password)}
                   name="password"
                   type="password"
                   errors={errors}
