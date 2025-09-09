@@ -24,7 +24,6 @@ const Register = () => {
   const onSubmit = async (data: NameValues) => {
     if (data) {
       data.cpf = data.cpf.replace(/\D/g, "");
-
       const BASE_URL: string = "http://localhost:3000/posts";
 
       try {

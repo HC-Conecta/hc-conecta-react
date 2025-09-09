@@ -80,3 +80,9 @@ export interface IprofileData {
     password: string,
     confirmPassword: string
 }
+
+export interface IPutProfileData {
+    cpf: string,
+    age: number,
+    password: string,
+}
