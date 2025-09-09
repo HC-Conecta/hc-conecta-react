@@ -17,7 +17,13 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import InputLogin from "@/components/InputLogin";
 import { cpfMask } from "@/utils/cpfMask";
 
-const Profile: React.FC = () => {
+const Profile: React.FC = () => { 
+
+   const [profile, setProfile] = useState<IprofileData | null>(null);
+   const [cpf, setCpf] = useState<string | null>(null);
+   const [age, setAge] = useState<string>(null);
+   const [password, setPassword] = useState<string | null>(null);
+
   const location = useLocation();
   const {
     register,
@@ -44,8 +50,6 @@ const Profile: React.FC = () => {
   }
 
   const {id} = useParams();
-
-  const [profile, setProfile] = useState<IprofileData | null>(null);
 
   const BASE_URL: string = `http://localhost:3000/posts/${id}`;
 
@@ -82,9 +86,7 @@ const Profile: React.FC = () => {
         </div>
         {profile ? (
         <div className="bg-surface rounded-xl p-8 shadow-md border border-border">
-       
-          <div className="mb-8">
-            
+          <div className="mb-8"> 
             <div className="flex  items-center justify-between">
               <h2 className="text-2xl font-bold text-foreground mb-2">
                 Alterar Perfil
@@ -105,7 +107,12 @@ const Profile: React.FC = () => {
                   Editar{" "}
                 </Button>
                 <Button
-                  onClick={() => setShowButton(true)}
+                  onClick={() => {
+                    setShowButton(true);
+                    setCpf("");
+                    setAge("");
+                    setPassword("");
+                  }}
                   className={`${
                     showButton == false
                       ? "flex justify-between items-center gap-3"
@@ -142,14 +149,14 @@ const Profile: React.FC = () => {
                   disabled={showButton == true}
                   {...register("cpf", { required: true, maxLength: 14 })}
                   onChange={(e) => {
-                    e.target.value = cpfMask(e.target.value);
+                    setCpf(cpfMask(e.target.value))
                   }}
                   type="text"
                   id="cpf"
                   name="cpf"
-                  value={!showButton ? profile.cpf : ""}
+                  value={cpf}
                   className="w-full px-10 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder={profile.cpf}
+                  placeholder={cpfMask(profile.cpf)}
                 />
                 {errors.cpf?.type === "required" && (
                   <p className="text-red-500 font-medium text-sm">
@@ -183,8 +190,11 @@ const Profile: React.FC = () => {
                   placeholder={profile.age.toString()}
                   name="age"
                   type="number"
+                  value={age}
                   errors={errors}
-                  value={!showButton ? profile.age.toString() : ""}
+                  onChange={(e) => {
+                    setAge(e.target.value);
+                  }}
                 />
                 {errors.age?.type === "required" && (
                   <p className="text-red-500 font-medium text-sm">
@@ -218,7 +228,10 @@ const Profile: React.FC = () => {
                   name="password"
                   type="password"
                   errors={errors}
-                  value={!showButton ? profile.password : ""}
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value)
+                  }}
                 />
                 {errors.password?.type === "required" && (
                   <p className="text-red-500 font-medium text-sm">

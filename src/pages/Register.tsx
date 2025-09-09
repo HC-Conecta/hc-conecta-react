@@ -21,24 +21,8 @@ const Register = () => {
 
   const watchPassword = watch("password");
 
-  const [isLoggedIn, setIsLoggedIn] = useState<ILoginContext>(() => {
-    const stored = localStorage.getItem("loggedIn");
-    return { loggedIn: stored === "true" ? "true" : "false" };
-  });
-
-  const handleLogin = () => {
-    setIsLoggedIn({ loggedIn: "true" });
-    return localStorage.setItem("loggedIn", "true");
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn({ loggedIn: "false" });
-    return localStorage.setItem("loggedIn", "false");
-  };
-
   const onSubmit = async (data: NameValues) => {
     if (data) {
-      handleLogin();
       data.cpf = data.cpf.replace(/\D/g, "");
 
       const BASE_URL: string = "http://localhost:3000/posts";
@@ -65,7 +49,6 @@ const Register = () => {
 
     } else {
       alert("Erro no cadastro, tente novamente.");
-      handleLogout();
     }
   };
 

@@ -1,6 +1,6 @@
 import { NameValues } from "@/interfaces/global";
 import { Eye, EyeClosed } from "lucide-react";
-import { useState } from "react";
+import { ChangeEventHandler, useState } from "react";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 type InputLoginProps = {
@@ -16,6 +16,7 @@ type InputLoginProps = {
   errors?: FieldErrors<NameValues>;
   rules?: object;
   disabled?: boolean;
+  onChange?: ChangeEventHandler<HTMLInputElement>
 };
 
 const InputLogin = ({
@@ -29,7 +30,8 @@ const InputLogin = ({
   passwordExist,
   register,
   rules,
-  disabled
+  disabled,
+  onChange
 }: InputLoginProps) => {
   const [showPassword, setShowPassword] = useState<boolean>(true);
 
@@ -65,6 +67,7 @@ const InputLogin = ({
         className="w-full px-10 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
         placeholder={placeholder}
         value={value}
+        onChange={onChange}
       />
       
     </div>
