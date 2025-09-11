@@ -86,3 +86,11 @@ export interface IPutProfileData {
     age: number,
     password: string,
 }
+
+export interface emailData {
+  name: string,
+  email: string,
+  telephone: string,
+  serviceType: string,
+  message: string
+}

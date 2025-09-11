@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-white/90 md:max-w-80 text-lg">
-              Site desenvolvido para facilitar o acesso de pessoas idosas aos serviços do Hospital das Clínicas.
+              Site desenvolvido para facilitar o acesso de pessoas com dificuldades aos serviços do Hospital das Clínicas.
             </p>
           </div>
 
@@ -79,7 +79,7 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-border mt-8 pt-8 text-center ">
           <p className="text-white/90">
-            © 2024 HC Conecta - Guia de Acesso. Todos os direitos reservados.
+            © 2025 HC Conecta - Guia de Acesso. Todos os direitos reservados.
           </p>
         </div>
       </div>

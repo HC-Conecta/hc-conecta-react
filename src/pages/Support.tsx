@@ -1,33 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "../components/Button";
-import { FormData, Contact } from "../interfaces/global";
+import { 
+  Contact, 
+  emailData} from "../interfaces/global";
 import { Phone, Mail, MapPin } from "lucide-react";
 import H1 from "@/components/H1";
 import { Paragraph } from "@/components/Paragraph";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
+import emailjs from "@emailjs/browser";
 
 const Support: React.FC = () => {
+
+  const [emailSubmit, setEmailSubmit] = useState<boolean>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<emailData>();
 
   const { pathname } = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    telephone: "",
-    message: "",
-    needsHelp: false,
-    serviceType: "",
-  });
 
   const contacts: Contact[] = [
     {
@@ -68,30 +66,36 @@ const Support: React.FC = () => {
     },
   ];
 
-  const onSubmit = (data: FormData): void => {
-    alert(data);
-  };
+  const timeMessageUpdate = () => {
+    setTimeout(() => {
+      setIsLoading(prev => !prev);
+      setEmailSubmit(prev => !prev);
+    }, 2000)
+  }
 
-  const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value, type } = e.target;
+  const form = useRef<HTMLFormElement>(null);
 
-    if (type === "checkbox") {
-      const checked = (e.target as HTMLInputElement).checked;
-      setFormData((prev) => ({
-        ...prev,
-        [name]: checked,
-      }));
-    } else {
-      setFormData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    }
-  };
+  const sendEmail = () => {
+    setIsLoading(!isLoading);
+
+    timeMessageUpdate()
+
+    const serviceID: string = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateID: string = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey: string = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (!form.current) return;
+      
+      emailjs.sendForm(serviceID, templateID, form.current!, publicKey).then(
+        () => {
+          setEmailSubmit(true);
+          form.current?.reset();
+        },
+        (error) => {
+          setEmailSubmit(false);
+          console.error(error);
+        });
+    };
 
   return (
     <div className="bg-background py-16">
@@ -170,7 +174,7 @@ const Support: React.FC = () => {
             </Paragraph>
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form ref={form} onSubmit={handleSubmit(sendEmail)} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               {/* Name */}
               <div>
@@ -185,8 +189,6 @@ const Support: React.FC = () => {
                   type="text"
                   id="name"
                   name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
                   className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="Digite seu nome completo"
                 />
@@ -211,8 +213,6 @@ const Support: React.FC = () => {
                   type="text"
                   id="email"
                   name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
                   className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="seu@email.com"
                 />
@@ -239,8 +239,6 @@ const Support: React.FC = () => {
                   type="telephone"
                   id="telephone"
                   name="telephone"
-                  value={formData.telephone}
-                  onChange={handleInputChange}
                   className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="(11) 99999-9999"
                 />
@@ -267,8 +265,6 @@ const Support: React.FC = () => {
                   })}
                   id="serviceType"
                   name="serviceType"
-                  value={formData.serviceType}
-                  onChange={handleInputChange}
                   className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 >
                   <option value="">Selecione uma opção</option>
@@ -302,8 +298,6 @@ const Support: React.FC = () => {
                 {...register("message", { required: true })}
                 id="message"
                 name="message"
-                value={formData.message}
-                onChange={handleInputChange}
                 rows={5}
                 className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-vertical"
                 placeholder="Explique detalhadamente qual ajuda você precisa..."
@@ -322,8 +316,6 @@ const Support: React.FC = () => {
                 type="checkbox"
                 id="needsHelp"
                 name="needsHelp"
-                checked={formData.needsHelp}
-                onChange={handleInputChange}
                 className="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
               />
               <label
@@ -341,7 +333,7 @@ const Support: React.FC = () => {
                 size="lg"
                 className="flex-grow sm:flex-grow-0 text-white"
               >
-                Enviar Mensagem
+                {!isLoading ? "Enviar Mensagem" : "Enviando Mensagem..." }
               </Button>
               <Button
                 type="button"
@@ -353,6 +345,18 @@ const Support: React.FC = () => {
               </Button>
             </div>
           </form>
+          <div>
+            {emailSubmit == true && (
+                <div className="mt-8 text-green-500 font-medium text-sm">
+                 Mensagem enviada com sucesso! 🎉
+                </div>
+              )}
+            {emailSubmit == false && (
+              <div className="mt-8 text-red-500 font-medium text-sm">
+                   Oops! Não conseguimos enviar sua mensagem, tente de novo.
+                </div>
+            )}
+          </div>
         </div>
 
         {/* Additional Help */}
