@@ -18,6 +18,22 @@
       "age": 28,
       "password": "iagooooooooooo",
       "id": "beab"
+    },
+    {
+      "name": "Iago Liziero",
+      "cpf": "44741361872",
+      "age": 16,
+      "password": "iago212121",
+      "confirmPassword": "iago212121",
+      "id": "a456"
+    },
+    {
+      "name": "DUdu",
+      "cpf": "21342142214",
+      "age": 18,
+      "password": "saodoasdodasoadsads",
+      "confirmPassword": "saodoasdodasoadsads",
+      "id": "7b18"
     }
   ]
 }

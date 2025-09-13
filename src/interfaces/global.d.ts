@@ -75,6 +75,7 @@ export interface ILoginContext {
 
 export interface IprofileData {
     id: string,
+    name: string,
     cpf: string,
     age: number,
     password: string,
@@ -82,9 +83,11 @@ export interface IprofileData {
 }
 
 export interface IPutProfileData {
+    name: string,
     cpf: string,
     age: number,
     password: string,
+    confirmPassword: string
 }
 
 export interface emailData {

@@ -32,7 +32,7 @@ const InputLogin = ({
   rules,
   disabled,
   onChange
-}: InputLoginProps) => {
+}: InputLoginProps, isEditing: boolean) => {
   const [showPassword, setShowPassword] = useState<boolean>(true);
 
   const handleClick = () => {
@@ -64,7 +64,7 @@ const InputLogin = ({
         type={passwordExist && !showPassword ? "text" : type}
         id={id}
         name={name}
-        className="w-full px-10 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+        className={`w-full px-10 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent ${!isEditing ? "text-gray-500" : ""}`}
         placeholder={placeholder}
         value={value}
         onChange={onChange}

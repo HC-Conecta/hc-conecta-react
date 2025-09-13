@@ -5,7 +5,7 @@ import {
   IprofileData,
   IPutProfileData,
 } from "../interfaces/global";
-import { Lock, FileUser, Pencil, X, Save, Baby, Loader } from "lucide-react";
+import { Lock, FileUser, Pencil, X, Save, Baby, Loader, User } from "lucide-react";
 import H1 from "@/components/H1";
 import { Paragraph } from "@/components/Paragraph";
 import { useForm } from "react-hook-form";
@@ -18,8 +18,11 @@ const Profile: React.FC = () => {
   const [cpf, setCpf] = useState<string | null>(null);
   const [age, setAge] = useState<string>(null);
   const [password, setPassword] = useState<string | null>(null);
+  const [name, setName] = useState<string | null>(null);
   const [updateExist, setUpdateExist] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  const [notNull, setNotNull] = useState<boolean>(false);
 
   const timeMessageUpdate = () => {
     setTimeout(() => {
@@ -42,10 +45,27 @@ const Profile: React.FC = () => {
     if (data) {
       data.cpf = data.cpf.replace(/\D/g, "");
 
+      if(data.password != data.confirmPassword) {
+          data.confirmPassword = data.password;
+      } else return
+
+      for(const key in data) {
+        if(!data[key as keyof NameValues] || data[key as keyof NameValues] === "") {
+          setNotNull(true);
+
+          setTimeout(() => {
+            setNotNull(false);
+          }, 2000)
+          return
+        }
+      }
+
       const dataUpdate: IPutProfileData = {
+        name: data.name,
         cpf: data.cpf,
         age: parseInt(data.age),
         password: data.password,
+        confirmPassword: data.confirmPassword,
       };
 
       const updateUser = async () => {
@@ -65,8 +85,8 @@ const Profile: React.FC = () => {
             const data = await response.json();
             setUpdateExist(!updateExist);
             timeMessageUpdate();
-            setIsEditing(false); // desativa edição após salvar
-            setProfile(data); // atualiza perfil com dados novos
+            setIsEditing(false);
+            setProfile(data);
             return data;
           }
         } catch (error) {
@@ -75,6 +95,7 @@ const Profile: React.FC = () => {
       };
 
       updateUser();
+
     } else {
       alert("error submit");
     }
@@ -99,6 +120,8 @@ const Profile: React.FC = () => {
         setCpf(cpfMask(data.cpf));
         setAge(data.age.toString());
         setPassword(data.password);
+        setName(data.name);
+
       }
     };
     getProfile();
@@ -162,6 +185,33 @@ const Profile: React.FC = () => {
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div key={profile.id} className="flex flex-col gap-6">
+
+              <div className="flex flex-col gap-2">
+                {/* NAME */}
+                <InputLogin
+                  register={register}
+                  rules={{
+                    required: false}}
+                  icon={
+                    <User
+                      size={20}
+                      className="absolute left-3 top-12 text-gray-500"
+                    />
+                  }
+                  id="nome"
+                  label="Nome *"
+                  placeholder={name}
+                  disabled={!isEditing}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
+                  name="name"
+                  type="text"
+                  value={name}
+                  errors={errors}
+                />
+              </div>
+
                 {/* CPF */}
                 <div className="flex flex-col gap-2 relative">
                   <label className="block text-md font-medium text-foreground">
@@ -180,7 +230,7 @@ const Profile: React.FC = () => {
                     type="text"
                     id="cpf"
                     name="cpf"
-                    value={!isEditing ? "" : cpf}
+                    value={cpf}
                     className="w-full px-10 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                     placeholder={cpfMask(profile.cpf)}
                   />
@@ -211,13 +261,12 @@ const Profile: React.FC = () => {
                     placeholder={profile.age.toString()}
                     name="age"
                     type="number"
-                    value={!isEditing ? "" : age}
+                    value={age}
                     errors={errors}
                     onChange={(e) => {
                       setAge(e.target.value);
                     }}
                   />
-
                   {errors.age?.type === "validate" && (
                     <p className="text-red-500 font-medium text-sm">
                       Idade deve ser entre 16 e 120 anos
@@ -243,7 +292,7 @@ const Profile: React.FC = () => {
                     name="password"
                     type="password"
                     errors={errors}
-                    value={!isEditing ? "" : password}
+                    value={password}
                     onChange={(e) => {
                       setPassword(e.target.value);
                     }}
@@ -273,6 +322,12 @@ const Profile: React.FC = () => {
              {updateExist && (
                 <div className="mt-8 text-green-500 font-medium text-sm">
                   Alterações salvas com sucesso!
+                </div>
+              )}
+
+              {notNull && (
+                <div className="mt-8 text-red-500 font-medium text-sm">
+                  Preencha todos os campo antes de continuar.
                 </div>
               )}
           </div>

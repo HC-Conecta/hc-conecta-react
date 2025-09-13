@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import H1 from "@/components/H1";
 import Button from "@/components/Button";
 import { Paragraph } from "@/components/Paragraph";
-import { Baby, FileUser, Lock } from "lucide-react";
+import { Baby, FileUser, Lock, User } from "lucide-react";
 import InputLogin from "@/components/InputLogin";
 import { useForm } from "react-hook-form";
 import { ILoginContext, NameValues } from "@/interfaces/global";
@@ -25,6 +25,11 @@ const Register = () => {
     if (data) {
       data.cpf = data.cpf.replace(/\D/g, "");
       const BASE_URL: string = "http://localhost:3000/posts";
+      
+      const allData: NameValues = {
+        ...data,
+        name: data.name.charAt(0).toUpperCase() + data.name.slice(1),
+      }
 
       try {
         const response = await fetch(BASE_URL, {
@@ -32,7 +37,7 @@ const Register = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data), 
+          body: JSON.stringify(allData), 
         });
 
         if(response.status != 201) {
@@ -63,7 +68,7 @@ const Register = () => {
   return (
     <div className="min-h-screen p-5 flex flex-col items-center justify-center bg-gray-100 gap-10">
       <section className="mt-10 mb-10">
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center mb-10">
           <H1 gradient={true}>Criar Conta</H1>
           <Paragraph>Junte-se a nós hoje mesmo</Paragraph>
         </div>
@@ -77,6 +82,33 @@ const Register = () => {
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="flex flex-col gap-6 mb">
+
+            <div className="flex flex-col gap-2">
+                {/* NAME */}
+                <InputLogin
+                  register={register}
+                  rules={{
+                    required: true}}
+                  icon={
+                    <User
+                      size={20}
+                      className="absolute left-3 top-12 text-gray-500"
+                    />
+                  }
+                  id="nome"
+                  label="Nome *"
+                  placeholder="Seu Nome"
+                  name="name"
+                  type="text"
+                  errors={errors}
+                />
+                {errors.name?.type === "required" && (
+                  <p className="text-red-500 font-medium text-sm">
+                    Nome é obrigatório.
+                  </p>
+                )}
+              </div>
+
               {/* CPF */}
               <div className="flex flex-col gap-2 relative">
                 {/* CPF */}
@@ -233,3 +265,7 @@ const Register = () => {
 };
 
 export default Register;
+function CharAt(arg0: number) {
+  throw new Error("Function not implemented.");
+}
+

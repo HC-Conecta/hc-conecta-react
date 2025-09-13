@@ -64,7 +64,7 @@ const Location = () => {
                 <h3 className="font-semibold text-xl text-foreground mb-1 text-blue-700">
                   {location.title}
                 </h3>
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col">
                   <div className="flex gap-2 items-center">
                     <i className="relative bottom-1">
                       {" "}
@@ -77,7 +77,7 @@ const Location = () => {
                   </div>
                   <Paragraph>{location.description} </Paragraph>
                 </div>
-                <Button className="text-white mt-2" size="sm">
+                <Button className="text-white mt-5" size="md">
                   <a href={location.map} target="_blank">
                     {" "}
                     Acessar no Mapa →
