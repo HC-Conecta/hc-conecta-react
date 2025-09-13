@@ -61,11 +61,11 @@ const Profile: React.FC = () => {
       }
 
       const dataUpdate: IPutProfileData = {
-        name: data.name,
-        cpf: data.cpf,
+        name: data.name.trim(),
+        cpf: data.cpf.trim(),
         age: parseInt(data.age),
-        password: data.password,
-        confirmPassword: data.confirmPassword,
+        password: data.password.trim(),
+        confirmPassword: data.confirmPassword.trim(),
       };
 
       const updateUser = async () => {
