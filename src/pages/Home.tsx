@@ -98,7 +98,7 @@ const Home: React.FC = () => {
                 >
                   Ver Guia
                 </Button>
-                <div className="relative top-2">
+                <div>
                   <TextToSpeechButton text="Passo a Passo Simples!  Explicações claras e detalhadas para acessar o site do Hospital
                   das Clínicas." />
                 </div>
