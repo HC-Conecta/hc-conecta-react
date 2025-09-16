@@ -90,7 +90,7 @@ const Home: React.FC = () => {
                 Explicações claras e detalhadas para acessar o site do Hospital
                 das Clínicas.
               </Paragraph>
-              <div className="flex flex-row gap-3 items-center">
+              <div className="flex flex-col lg:flex-row gap-5 lg:gap-3 items-start lg:items-center">
                 <Button
                 onClick={() => navigate('/guide')}
                   className="bg-blue-700 text-white hover:bg-blue-800 w-full mt-4 sm:w-auto"
@@ -130,7 +130,7 @@ const Home: React.FC = () => {
                 Aprenda como marcar suas consultas médicas de forma fácil e
                 rápida.
               </Paragraph>
-              <div className="flex flex-row gap-3 items-center" >
+              <div className="flex flex-col lg:flex-row gap-5 lg:gap-3 items-start lg:items-center">
                 <Button
                 onClick={() => navigate('/appointment')}
                   className="bg-blue-700 text-white hover:bg-blue-800  mt-4 w-full sm:w-auto"
@@ -169,7 +169,7 @@ const Home: React.FC = () => {
                 Encontre respostas para as perguntas mais comuns sobre o
                 Hospital das Clínicas.
               </Paragraph>
-              <div className="flex flex-row gap-3 items-center" >
+              <div className="flex flex-col lg:flex-row gap-5 lg:gap-3 items-start lg:items-center">
               <Button
                 onClick={() => navigate("/doubt")}
                 className="bg-blue-700 text-white hover:bg-blue-800  mt-4 w-full sm:w-auto"

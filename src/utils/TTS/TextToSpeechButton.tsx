@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import TextToSpeech from "react-text-to-speech";
 
 const TextToSpeechButton: React.FC<{ text: string }> = ({ text }) => {
-  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
 
   const speakText = () => {
     setTimeout(() => {
@@ -21,7 +21,7 @@ const TextToSpeechButton: React.FC<{ text: string }> = ({ text }) => {
   };
 
   return (
-    <div className="relative top-2 text-blue-700 flex flex-row-reverse items-center gap-2">
+    <div className="relative top-2 text-blue-700 flex flex-row-reverse items-center gap-2 font-semibold">
       <button onClick={speakText} disabled={isSpeaking}>
         {isSpeaking ? "Falando..." : "Ouvir Texto"}
       </button>
