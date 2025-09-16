@@ -9,11 +9,13 @@ import { Paragraph } from "@/components/Paragraph";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 import emailjs from "@emailjs/browser";
+import { phoneMask } from "@/utils/phoneMask";
 
 const Support: React.FC = () => {
 
   const [emailSubmit, setEmailSubmit] = useState<boolean>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [notNullExists, setNotNullExists] = useState<boolean>(null);
 
   const {
     register,
@@ -69,7 +71,6 @@ const Support: React.FC = () => {
   const timeMessageUpdate = () => {
     setTimeout(() => {
       setIsLoading(prev => !prev);
-      setEmailSubmit(prev => !prev);
     }, 2000)
   }
 
@@ -84,6 +85,14 @@ const Support: React.FC = () => {
     const templateID: string = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     const publicKey: string = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
+    if(!serviceID || !templateID || !publicKey) {
+      setNotNullExists(true);
+      console.error("Error! Env variables not found.");
+      return;
+    } else {
+      setNotNullExists(false);
+    }
+
       if (!form.current) return;
       
       emailjs.sendForm(serviceID, templateID, form.current!, publicKey).then(
@@ -94,6 +103,7 @@ const Support: React.FC = () => {
         (error) => {
           setEmailSubmit(false);
           console.error(error);
+      
         });
     };
 
@@ -239,6 +249,10 @@ const Support: React.FC = () => {
                   type="telephone"
                   id="telephone"
                   name="telephone"
+                  maxLength={15}
+                  onChange={(e) => {
+                    e.target.value = phoneMask(e.target.value);
+                  }}
                   className="w-full px-4 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="(11) 99999-9999"
                 />
@@ -346,15 +360,21 @@ const Support: React.FC = () => {
             </div>
           </form>
           <div>
-            {emailSubmit == true && (
+            {emailSubmit && (
                 <div className="mt-8 text-green-500 font-medium text-sm">
                  Mensagem enviada com sucesso! 🎉
                 </div>
               )}
-            {emailSubmit == false && (
+            {emailSubmit === false && (
               <div className="mt-8 text-red-500 font-medium text-sm">
                    Oops! Não conseguimos enviar sua mensagem, tente de novo.
-                </div>
+              </div>
+            )}
+
+            {notNullExists && (
+              <div className="mt-8 text-red-500 font-medium text-sm">
+                   Ocorreu um erro inesperado, tente novamente mais tarde!
+              </div>
             )}
           </div>
         </div>
