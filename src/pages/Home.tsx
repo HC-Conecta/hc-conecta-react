@@ -92,7 +92,7 @@ const Home: React.FC = () => {
               </Paragraph>
               <div className="flex flex-row gap-3 items-center">
                 <Button
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/guide')}
                   className="bg-blue-700 text-white hover:bg-blue-800 w-full mt-4 sm:w-auto"
                   size="sm"
                 >
@@ -130,14 +130,19 @@ const Home: React.FC = () => {
                 Aprenda como marcar suas consultas médicas de forma fácil e
                 rápida.
               </Paragraph>
-              <Link to="/appointment">
+              <div className="flex flex-row gap-3 items-center" >
                 <Button
+                onClick={() => navigate('/appointment')}
                   className="bg-blue-700 text-white hover:bg-blue-800  mt-4 w-full sm:w-auto"
                   size="sm"
                 >
                   Aprender
                 </Button>
-              </Link>
+                <div>
+                  <TextToSpeechButton text="Agendar Consultas! Aprenda como marcar suas consultas médicas de forma fácil e
+                rápida." />
+                </div>
+              </div>
             </div>
 
             {/* Card 3 */}
@@ -164,6 +169,7 @@ const Home: React.FC = () => {
                 Encontre respostas para as perguntas mais comuns sobre o
                 Hospital das Clínicas.
               </Paragraph>
+              <div className="flex flex-row gap-3 items-center" >
               <Button
                 onClick={() => navigate("/doubt")}
                 className="bg-blue-700 text-white hover:bg-blue-800  mt-4 w-full sm:w-auto"
@@ -171,6 +177,11 @@ const Home: React.FC = () => {
               >
                 Ver Dúvidas
               </Button>
+              <div>
+                  <TextToSpeechButton text="Tire suas Dúvidas! Encontre respostas para as perguntas mais comuns sobre o
+                Hospital das Clínicas." />
+                </div>
+              </div>
             </div>
           </div>
         </div>
