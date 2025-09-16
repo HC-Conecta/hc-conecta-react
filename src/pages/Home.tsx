@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { Paragraph } from "@/components/Paragraph";
 import Location from "@/components/Location";
+import TextToSpeechButton from "@/utils/TTS/TextToSpeechButton";
 
 const Home: React.FC = () => {
   const { pathname } = useLocation();
@@ -89,14 +90,20 @@ const Home: React.FC = () => {
                 Explicações claras e detalhadas para acessar o site do Hospital
                 das Clínicas.
               </Paragraph>
-              <Link to="/guide">
+              <div className="flex flex-row gap-3 items-center">
                 <Button
+                onClick={() => navigate('/')}
                   className="bg-blue-700 text-white hover:bg-blue-800 w-full mt-4 sm:w-auto"
                   size="sm"
                 >
                   Ver Guia
                 </Button>
-              </Link>
+                <div className="relative top-2">
+                  <TextToSpeechButton text="Passo a Passo Simples!  Explicações claras e detalhadas para acessar o site do Hospital
+                  das Clínicas." />
+                </div>
+              </div>
+
             </div>
 
             {/* Card 2 */}
