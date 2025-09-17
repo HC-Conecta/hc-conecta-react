@@ -9,6 +9,7 @@ interface ButtonProps {
   className?: string;
   type?: 'button' | 'submit' | 'reset';
   navigation?: string;
+  id?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -18,7 +19,8 @@ const Button: React.FC<ButtonProps> = ({
   size = 'md',
   disabled = false,
   className = '',
-  type = 'button'
+  type = 'button',
+  id
 }) => {
   const baseClasses = 'font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
   
@@ -39,6 +41,7 @@ const Button: React.FC<ButtonProps> = ({
   
   return (
     <button
+    id={id}
       type={type}
       onClick={onClick}
       disabled={disabled}

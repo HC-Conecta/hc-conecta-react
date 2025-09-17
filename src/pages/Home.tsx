@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { Paragraph } from "@/components/Paragraph";
 import Location from "@/components/Location";
 import TextToSpeechButton from "@/utils/TTS/TextToSpeechButton";
+import Joyride, {Step} from "react-joyride";
 
 const Home: React.FC = () => {
   const { pathname } = useLocation();
@@ -13,6 +14,53 @@ const Home: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  const [isJoyrideOpen, setIsJoyrideOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    const tourCompleted = localStorage.getItem("tourCompleted");
+    if (!tourCompleted) {
+      setIsJoyrideOpen(true);
+    }
+  }, []);
+
+  const handleJoyrideCallBack = data => {
+    const {status} = data;
+
+    if(status === 'finished' || status === 'skipped') {
+      localStorage.setItem('tourCompleted', 'true');
+      setIsJoyrideOpen(false);
+    }
+  }
+
+  const steps: Step[]  = [
+    {
+      target: "#btn-passos",
+      content: "Esse guia mostra de forma simples como acessar os serviços do HC.",
+      placement: "top"
+    },
+    {
+      target: "#btn-audio",
+      content: "Aqui você pode ouvir o texto em áudio, de forma clara e devagar",
+      placement: "bottom"
+    },
+    {
+      target: "#card-consulta",
+      content: "Aqui você aprende como agendar suas consultas médicas.",
+      placement: "top"
+    },
+    {
+      target: "#card-duvidas", 
+      content: "Se tiver perguntas, veja aqui as respostas mais comuns.",
+      placement: "top"
+    },
+    {
+      target: "#mapa", 
+      content: "Aqui você pode visualizar o hospital selecionado e confira o endereço no mapa.",
+      placement: "top"
+    }
+
+  ]
 
   return (
     <div className="bg-white/70">
@@ -33,6 +81,7 @@ const Home: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/guide">
               <Button
+                 id="btn-passos"
                 size="lg"
                 className="bg-blue-700 hover:bg-blue-800 text-primary w-full sm:w-auto"
               >
@@ -65,6 +114,7 @@ const Home: React.FC = () => {
             </p>
             <div className="mt-5">
               <TextToSpeechButton
+                id="btn-audio"
                 colorIsBlue
                 text="Como Podemos Ajudar Você? Oferecemos guias simples e suporte para facilitar o seu acesso aos serviços de saúde."
               />
@@ -115,7 +165,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* Card 2 */}
-            <div className="bg-surface rounded-xl p-6 shadow-md border border-border hover:shadow-lg transition-shadow">
+            <div id="card-consulta" className="bg-surface rounded-xl p-6 shadow-md border border-border hover:shadow-lg transition-shadow">
               <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-8 h-8 text-blue-700"
@@ -157,7 +207,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* Card 3 */}
-            <div className="bg-surface rounded-xl p-6 shadow-md border border-border hover:shadow-lg transition-shadow">
+            <div id="card-duvidas" className="bg-surface rounded-xl p-6 shadow-md border border-border hover:shadow-lg transition-shadow">
               <div className="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-8 h-8 text-blue-700"
@@ -227,6 +277,29 @@ const Home: React.FC = () => {
         </div>
       </section>
       <Location />
+
+      {/* Joyride */}
+      {isJoyrideOpen && (
+        <Joyride
+        steps={steps}
+        continuous
+        showSkipButton
+        styles={{
+          options: {
+            primaryColor: "#34D399",
+            zIndex: 10000,
+          },
+        }}
+        locale={{
+          back: "Voltar",
+          close: "Fechar",
+          last: "Finalizar",
+          next: "Próximo",
+          skip: "Pular"
+        }}
+        callback={handleJoyrideCallBack}
+        />
+      )}
     </div>
   );
 };

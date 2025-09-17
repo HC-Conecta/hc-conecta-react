@@ -64,7 +64,7 @@ const Location = () => {
                   alt={location.title}
                 />
               </figure>
-              <div className="flex flex-col max-w-md items-start justify-center text-start">
+              <div id="mapa" className="flex flex-col max-w-md items-start justify-center text-start">
                 <h3 className="font-semibold text-xl text-foreground mb-1 text-blue-700">
                   {location.title}
                 </h3>

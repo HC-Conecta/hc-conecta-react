@@ -4,10 +4,11 @@ import TextToSpeech from "react-text-to-speech";
 
 interface ItextToSpeechButton {
   text: string,
-  colorIsBlue: boolean
+  colorIsBlue: boolean,
+  id?: string
 }
 
-const TextToSpeechButton = ({ text, colorIsBlue = true }: ItextToSpeechButton ) => {
+const TextToSpeechButton = ({ text, colorIsBlue = true, id }: ItextToSpeechButton ) => {
 
   const [isSpeaking, setIsSpeaking] = useState<boolean>(null);
 
@@ -27,7 +28,7 @@ const TextToSpeechButton = ({ text, colorIsBlue = true }: ItextToSpeechButton ) 
   };
 
   return (
-    <div className={`relative top-2 flex flex-row-reverse items-center gap-2 font-semibold ${colorIsBlue ? "text-blue-700" : ""}`}>
+    <div id={id} className={`relative top-2 flex flex-row-reverse items-center gap-2 font-semibold ${colorIsBlue ? "text-blue-700" : ""}`}>
       <button onClick={speakText} disabled={isSpeaking}>
         {isSpeaking ? "Falando..." : "Ouvir Texto"}
       </button>
