@@ -19,7 +19,8 @@ const Register = () => {
     watch,
   } = useForm<NameValues>();
 
-  const watchPassword = watch("password");
+  const watchPassword = watch("password");  
+  
 
   const onSubmit = async (data: NameValues) => {
     if (data) {
@@ -57,13 +58,6 @@ const Register = () => {
   };
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
-  }, [location.pathname]);
 
   return (
     <div className="min-h-screen p-5 flex flex-col items-center justify-center bg-gray-100 gap-10">
@@ -214,7 +208,7 @@ const Register = () => {
                 rules={{
                   required: true,
                   minLength: 8,
-                  validate: (value: string) => value == watchPassword,
+                  validate: (value: string) => value === watchPassword,
                 }}
                 passwordExist={true}
                 icon={
