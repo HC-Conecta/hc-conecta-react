@@ -1,4 +1,4 @@
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { Paragraph } from "@/components/Paragraph";
@@ -55,14 +55,20 @@ const Home: React.FC = () => {
       {/* Features Section */}
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 flex flex-col items-center justify-center">
             <h2 className="text-3xl font-bold text-foreground mb-4">
               Como Podemos Ajudar Você?
             </h2>
             <p className="text-xl text-muted-foreground">
               Oferecemos guias simples e suporte para facilitar o seu acesso aos
-              serviços de saúde
+              serviços de saúde.
             </p>
+            <div className="mt-5">
+              <TextToSpeechButton
+                colorIsBlue
+                text="Como Podemos Ajudar Você? Oferecemos guias simples e suporte para facilitar o seu acesso aos serviços de saúde."
+              />
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -90,20 +96,22 @@ const Home: React.FC = () => {
                 Explicações claras e detalhadas para acessar o site do Hospital
                 das Clínicas.
               </Paragraph>
-              <div className="flex flex-col lg:flex-row gap-5 lg:gap-3 items-start lg:items-center">
+              <div className="flex flex-col lg:flex-row gap-5 items-start lg:items-center lg:justify-between">
                 <Button
-                onClick={() => navigate('/guide')}
+                  onClick={() => navigate("/guide")}
                   className="bg-blue-700 text-white hover:bg-blue-800 w-full mt-4 sm:w-auto"
                   size="sm"
                 >
                   Ver Guia
                 </Button>
                 <div>
-                  <TextToSpeechButton text="Passo a Passo Simples!  Explicações claras e detalhadas para acessar o site do Hospital
-                  das Clínicas." />
+                  <TextToSpeechButton
+                    colorIsBlue
+                    text="Passo a Passo Simples!  Explicações claras e detalhadas para acessar o site do Hospital
+                  das Clínicas."
+                  />
                 </div>
               </div>
-
             </div>
 
             {/* Card 2 */}
@@ -130,17 +138,20 @@ const Home: React.FC = () => {
                 Aprenda como marcar suas consultas médicas de forma fácil e
                 rápida.
               </Paragraph>
-              <div className="flex flex-col lg:flex-row gap-5 lg:gap-3 items-start lg:items-center">
+              <div className="flex flex-col lg:flex-row gap-5 items-start lg:items-center lg:justify-between">
                 <Button
-                onClick={() => navigate('/appointment')}
+                  onClick={() => navigate("/appointment")}
                   className="bg-blue-700 text-white hover:bg-blue-800  mt-4 w-full sm:w-auto"
                   size="sm"
                 >
                   Aprender
                 </Button>
                 <div>
-                  <TextToSpeechButton text="Agendar Consultas! Aprenda como marcar suas consultas médicas de forma fácil e
-                rápida." />
+                  <TextToSpeechButton
+                    colorIsBlue
+                    text="Agendar Consultas! Aprenda como marcar suas consultas médicas de forma fácil e
+                rápida."
+                  />
                 </div>
               </div>
             </div>
@@ -169,17 +180,20 @@ const Home: React.FC = () => {
                 Encontre respostas para as perguntas mais comuns sobre o
                 Hospital das Clínicas.
               </Paragraph>
-              <div className="flex flex-col lg:flex-row gap-5 lg:gap-3 items-start lg:items-center">
-              <Button
-                onClick={() => navigate("/doubt")}
-                className="bg-blue-700 text-white hover:bg-blue-800  mt-4 w-full sm:w-auto"
-                size="sm"
-              >
-                Ver Dúvidas
-              </Button>
-              <div>
-                  <TextToSpeechButton text="Tire suas Dúvidas! Encontre respostas para as perguntas mais comuns sobre o
-                Hospital das Clínicas." />
+              <div className="flex flex-col lg:flex-row gap-5 items-start lg:items-center lg:justify-between">
+                <Button
+                  onClick={() => navigate("/doubt")}
+                  className="bg-blue-700 text-white hover:bg-blue-800  mt-4 w-full sm:w-auto"
+                  size="sm"
+                >
+                  Ver Dúvidas
+                </Button>
+                <div>
+                  <TextToSpeechButton
+                    colorIsBlue
+                    text="Tire suas Dúvidas! Encontre respostas para as perguntas mais comuns sobre o
+                Hospital das Clínicas."
+                  />
                 </div>
               </div>
             </div>
@@ -188,7 +202,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16">
+      <section className="py-16 flex flex-col gap-5 items-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-foreground mb-4">
             Precisa de Ajuda Personalizada?
@@ -204,6 +218,12 @@ const Home: React.FC = () => {
           >
             Falar com Suporte
           </Button>
+        </div>
+        <div>
+          <TextToSpeechButton
+            colorIsBlue
+            text="Precisa de Ajuda Personalizada? Nossa equipe de suporte está pronta para ajudar você por telefone ou email "
+          />
         </div>
       </section>
       <Location />

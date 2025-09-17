@@ -2,6 +2,7 @@ import { Ilocations } from "@/interfaces/global";
 import Button from "./Button";
 import { Paragraph } from "./Paragraph";
 import { MapIcon } from "lucide-react";
+import TextToSpeechButton from "@/utils/TTS/TextToSpeechButton";
 
 const Location = () => {
 
@@ -42,10 +43,13 @@ const Location = () => {
           <h2 className="text-3xl font-bold text-foreground mb-4">
             Onde encontrar o Hospital das Clínicas
           </h2>
-          <p className="text-xl text-muted-foreground mb-8 max-w-4xl">
+          <p className="text-xl text-muted-foreground mb-5 max-w-4xl">
             O Hospital das Clínicas está localizado em uma região de fácil
             acesso. Veja abaixo o endereço completo e as opções de transporte.
           </p>
+        </div>
+        <div className="mb-5"> 
+          <TextToSpeechButton colorIsBlue text="Onde encontrar o Hospital das Clínicas? O Hospital das Clínicas está localizado em uma região de fácil acesso. Veja abaixo o endereço completo e as opções de transporte." />
         </div>
         {locations.length > 0 &&
           locations.map((location) => (
@@ -77,12 +81,17 @@ const Location = () => {
                   </div>
                   <Paragraph>{location.description} </Paragraph>
                 </div>
-                <Button className="text-white mt-5" size="md">
+                <div className="flex flex-col items-start gap-5 lg:flex lg:flex-row lg:justify-center lg:items-center lg:gap-20">
+                  <Button className="text-white mt-5" size="md">
                   <a href={location.map} target="_blank">
                     {" "}
                     Acessar no Mapa →
                   </a>{" "}
                 </Button>
+                 <div className=""> 
+                    <TextToSpeechButton colorIsBlue text={`${location.title}. Endereço: ${location.street}. Descrição: ${location.description} `} />
+                  </div>
+                </div>
               </div>
             </div>
           ))}

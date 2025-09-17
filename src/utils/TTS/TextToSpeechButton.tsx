@@ -2,8 +2,14 @@
 import React, { useState } from "react";
 import TextToSpeech from "react-text-to-speech";
 
-const TextToSpeechButton: React.FC<{ text: string }> = ({ text }) => {
-  const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
+interface ItextToSpeechButton {
+  text: string,
+  colorIsBlue: boolean
+}
+
+const TextToSpeechButton = ({ text, colorIsBlue = true }: ItextToSpeechButton ) => {
+
+  const [isSpeaking, setIsSpeaking] = useState<boolean>(null);
 
   const speakText = () => {
     setTimeout(() => {
@@ -21,7 +27,7 @@ const TextToSpeechButton: React.FC<{ text: string }> = ({ text }) => {
   };
 
   return (
-    <div className="relative top-2 text-blue-700 flex flex-row-reverse items-center gap-2 font-semibold">
+    <div className={`relative top-2 flex flex-row-reverse items-center gap-2 font-semibold ${colorIsBlue ? "text-blue-700" : ""}`}>
       <button onClick={speakText} disabled={isSpeaking}>
         {isSpeaking ? "Falando..." : "Ouvir Texto"}
       </button>

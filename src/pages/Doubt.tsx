@@ -182,9 +182,7 @@ const Doubt: React.FC = () => {
 
         {/* Emergency Notice */}
           <div className='mt-10'>
-          <ImportantNotice title='Em caso de emergência'> 
-            Para emergências médicas, dirija-se imediatamente ao Pronto Socorro do Hospital das Clínicas ou ligue para o <b> SAMU: 192</b>
-            </ImportantNotice>
+          <ImportantNotice text='Para emergências médicas, dirija-se imediatamente ao Pronto Socorro do Hospital das Clínicas ou ligue para o SAMU: 192.' title='Em caso de emergência' /> 
           </div>
         </div>
     </div>

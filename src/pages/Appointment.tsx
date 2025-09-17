@@ -110,10 +110,8 @@ const Appointment: React.FC = () => {
         </div>
 
         {/* Important Notice */}
-        <ImportantNotice title='Antes De Começar'> 
-          Você precisa estar cadastrado no sistema do Hospital das Clínicas. 
-          Se é sua primeira vez, procure o setor de cadastro no hospital com seus documentos. 
-        </ImportantNotice>
+        <ImportantNotice text=' Você precisa estar cadastrado no sistema do Hospital das Clínicas. 
+          Se é sua primeira vez, procure o setor de cadastro no hospital com seus documentos.' title='Antes De Começar' /> 
 
         {/* Steps */}
         <div className="space-y-8 mb-16">

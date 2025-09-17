@@ -4,6 +4,7 @@ import { ImportantNotice } from "@/components/ImportantNotice";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Paragraph } from "@/components/Paragraph";
 import H1 from "@/components/H1";
+import TextToSpeechButton from "@/utils/TTS/TextToSpeechButton";
 
 const Guide: React.FC = () => {
 
@@ -71,7 +72,7 @@ const Guide: React.FC = () => {
     <div className="bg-background py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 flex flex-col items-center justify-center">
           <H1>
             Como Acessar o Site do Hospital das Clínicas
           </H1>
@@ -79,13 +80,15 @@ const Guide: React.FC = () => {
             Siga este guia passo a passo para acessar o site oficial e marcar
             suas consultas
           </p>
+          <div className="mt-5">
+            <TextToSpeechButton colorIsBlue text="Como Acessar o Site do Hospital das Clínicas? Siga este guia passo a passo para acessar o site oficial e marcar
+            suas consultas" />
+          </div>
         </div>
 
         {/* Important Notice */}
-        <ImportantNotice title="Importante!">
-          Certifique-se de ter uma conexão com a internet funcionando antes de
-          começar. Se você tiver dúvidas, peça ajuda a um familiar ou amigo.
-        </ImportantNotice>
+        <ImportantNotice text="Certifique-se de ter uma conexão com a internet funcionando antes de
+          começar. Se você tiver dúvidas, peça ajuda a um familiar ou amigo." title="Importante!" />
 
         {/* Steps */}
         <div className="space-y-8">
