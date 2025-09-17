@@ -89,9 +89,7 @@ const Support: React.FC = () => {
       setNotNullExists(true);
       console.error("Error! Env variables not found.");
       return;
-    } else {
-      setNotNullExists(false);
-    }
+    } else setNotNullExists(false);
 
       if (!form.current) return;
       

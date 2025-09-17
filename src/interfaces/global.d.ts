@@ -42,6 +42,7 @@ export interface ISteps {
   details: string[];
   button?: string;
   existButton?: boolean;
+  url?: string
 }
 
 export interface IformValues {
