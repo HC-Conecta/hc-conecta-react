@@ -46,7 +46,7 @@ const Profile: React.FC = () => {
       data.cpf = data.cpf.replace(/\D/g, "");
       
       for(const key in data) {
-        if(!data[key as keyof NameValues] || data[key as keyof NameValues] === "") {
+        if(!data[key as keyof NameValues].replace(/\s/g, '') || !data[key as keyof NameValues] || data[key as keyof NameValues] === "" ) {
           setNotNull(true);
 
           setTimeout(() => {
