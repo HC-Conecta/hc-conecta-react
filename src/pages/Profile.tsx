@@ -44,11 +44,7 @@ const Profile: React.FC = () => {
   const onSubmit = (data: NameValues) => {
     if (data) {
       data.cpf = data.cpf.replace(/\D/g, "");
-
-      if(data.password != data.confirmPassword) {
-          data.confirmPassword = data.password;
-      } else return
-
+      
       for(const key in data) {
         if(!data[key as keyof NameValues] || data[key as keyof NameValues] === "") {
           setNotNull(true);
@@ -65,7 +61,6 @@ const Profile: React.FC = () => {
         cpf: data.cpf.trim(),
         age: parseInt(data.age),
         password: data.password.trim(),
-        confirmPassword: data.confirmPassword.trim(),
       };
 
       const updateUser = async () => {

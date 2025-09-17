@@ -1,12 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
 import H1 from "@/components/H1";
 import Button from "@/components/Button";
 import { Paragraph } from "@/components/Paragraph";
 import { Baby, FileUser, Lock, User } from "lucide-react";
 import InputLogin from "@/components/InputLogin";
 import { useForm } from "react-hook-form";
-import { ILoginContext, NameValues } from "@/interfaces/global";
+import {NameValues } from "@/interfaces/global";
 import { cpfMask } from "@/utils/cpfMask";
 
 const Register = () => {
@@ -16,10 +15,7 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm<NameValues>();
-
-  const watchPassword = watch("password");  
   
 
   const onSubmit = async (data: NameValues) => {
@@ -200,40 +196,6 @@ const Register = () => {
                   </p>
                 )}
               </div>
-            </div>
-            <div className="flex flex-col gap-2">
-              {/* Confirm Password */}
-              <InputLogin
-                register={register}
-                rules={{
-                  required: true,
-                  minLength: 8,
-                  validate: (value: string) => value === watchPassword,
-                }}
-                passwordExist={true}
-                icon={
-                  <Lock
-                    size={20}
-                    className="absolute left-3 top-12 text-gray-500"
-                  />
-                }
-                id="confirmPassword"
-                label="Confirmar Senha *"
-                placeholder="Confirme sua senha"
-                name="confirmPassword"
-                type="password"
-                errors={errors}
-              />
-              {errors.confirmPassword?.type === "validate" && (
-                <p className="text-red-500 font-medium text-sm">
-                  As senhas não coincidem.
-                </p>
-              )}
-              {errors.confirmPassword?.type === "required" && (
-                <p className="text-red-500 font-medium text-sm">
-                  Confirmação de senha é obrigatório.
-                </p>
-              )}
             </div>
             {/* Submit Button */}
             <div className="flex w-full flex-col sm:flex-row gap-4">

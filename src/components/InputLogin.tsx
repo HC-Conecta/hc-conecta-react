@@ -16,7 +16,7 @@ type InputLoginProps = {
   errors?: FieldErrors<NameValues>;
   rules?: object;
   disabled?: boolean;
-  onChange?: ChangeEventHandler<HTMLInputElement>
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const InputLogin = ({
@@ -31,6 +31,7 @@ const InputLogin = ({
   register,
   rules,
   disabled,
+  onChange
 }: InputLoginProps, isEditing: boolean) => {
   const [showPassword, setShowPassword] = useState<boolean>(true);
 
@@ -66,6 +67,7 @@ const InputLogin = ({
         className={`w-full px-10 py-3 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent ${!isEditing ? "text-gray-500" : ""}`}
         placeholder={placeholder}
         value={value}
+        onChange={onChange}
       />
       
     </div>

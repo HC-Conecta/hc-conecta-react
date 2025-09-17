@@ -1,39 +1,4 @@
 {
   "posts": [
-    {
-      "id": "acfc",
-      "cpf": "32323232121",
-      "age": "19",
-      "password": "efwdasadsadsadssad",
-      "confirmPassword": "efwdasadsadsadssad"
-    },
-    {
-      "cpf": "33232332414",
-      "age": 34,
-      "password": "",
-      "id": "7e9f"
-    },
-    {
-      "cpf": "32434234120",
-      "age": 28,
-      "password": "iagooooooooooo",
-      "id": "beab"
-    },
-    {
-      "name": "Iago Liziero",
-      "cpf": "44741361872",
-      "age": 16,
-      "password": "iago212121",
-      "confirmPassword": "iago212121",
-      "id": "a456"
-    },
-    {
-      "name": "DUdu",
-      "cpf": "21342142214",
-      "age": 18,
-      "password": "sdadwsd as",
-      "confirmPassword": "sdadwsd as",
-      "id": "7b18"
-    }
   ]
 }

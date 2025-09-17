@@ -48,7 +48,6 @@ export interface IformValues {
   cpf: string;
   age: number;
   password: string;
-  confirmPassword: string;
 }
 
 export interface Ilocations {
@@ -67,7 +66,6 @@ export interface NameValues  {
   cpf: string;
   name: string;
   age: string;
-  confirmPassword: string;
 };
 
 export interface ILoginContext {
@@ -80,7 +78,6 @@ export interface IprofileData {
     cpf: string,
     age: number,
     password: string,
-    confirmPassword: string
 }
 
 export interface IPutProfileData {
@@ -88,7 +85,6 @@ export interface IPutProfileData {
     cpf: string,
     age: number,
     password: string,
-    confirmPassword: string
 }
 
 export interface emailData {
