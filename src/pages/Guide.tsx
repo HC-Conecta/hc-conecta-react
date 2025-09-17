@@ -30,9 +30,11 @@ const Guide: React.FC = () => {
       number: 2,
       title: "Digite o endereço",
       description:
-        "Na barra de endereços (caixa branca no topo), digite: www.hc.fm.usp.br",
+        "Na barra de endereços (caixa branca no topo), digite: hc.fm.usp.br",
       tip: "Certifique-se de digitar exatamente como mostrado, incluindo os pontos.",
       buttonColor: false,
+      link: true,
+      url: "https://www.hc.fm.usp.br/hc/portal/"
     },
     {
       number: 3,
@@ -57,6 +59,8 @@ const Guide: React.FC = () => {
         "Procure na página principal um link ou botão com o texto 'Agendamento' ou 'Marcar Consulta'.",
       tip: "Geralmente fica no menu superior ou no centro da página principal.",
       buttonColor: true,
+      link: true,
+      url: "https://app.agenda.globalhealth.mv/agendar/?key=hcsp"
     },
     {
       number: 6,
@@ -117,6 +121,14 @@ const Guide: React.FC = () => {
                       <strong>Dica:</strong> {step.tip}
                     </p>
                   </div>
+                  <div className="text-start flex flex-col items-start gap-5 lg:flex lg:flex-row lg:items-center lg:justify-between">
+                  {step.link === true && (
+                     <div className='mt-4'>
+                      <Button className='text-white' size='sm'><a href={step.url} target='_blank'> Acessar por aqui →</a> </Button>
+                    </div>
+                   )}
+                    <TextToSpeechButton colorIsBlue text={`${step.title}. ${step.description}. Dica: ${step.tip} `} />
+                  </div>
                 </div>
               </div>
             </div>
@@ -128,29 +140,36 @@ const Guide: React.FC = () => {
           <h2 className="text-2xl font-bold text-foreground mb-4">
             Precisa de Mais Ajuda?
           </h2>
-          <p className="text-muted-foreground mb-6 text-lg">
+          <Paragraph>
             Se você seguiu todos os passos e ainda tem dificuldades, não se
             preocupe! Temos outras formas de ajudar você.
-          </p>
+          </Paragraph>
+          <div className="mb-5 flex justify-start">
+            <TextToSpeechButton colorIsBlue text="Precisa de Mais Ajuda? Se você seguiu todos os passos e ainda tem dificuldades, não se
+            preocupe! Temos outras formas de ajudar você. Osnúmero de telefone estão aqui embaixo. " />
+          </div>
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="bg-primary/5 p-4 rounded-lg">
+            <div className="p-4 rounded-lg">
               <h3 className="font-semibold text-foreground mb-2 text-md">
                 Telefone de Suporte
               </h3>
-              <p className="text-muted-foreground mb-2">
+              <Paragraph>
                 Ligue para nossa central de ajuda:
-              </p>
+              </Paragraph>
               <p className="text-blue-700 font-bold text-lg">(11) 2661-0000</p>
             </div>
             <div className="bg-secondary/5 p-4 rounded-lg">
               <h3 className="font-semibold text-foreground mb-2">
                 Agendar por Telefone
               </h3>
-              <p className="text-muted-foreground mb-2">
+              <Paragraph>
                 Também pode agendar direto pelo telefone:
-              </p>
+              </Paragraph>
               <p className="text-blue-700 font-bold text-lg">(11) 2661-6000</p>
             </div>
+          </div>
+          <div className="mb-5 flex justify-start"> 
+            <TextToSpeechButton colorIsBlue text="Você pode ligar para nossa central de ajuda ou agendar direto pelo telefone no número: (11) 2661-6000" />
           </div>
         </div>
 

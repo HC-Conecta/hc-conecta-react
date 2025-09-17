@@ -31,7 +31,6 @@ const InputLogin = ({
   register,
   rules,
   disabled,
-  onChange
 }: InputLoginProps, isEditing: boolean) => {
   const [showPassword, setShowPassword] = useState<boolean>(true);
 
