@@ -2,7 +2,7 @@ import { Ilocations } from "@/interfaces/global";
 import Button from "./Button";
 import { Paragraph } from "./Paragraph";
 import { MapIcon } from "lucide-react";
-import TextToSpeechButton from "@/utils/TTS/TextToSpeechButton";
+import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
 
 const Location = () => {
 
@@ -55,7 +55,7 @@ const Location = () => {
           locations.map((location) => (
             <div
               key={location.id}
-              className={`flex flex-col md:flex-row p-6 justify-center gap-5 md:gap-20 xl:gap-32 items-center ${location.invertStyle === true ? "md:flex-row-reverse" : ""}`}
+              className={`flex flex-col lg:flex-row p-6 justify-center gap-5 md:gap-20 xl:gap-32 items-center max-w-5xl ${location.invertStyle === true ? "lg:flex-row-reverse" : ""}`}
             >
               <figure>
                 <img

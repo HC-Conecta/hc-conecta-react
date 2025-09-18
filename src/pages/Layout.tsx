@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { Paragraph } from "@/components/Paragraph";
+import { ZoomIn, ZoomOut } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 
@@ -28,11 +29,11 @@ export default function Layout() {
       <main>
         <Outlet />
         <div id="letter" className="fixed right-0 m-10 lg:mx-[15%] lg:my-14 bottom-0 py-3 px-6 bg-gradient-to-br from-blue-500 to-blue-700 flex gap-4 rounded-full shadow-md ">
-          <button onClick={increaseFont} className="flex relative top-1">
-            <Paragraph isWhite={true}> A+ </Paragraph>
+          <button onClick={increaseFont} className="flex relative  font-semibold">
+          <ZoomIn size={28} className="text-white/80"/>
           </button>
-          <button onClick={decreaseFont} className="flex relative top-1">
-            <Paragraph isWhite={true}> A- </Paragraph>
+          <button onClick={decreaseFont} className="flex relative font-semibold">
+            <ZoomOut size={28} className="text-white/80" />
           </button>
         </div>
       </main>

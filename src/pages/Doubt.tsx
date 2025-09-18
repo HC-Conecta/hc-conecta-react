@@ -6,7 +6,7 @@ import Button from "@/components/Button";
 import { ImportantNotice } from "@/components/ImportantNotice";
 import H1 from "@/components/H1";
 import { Paragraph } from "@/components/Paragraph";
-import TextToSpeechButton from "@/utils/TTS/TextToSpeechButton";
+import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
 
 const Doubt: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);

@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { Paragraph } from "@/components/Paragraph";
 import Location from "@/components/Location";
-import TextToSpeechButton from "@/utils/TTS/TextToSpeechButton";
+import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
 import Joyride, { Step } from "react-joyride";
 
 const Home: React.FC = () => {
@@ -61,6 +61,11 @@ const Home: React.FC = () => {
     {
       target: "#card-duvidas",
       content: "Se tiver perguntas, veja aqui as respostas mais comuns.",
+      placement: "top",
+    },
+    {
+      target: "#letter",
+      content: "Aqui você pode aumentar e diminuir o tamanho da fonte.",
       placement: "top",
     },
     {

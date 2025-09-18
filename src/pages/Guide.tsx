@@ -4,7 +4,7 @@ import { ImportantNotice } from "@/components/ImportantNotice";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Paragraph } from "@/components/Paragraph";
 import H1 from "@/components/H1";
-import TextToSpeechButton from "@/utils/TTS/TextToSpeechButton";
+import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
 
 const Guide: React.FC = () => {
 

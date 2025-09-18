@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Button from "../components/Button";
-import { 
-  Contact, 
-  emailData} from "../interfaces/global";
+import { Contact, emailData } from "../interfaces/global";
 import { Phone, Mail, MapPin } from "lucide-react";
 import H1 from "@/components/H1";
 import { Paragraph } from "@/components/Paragraph";
@@ -10,9 +8,9 @@ import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import { phoneMask } from "@/utils/phoneMask";
+import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
 
 const Support: React.FC = () => {
-
   const [emailSubmit, setEmailSubmit] = useState<boolean>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [notNullExists, setNotNullExists] = useState<boolean>(null);
@@ -35,86 +33,98 @@ const Support: React.FC = () => {
       label: "Agendamento de Consultas",
       value: "(11) 2661-6000",
       description: "Segunda a sexta, das 7h às 17h",
+      text: "Para agendar consultas, ligue para (11) 2661-6000, de segunda a sexta, das 7h às 17h.",
     },
     {
       type: "phone",
       label: "Suporte Técnico",
       value: "(11) 2661-0000",
       description: "Segunda a sexta, das 8h às 18h",
+      text: "Para suporte técnico, entre em contato pelo número (11) 2661-0000, de segunda a sexta, das 8h às 18h.",
     },
     {
       type: "phone",
       label: "Emergência",
       value: "192",
       description: "SAMU - 24 horas por dia",
+      text: "Em caso de emergência, ligue para o SAMU no número 192, disponível 24 horas por dia.",
     },
     {
       type: "email",
       label: "Email de Suporte",
       value: "suporte@hc.fm.usp.br",
       description: "Resposta em até 48 horas",
+      text: "Para suporte, envie um e-mail para suporte@hc.fm.usp.br ou utilize o formulário abaixo. Resposta em até 48 horas.",
     },
     {
       type: "email",
       label: "Email Geral",
       value: "contato@hc.fm.usp.br",
       description: "Para informações gerais",
+      text: "Para informações gerais, envie um e-mail para contato@hc.fm.usp.br.",
     },
     {
       type: "address",
       label: "Endereço Principal",
       value: "Rua Dr. Ovídio Pires de Campos, 225",
       description: "Cerqueira César, São Paulo - SP",
+      text: "Endereço principal: Rua Dr. Ovídio Pires de Campos, 225, Cerqueira César, São Paulo - SP.",
     },
   ];
-
   const timeMessageUpdate = () => {
     setTimeout(() => {
-      setIsLoading(prev => !prev);
-    }, 2000)
-  }
+      setIsLoading((prev) => !prev);
+    }, 2000);
+  };
 
   const form = useRef<HTMLFormElement>(null);
 
   const sendEmail = () => {
     setIsLoading(!isLoading);
 
-    timeMessageUpdate()
+    timeMessageUpdate();
 
     const serviceID: string = import.meta.env.VITE_EMAILJS_SERVICE_ID;
     const templateID: string = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     const publicKey: string = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-    if(!serviceID || !templateID || !publicKey) {
+    if (!serviceID || !templateID || !publicKey) {
       setNotNullExists(true);
       console.error("Error! Env variables not found.");
       return;
     } else setNotNullExists(false);
 
-      if (!form.current) return;
-      
-      emailjs.sendForm(serviceID, templateID, form.current!, publicKey).then(
-        () => {
-          setEmailSubmit(true);
-          form.current?.reset();
-        },
-        (error) => {
-          setEmailSubmit(false);
-          console.error(error);
-      
-        });
-    };
+    if (!form.current) return;
+
+    emailjs.sendForm(serviceID, templateID, form.current!, publicKey).then(
+      () => {
+        setEmailSubmit(true);
+        form.current?.reset();
+      },
+      (error) => {
+        setEmailSubmit(false);
+        console.error(error);
+      }
+    );
+  };
 
   return (
     <div className="bg-background py-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 flex flex-col items-center justify-center">
           <H1>Suporte e Contato</H1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Estamos aqui para ajudar você. Entre em contato conosco por
             telefone, email ou use o formulário abaixo
           </p>
+          <div className="mt-5">
+            <TextToSpeechButton
+              colorIsBlue
+              text="Suporte e Contato! Estamos aqui para ajudar você. Entre em contato conosco por
+            telefone, email ou use o formulário abaixo"
+            />
+          </div>
         </div>
 
         {/* Contact Methods */}
@@ -151,6 +161,7 @@ const Support: React.FC = () => {
 
               {contact.type === "phone" && (
                 <Button
+                  onClick={() => window.open(`mailto:${contact.value}`)}
                   variant="outline"
                   className="inline-flex items-center justify-center w-full mt-3 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
                 >
@@ -160,12 +171,17 @@ const Support: React.FC = () => {
 
               {contact.type === "email" && (
                 <Button
+                 onClick={() => window.open(`tel:${contact.value}`)}
                   variant="outline"
                   className="inline-flex items-center justify-center w-full mt-3 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
                 >
                   Enviar Email
                 </Button>
               )}
+
+              <div className="mt-5 flex items-start">
+                <TextToSpeechButton colorIsBlue text={contact.text} />
+              </div>
             </div>
           ))}
         </div>
@@ -180,9 +196,16 @@ const Support: React.FC = () => {
               Preencha o formulário abaixo e nossa equipe entrará em contato com
               você em breve.
             </Paragraph>
+            <div className="mt-5 flex items-start">
+                <TextToSpeechButton colorIsBlue text="Envie sua Mensagem!  Preencha o formulário abaixo e nossa equipe entrará em contato com você em breve." />
+            </div>
           </div>
 
-          <form ref={form} onSubmit={handleSubmit(sendEmail)} className="space-y-6">
+          <form
+            ref={form}
+            onSubmit={handleSubmit(sendEmail)}
+            className="space-y-6"
+          >
             <div className="grid md:grid-cols-2 gap-6">
               {/* Name */}
               <div>
@@ -345,7 +368,7 @@ const Support: React.FC = () => {
                 size="lg"
                 className="flex-grow sm:flex-grow-0 text-white"
               >
-                {!isLoading ? "Enviar Mensagem" : "Enviando Mensagem..." }
+                {!isLoading ? "Enviar Mensagem" : "Enviando Mensagem..."}
               </Button>
               <Button
                 type="button"
@@ -359,19 +382,19 @@ const Support: React.FC = () => {
           </form>
           <div>
             {emailSubmit && (
-                <div className="mt-8 text-green-500 font-medium text-sm">
-                 Mensagem enviada com sucesso! 🎉
-                </div>
-              )}
+              <div className="mt-8 text-green-500 font-medium text-sm">
+                Mensagem enviada com sucesso! 🎉
+              </div>
+            )}
             {emailSubmit === false && (
               <div className="mt-8 text-red-500 font-medium text-sm">
-                   Oops! Não conseguimos enviar sua mensagem, tente de novo.
+                Oops! Não conseguimos enviar sua mensagem, tente de novo.
               </div>
             )}
 
             {notNullExists && (
               <div className="mt-8 text-red-500 font-medium text-sm">
-                   Ocorreu um erro inesperado, tente novamente mais tarde!
+                Ocorreu um erro inesperado, tente novamente mais tarde!
               </div>
             )}
           </div>
@@ -392,6 +415,10 @@ const Support: React.FC = () => {
                 Um familiar pode ajudar você a navegar no site ou fazer o
                 agendamento
               </p>
+              <div className="mt-5 flex items-center justify-center">
+                <TextToSpeechButton colorIsBlue text="Peça Ajuda a um Familiar! Um familiar pode ajudar você a navegar no site ou fazer o
+                agendamento" />
+            </div>
             </div>
             <div>
               <div className="text-3xl mb-2">🏥</div>
@@ -402,6 +429,10 @@ const Support: React.FC = () => {
                 Você pode agendar presencialmente no hospital, no setor de
                 agendamento
               </p>
+              <div className="mt-5 flex items-center justify-center">
+                <TextToSpeechButton colorIsBlue text="Vá Pessoalmente! Você pode agendar presencialmente no hospital, no setor de
+                agendamento" />
+            </div>
             </div>
             <div>
               <div className="text-3xl mb-2">📚</div>
@@ -411,6 +442,9 @@ const Support: React.FC = () => {
               <p className="text-lg text-muted-foreground">
                 Temos guias passo a passo para ajudar você a usar o site
               </p>
+              <div className="mt-5 flex items-center justify-center">
+                <TextToSpeechButton colorIsBlue text="Consulte os Guias!  Temos guias passo a passo para ajudar você a usar o site" />
+            </div>
             </div>
           </div>
         </div>

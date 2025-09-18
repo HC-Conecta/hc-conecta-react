@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import H1 from "@/components/H1";
 import { ISteps } from "@/interfaces/global";
 import { Paragraph } from "@/components/Paragraph";
-import TextToSpeechButton from "@/utils/TTS/TextToSpeechButton";
+import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
 
 const Appointment: React.FC = () => {
   const navigate = useNavigate();

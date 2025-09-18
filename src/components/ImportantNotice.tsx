@@ -1,4 +1,4 @@
-import TextToSpeechButton from "@/utils/TTS/TextToSpeechButton";
+import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
 import { ShieldAlert } from "lucide-react";
 
 type ImportantNoticeProps = {

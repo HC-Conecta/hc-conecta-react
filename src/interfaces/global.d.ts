@@ -33,6 +33,7 @@ export interface Contact {
   label: string;
   value: string;
   description?: string;
+  text: string
 }
 
 export interface ISteps {
