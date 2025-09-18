@@ -161,7 +161,7 @@ const Support: React.FC = () => {
 
               {contact.type === "phone" && (
                 <Button
-                  onClick={() => window.open(`mailto:${contact.value}`)}
+                  onClick={() => window.open(`tel:${contact.value}`)}
                   variant="outline"
                   className="inline-flex items-center justify-center w-full mt-3 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
                 >
@@ -171,7 +171,7 @@ const Support: React.FC = () => {
 
               {contact.type === "email" && (
                 <Button
-                 onClick={() => window.open(`tel:${contact.value}`)}
+                 onClick={() => window.open(`mailto:${contact.value}?subject=Assunto%20do%20Email&body=Corpo%20do%20email`)}
                   variant="outline"
                   className="inline-flex items-center justify-center w-full mt-3 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
                 >

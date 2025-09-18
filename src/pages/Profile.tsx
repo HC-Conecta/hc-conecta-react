@@ -218,7 +218,7 @@ const Profile: React.FC = () => {
                   />
                   <input
                     disabled={!isEditing}
-                    {...register("cpf", { required: false, maxLength: 14 })}
+                    {...register("cpf", { required: false, maxLength: 14, validate: (value: string) =>  value.length === 14 })}
                     onChange={(e) => {
                       setCpf(cpfMask(e.target.value));
                     }}
@@ -232,6 +232,11 @@ const Profile: React.FC = () => {
                   {errors.cpf?.type === "maxLength" && (
                     <p className="text-red-500 font-medium text-sm">
                       Máximo de 11 caracteres permitido.
+                    </p>
+                  )}
+                  {errors.cpf?.type === "validate" && (
+                    <p className="text-red-500 font-medium text-sm">
+                      CPF precisa ter 11 dígitos.
                     </p>
                   )}
                 </div>

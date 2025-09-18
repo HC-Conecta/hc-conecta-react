@@ -83,9 +83,9 @@ const Home: React.FC = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div id="welcome">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              HC Conecta - Guia para o
+            <span className="text-emerald-400"> HC Conecta </span> - Guia para o
               <br />
-              <span className="text-emerald-400">Hospital das Clínicas</span>
+              Hospital das Clínicas
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-blue-100">
               Ajudamos você a acessar os serviços de saúde de forma fácil e
