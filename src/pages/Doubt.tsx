@@ -94,6 +94,13 @@ const Doubt: React.FC = () => {
             />
           </div>
         </div>
+        {/* Emergency Notice */}
+        <div className="mt-10">
+          <ImportantNotice
+            text="Para emergências médicas, dirija-se imediatamente ao Pronto Socorro do Hospital das Clínicas ou ligue para o SAMU: 192."
+            title="Em caso de emergência"
+          />
+        </div>
 
         {/* Search Help */}
         <div className="bg-accent rounded-lg p-6 mb-8">
@@ -212,14 +219,6 @@ const Doubt: React.FC = () => {
               <TextToSpeechButton colorIsBlue text="Agendamento por Telefone! Prefere agendar por telefone? Ligue para nossa central no número (11) 2661-6000" />
             </div>
           </div>
-        </div>
-
-        {/* Emergency Notice */}
-        <div className="mt-10">
-          <ImportantNotice
-            text="Para emergências médicas, dirija-se imediatamente ao Pronto Socorro do Hospital das Clínicas ou ligue para o SAMU: 192."
-            title="Em caso de emergência"
-          />
         </div>
       </div>
     </div>

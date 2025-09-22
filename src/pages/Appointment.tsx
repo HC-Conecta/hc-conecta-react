@@ -30,7 +30,7 @@ const Appointment: React.FC = () => {
       ],
       button: "Fazer Login",
       existButton: true,
-      url: "/",
+      url: "https://portaldopaciente.hc.fm.usp.br/",
     },
     {
       icon: "📅",
@@ -45,7 +45,7 @@ const Appointment: React.FC = () => {
       ],
       button: "Acessar Agendamentos",
       existButton: true,
-      url: "/",
+      url: "https://app.agenda.globalhealth.mv/agendar/?key=hcsp",
     },
     {
       icon: "👨‍⚕️",
@@ -168,12 +168,10 @@ const Appointment: React.FC = () => {
                       {step.existButton === true && (
                         <div className="mt-5">
                           <Button
-                            onClick={() => navigate(`${step.url}`)}
                             className="text-white"
                             size="sm"
                           >
-                            {" "}
-                            {step.button} →{" "}
+                            <a target="_blank" href={`${step.url}`}> {step.button} → </a>
                           </Button>
                         </div>
                       )}
