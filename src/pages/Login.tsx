@@ -166,7 +166,7 @@ const Login = () => {
           <div className="text-center mt-4 flex gap-2 justify-center">
             <p className="text-lg text-muted-foreground">Não tem uma conta?</p>
             <button
-              onClick={() => navigate("/register")}
+              onClick={() => navigate("/registrar")}
               type="button"
               className="text-lg text-blue-700 font-medium hover:underline"
             >

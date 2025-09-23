@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { Paragraph } from "@/components/Paragraph";
 import Location from "@/components/Location";
@@ -96,24 +96,23 @@ const Home: React.FC = () => {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/guide">
+
               <Button
+              onClick={() => navigate("/guia")}
                 id="btn-passos"
                 size="lg"
                 className="bg-blue-700 hover:bg-blue-800 text-primary w-full sm:w-auto"
               >
                 Como Acessar o Site
               </Button>
-            </Link>
-            <Link to="/appointment">
               <Button
+              onClick={() => navigate("/consulta")}
                 variant="outline"
                 size="lg"
                 className="border-white text-white w-full sm:w-auto"
               >
                 Agendar Consulta
               </Button>
-            </Link>
           </div>
         </div>
       </section>
@@ -165,7 +164,7 @@ const Home: React.FC = () => {
               </Paragraph>
               <div className="flex flex-col lg:flex-row gap-5 items-start lg:items-center lg:justify-between">
                 <Button
-                  onClick={() => navigate("/guide")}
+                  onClick={() => navigate("/guia")}
                   className="bg-blue-700 text-white hover:bg-blue-800 w-full mt-4 sm:w-auto"
                   size="sm"
                 >
@@ -210,7 +209,7 @@ const Home: React.FC = () => {
               </Paragraph>
               <div className="flex flex-col lg:flex-row gap-5 items-start lg:items-center lg:justify-between">
                 <Button
-                  onClick={() => navigate("/appointment")}
+                  onClick={() => navigate("/consulta")}
                   className="bg-blue-700 text-white hover:bg-blue-800  mt-4 w-full sm:w-auto"
                   size="sm"
                 >
@@ -255,7 +254,7 @@ const Home: React.FC = () => {
               </Paragraph>
               <div className="flex flex-col lg:flex-row gap-5 items-start lg:items-center lg:justify-between">
                 <Button
-                  onClick={() => navigate("/doubt")}
+                  onClick={() => navigate("/duvida")}
                   className="bg-blue-700 text-white hover:bg-blue-800  mt-4 w-full sm:w-auto"
                   size="sm"
                 >
@@ -285,7 +284,7 @@ const Home: React.FC = () => {
             email
           </p>
           <Button
-            onClick={() => navigate("/support")}
+            onClick={() => navigate("/suporte")}
             className="text-white"
             size="lg"
           >

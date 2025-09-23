@@ -16,17 +16,17 @@ const AppRoutes = () => {
         <Routes>
         <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/guide" element={<Guide />} />
-          <Route path="/doubt" element={<Doubt />} />
-          <Route path="/appointment" element={<Appointment />} />
-          <Route path="/support" element={<Support />} />
-          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/sobre" element={<About />} />
+          <Route path="/guia" element={<Guide />} />
+          <Route path="/duvida" element={<Doubt />} />
+          <Route path="/consulta" element={<Appointment />} />
+          <Route path="/suporte" element={<Support />} />
+          <Route path="/perfil/:id" element={<Profile />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/registraR" element={<Register />} />
       </Routes>
      );
 }

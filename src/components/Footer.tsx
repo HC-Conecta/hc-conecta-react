@@ -40,16 +40,16 @@ const Footer: React.FC = () => {
               Links Úteis
             </h3>
             <ul className="space-y-2">
-              <LiFooter onClick={() => navigate("/guide")}>
+              <LiFooter onClick={() => navigate("/guia")}>
                 Como Acessar o Site
               </LiFooter>
-              <LiFooter onClick={() => navigate("/appointment")}>
+              <LiFooter onClick={() => navigate("/consulta")}>
                 Agendar Consultas
               </LiFooter>
-              <LiFooter onClick={() => navigate("/doubt")}>
+              <LiFooter onClick={() => navigate("/duvida")}>
                 Dúvidas Frequentes
               </LiFooter>
-              <LiFooter onClick={() => navigate("/support")}>
+              <LiFooter onClick={() => navigate("/suporte")}>
                 Suporte e Contato
               </LiFooter>
             </ul>

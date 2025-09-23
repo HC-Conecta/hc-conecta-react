@@ -21,13 +21,13 @@ const Header: React.FC = () => {
 
   const navigationItems: NavigationItem[] = [
     { name: "Início", path: "/home" },
-    { name: "Como Acessar", path: "/guide" },
-    { name: "Agendar Consulta", path: "/appointment" },
-    { name: "Dúvidas", path: "/doubt" },
-    { name: "Suporte", path: "/support" },
-    { name: "Sobre Nós", path: "/about" },
+    { name: "Como Acessar", path: "/guia" },
+    { name: "Agendar Consulta", path: "/consulta" },
+    { name: "Dúvidas", path: "/duvida" },
+    { name: "Suporte", path: "/suporte" },
+    { name: "Sobre Nós", path: "/sobre" },
     { name: "Entrar", path: "/login" },
-    { name: "Criar Conta", path: "/register" },
+    { name: "Criar Conta", path: "/registrar" },
   ];
   
   const navigateProfile = (): void => {
@@ -95,7 +95,7 @@ const Header: React.FC = () => {
                 Entrar{" "}
               </Button>
               <Button
-                onClick={() => navigate("/register")}
+                onClick={() => navigate("/registrar")}
                 size="sm"
                 className="hidden xl:flex gap-2 items-center text-white justify-center"
                 variant="primary"
@@ -209,7 +209,7 @@ const Header: React.FC = () => {
                     <button
                       onClick={() => {
                         setIsMobileMenuOpen(false);
-                        navigate("/register");
+                        navigate("/registrar");
                       }}
                       className="block rounded-lg font-medium transition-colors text-blue-700"
                     >

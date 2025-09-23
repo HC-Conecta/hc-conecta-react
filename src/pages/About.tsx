@@ -8,21 +8,21 @@ import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
 const About: React.FC = () => {
   const developers: Developer[] = [
     {
-      name: "Enrico Delesporte",
+      name: "Enrico Delesporte - RM565760",
       role: "Desenvolvedor Back-end",
       description:
         "Desenvolvedor back-end responsável pela implementação do back-end, banco de dados, e ajuda no front-end. ",
       image: "/enrico-image.png",
     },
     {
-      name: "Vitor Dias",
+      name: "Vitor Dias - RM565422",
       role: "Desenvolvedor Back-end",
       description:
         "Desenvolvedor Back-End com atuação principal na estrutura do back-end, banco de dados e suporte ao front-end.",
       image: "/vitor-image.png",
     },
     {
-      name: "Iago Liziero",
+      name: "Iago Liziero - RM564063",
       role: "Desenvolvedor Full Stack",
       description:
         "Desenvolvedor Full Stack responsável pela implementação do front-end, protótipos do site, e ajuda no back-end.",
@@ -92,6 +92,9 @@ const About: React.FC = () => {
                 <p className="text-muted-foreground text-md">
                   {developer.description}
                 </p>
+                <div className="flex items-start mt-4">
+                 <p className="text-lg font-medium mb-3">Turma: 1TDSPG </p>
+                </div>
                 <div className="mt-5 flex items-start ">
                   <TextToSpeechButton
                     colorIsBlue

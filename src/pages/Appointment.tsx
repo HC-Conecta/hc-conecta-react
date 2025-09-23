@@ -9,7 +9,6 @@ import { Paragraph } from "@/components/Paragraph";
 import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
 
 const Appointment: React.FC = () => {
-  const navigate = useNavigate();
 
   const { pathname } = useLocation();
 
@@ -92,6 +91,8 @@ const Appointment: React.FC = () => {
       ],
     },
   ];
+
+  const navigate = useNavigate();
 
   const requiredDocuments = [
     "RG (Documento de identidade)",
@@ -310,7 +311,7 @@ const Appointment: React.FC = () => {
           </Button>
           <Button
             className="text-white"
-            onClick={() => (window.location.href = "/doubt")}
+            onClick={() => navigate('/duvida')}
           >
             Ver Dúvidas Frequentes →
           </Button>

@@ -180,7 +180,7 @@ const Guide: React.FC = () => {
           </Button>
           <Button
             className="text-white"
-            onClick={() => navigate('/appointment')}
+            onClick={() => navigate('/consulta')}
           >
             Próximo: Como Agendar →
           </Button>

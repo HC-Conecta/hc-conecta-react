@@ -121,7 +121,7 @@ const Doubt: React.FC = () => {
             </a>
             <Button
               size="sm"
-              onClick={() => navigate("/support")}
+              onClick={() => navigate("/suporte")}
               className="inline-flex items-center justify-center px-4 py-2 border border-primary text-white rounded-lg bg-blue-700"
             >
               💬 Página de Suporte
@@ -192,7 +192,7 @@ const Doubt: React.FC = () => {
             </Paragraph>
             <Button
               size="sm"
-              onClick={() => navigate("/guide")}
+              onClick={() => navigate("/guia")}
               className="text-white hover:text-primary/80 font-medium"
             >
               Ver Guias →
