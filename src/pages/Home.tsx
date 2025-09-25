@@ -4,7 +4,6 @@ import Button from "../components/Button";
 import { Paragraph } from "@/components/Paragraph";
 import Location from "@/components/Location";
 import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
-import Joyride, { Step } from "react-joyride";
 
 const Home: React.FC = () => {
   const { pathname } = useLocation();
@@ -32,49 +31,6 @@ const Home: React.FC = () => {
       setIsJoyrideOpen(false);
     }
   };
-
-  const steps: Step[] = [
-    {
-      target: "#welcome",
-      content:
-        "👋 Bem-vindo ao HC Conecta! Este é um tutorial rápido para te ajudar a navegar pelo site. Siga os passos se quiser ou clique nas bolinhas verdes para avançar no tutorial.",
-      placement: "bottom",
-      disableBeacon: true,
-    },
-    {
-      target: "#btn-passos",
-      content:
-        "Esse guia mostra de forma simples como acessar os serviços do HC.",
-      placement: "top",
-    },
-    {
-      target: "#btn-audio",
-      content:
-        "Aqui você pode ouvir o texto em áudio, de forma clara e devagar",
-      placement: "bottom",
-    },
-    {
-      target: "#card-consulta",
-      content: "Aqui você aprende como agendar suas consultas médicas.",
-      placement: "top",
-    },
-    {
-      target: "#card-duvidas",
-      content: "Se tiver perguntas, veja aqui as respostas mais comuns.",
-      placement: "top",
-    },
-    {
-      target: "#letter",
-      content: "Aqui você pode aumentar e diminuir o tamanho da fonte.",
-      placement: "top",
-    },
-    {
-      target: "#mapa",
-      content:
-        "Aqui você pode visualizar o hospital selecionado e confira o endereço no mapa.",
-      placement: "top",
-    },
-  ];
 
   return (
     <div className="bg-white/70">
@@ -299,29 +255,7 @@ const Home: React.FC = () => {
         </div>
       </section>
       <Location />
-
-      {/* Joyride */}
-      {isJoyrideOpen && (
-        <Joyride
-          steps={steps}
-          continuous
-          showSkipButton
-          styles={{
-            options: {
-              primaryColor: "#34D399",
-              zIndex: 10000,
-            },
-          }}
-          locale={{
-            back: "Voltar",
-            close: "Fechar",
-            last: "Finalizar",
-            next: "Próximo",
-            skip: "Pular",
-          }}
-          callback={handleJoyrideCallBack}
-        />
-      )}
+      
     </div>
   );
 };

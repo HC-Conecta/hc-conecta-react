@@ -36,7 +36,7 @@ const Header: React.FC = () => {
       alert("User not found")
       return;
      }
-     navigate(`/profile/${userId}`);
+     navigate(`/perfil/${userId}`);
   }
 
   const navigate = useNavigate();
@@ -226,7 +226,7 @@ const Header: React.FC = () => {
                 <button
                   onClick={() => {
                     setIsMobileMenuOpen(false);
-                    navigate(`profile/${localStorage.getItem("userId")}`);
+                    navigate(`perfil/${localStorage.getItem("userId")}`);
                   }}
                   className="block rounded-lg font-medium transition-colors text-blue-700"
                 >
