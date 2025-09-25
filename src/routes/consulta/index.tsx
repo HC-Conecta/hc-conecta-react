@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Button from "../components/Button";
+import Button from "../../components/Button";
 import { ImportantNotice } from "@/components/ImportantNotice";
 import { LiTips } from "@/components/LiTips";
 import { useLocation, useNavigate } from "react-router-dom";

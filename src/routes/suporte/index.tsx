@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import Button from "../components/Button";
-import { Contact, emailData } from "../interfaces/global";
+import Button from "../../components/Button";
+import { Contact, emailData } from "../../interfaces/global";
 import { Phone, Mail, MapPin } from "lucide-react";
 import H1 from "@/components/H1";
 import { Paragraph } from "@/components/Paragraph";

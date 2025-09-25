@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Button from "../components/Button";
+import Button from "../../components/Button";
 import {
   NameValues,
   IprofileData,
   IPutProfileData,
-} from "../interfaces/global";
+} from "../../interfaces/global";
 import { Lock, FileUser, Pencil, X, Save, Baby, Loader, User } from "lucide-react";
 import H1 from "@/components/H1";
 import { Paragraph } from "@/components/Paragraph";

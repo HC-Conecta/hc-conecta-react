@@ -1,4 +1,4 @@
-import { Register } from '@/pages/Register';
+import { Register } from '@/routes/registrar';
 import React from "react";
 
 export interface NavigationItem {

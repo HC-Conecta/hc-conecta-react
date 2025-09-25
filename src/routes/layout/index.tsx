@@ -1,6 +1,5 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import { Paragraph } from "@/components/Paragraph";
 import { ZoomIn, ZoomOut } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";

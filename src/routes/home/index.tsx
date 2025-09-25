@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Button from "../components/Button";
 import { Paragraph } from "@/components/Paragraph";
 import Location from "@/components/Location";
 import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
+import Button from "@/components/Button";
 
 const Home: React.FC = () => {
   const { pathname } = useLocation();

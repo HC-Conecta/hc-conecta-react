@@ -1,14 +1,15 @@
-import About from "@/pages/About";
-import Appointment from "@/pages/Appointment";
-import Doubt from "@/pages/Doubt";
-import Guide from "@/pages/Guide";
-import Home from "@/pages/Home";
-import Layout from "@/pages/Layout";
-import Login from "@/pages/Login";
-import NotFound from "@/pages/NotFound";
-import Profile from "@/pages/Profile";
-import Register from "@/pages/Register";
-import Support from "@/pages/Support";
+
+import Appointment from "@/routes/consulta";
+import Doubt from "@/routes/duvida";
+import Guide from "@/routes/guia";
+import Home from "@/routes/home";
+import Layout from "@/routes/layout";
+import Login from "@/routes/login";
+import NotFound from "@/routes/notFound";
+import Profile from "@/routes/perfil";
+import Register from "@/routes/registrar";
+import About from "@/routes/sobre";
+import Support from "@/routes/suporte";
 import { Route, Routes } from "react-router-dom";
 
 const AppRoutes = () => {
