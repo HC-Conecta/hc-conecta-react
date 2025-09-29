@@ -127,6 +127,12 @@ hc-conecta-react/
 
 ---
 
+## Algumas Imagens do Projeto
+<img width="1920" height="1080" alt="1" src="https://github.com/user-attachments/assets/0fe75b59-25d4-4e9e-b778-6ec2eecbc3bf" />
+<img width="1920" height="1080" alt="2" src="https://github.com/user-attachments/assets/90b3c855-ba33-475c-a07f-a68fe8aa6ed4" />
+<img width="1920" height="1080" alt="3" src="https://github.com/user-attachments/assets/c946d255-49ed-4d75-a5f3-ce5721168e94" />
+
+
 ## 👨‍💻 Equipe
 
 | Nome Completo           | RM     | Turma |
@@ -144,7 +150,6 @@ hc-conecta-react/
 * Estrutura escalável e organizada
 
 Link Repositório: https://github.com/HC-Conecta/hc-conecta-react.git
-
 
 # Equipe
 
