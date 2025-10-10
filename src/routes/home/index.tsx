@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Paragraph } from "@/components/Paragraph";
+import { Paragraph } from "@/components/textos/Paragraph";
 import Location from "@/components/Location";
 import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
 import Button from "@/components/Button";
+import H2 from "@/components/textos/H2";
+import { H3 } from "@/components/textos/H3";
 
 const Home: React.FC = () => {
   const { pathname } = useLocation();
@@ -39,7 +41,8 @@ const Home: React.FC = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div id="welcome">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="text-emerald-400"> HC Conecta </span> - Guia para o
+              <span className="text-emerald-400"> HC Conecta </span> - Guia para
+              o
               <br />
               Hospital das Clínicas
             </h1>
@@ -52,23 +55,22 @@ const Home: React.FC = () => {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-
-              <Button
+            <Button
               onClick={() => navigate("/guia")}
-                id="btn-passos"
-                size="lg"
-                className="bg-blue-700 hover:bg-blue-800 text-primary w-full sm:w-auto"
-              >
-                Como Acessar o Site
-              </Button>
-              <Button
+              id="btn-passos"
+              size="lg"
+              className="bg-blue-700 hover:bg-blue-800 text-primary w-full sm:w-auto"
+            >
+              Como Acessar o Site
+            </Button>
+            <Button
               onClick={() => navigate("/consulta")}
-                variant="outline"
-                size="lg"
-                className="border-white text-white w-full sm:w-auto"
-              >
-                Agendar Consulta
-              </Button>
+              variant="outline"
+              size="lg"
+              className="border-white text-white w-full sm:w-auto"
+            >
+              Agendar Consulta
+            </Button>
           </div>
         </div>
       </section>
@@ -77,14 +79,13 @@ const Home: React.FC = () => {
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 flex flex-col items-center justify-center">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Como Podemos Ajudar Você?
-            </h2>
-            <p className="text-xl text-muted-foreground">
+            <H2>Como Podemos Ajudar Você?</H2>
+            <p className="text-xl text-muted-foreground mb-8">
+              {" "}
               Oferecemos guias simples e suporte para facilitar o seu acesso aos
-              serviços de saúde.
+              serviços de saúde.{" "}
             </p>
-            <div className="mt-5">
+            <div>
               <TextToSpeechButton
                 id="btn-audio"
                 colorIsBlue
@@ -111,9 +112,7 @@ const Home: React.FC = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-3">
-                Passo a Passo Simples
-              </h3>
+              <H3>Passo a Passo Simples</H3>
               <Paragraph>
                 Explicações claras e detalhadas para acessar o site do Hospital
                 das Clínicas.
@@ -156,9 +155,7 @@ const Home: React.FC = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-3">
-                Agendar Consultas
-              </h3>
+              <H3>Agendar Consultas</H3>
               <Paragraph>
                 Aprenda como marcar suas consultas médicas de forma fácil e
                 rápida.
@@ -201,9 +198,7 @@ const Home: React.FC = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-3">
-                Tire suas Dúvidas
-              </h3>
+              <H3>Tire suas Dúvidas</H3>
               <Paragraph>
                 Encontre respostas para as perguntas mais comuns sobre o
                 Hospital das Clínicas.
@@ -230,32 +225,46 @@ const Home: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 flex flex-col gap-5 items-center">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-4">
-            Precisa de Ajuda Personalizada?
-          </h2>
-          <p className="text-xl text-muted-foreground mb-8">
-            Nossa equipe de suporte está pronta para ajudar você por telefone ou
-            email
-          </p>
-          <Button
-            onClick={() => navigate("/suporte")}
-            className="text-white"
-            size="lg"
-          >
-            Falar com Suporte
-          </Button>
+      <section className="py-16 flex flex-col gap-20 items-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-2">
+          <div>
+            <H2>Precisa de Ajuda Personalizada?</H2>
+            <p className="text-xl text-muted-foreground mb-8">
+              Nossa equipe de suporte está pronta para ajudar você por telefone
+              ou email
+            </p>
+            <Button
+              onClick={() => navigate("/suporte")}
+              className="text-white"
+              size="lg"
+            >
+              Falar com Suporte
+            </Button>
+          </div>
+          <div className="mt-5">
+            <TextToSpeechButton
+              colorIsBlue
+              text="Precisa de Ajuda Personalizada? Nossa equipe de suporte está pronta para ajudar você por telefone ou email "
+            />
+          </div>
         </div>
-        <div>
-          <TextToSpeechButton
-            colorIsBlue
-            text="Precisa de Ajuda Personalizada? Nossa equipe de suporte está pronta para ajudar você por telefone ou email "
-          />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-2">
+          <h2 className="text-3xl font-bold text-foreground mb-4">
+            Onde encontrar o Hospital das Clínicas
+          </h2>
+          <p className="text-xl text-muted-foreground mb-5 max-w-4xl">
+            O Hospital das Clínicas está localizado em uma região de fácil
+            acesso. Veja abaixo o endereço completo e as opções de transporte.
+          </p>
+          <div>
+            <TextToSpeechButton
+              colorIsBlue
+              text="Onde encontrar o Hospital das Clínicas? O Hospital das Clínicas está localizado em uma região de fácil acesso. Veja abaixo o endereço completo e as opções de transporte."
+            />
+          </div>
         </div>
       </section>
       <Location />
-      
     </div>
   );
 };

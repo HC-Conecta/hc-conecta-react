@@ -1,8 +1,8 @@
 import React from "react";
 import { Developer } from "../interfaces/global";
-import H1 from "@/components/H1";
+import H1 from "@/components/textos/H1";
 import { CircleCheck, CircleUser, Heart, Lightbulb, Mail } from "lucide-react";
-import { Paragraph } from "@/components/Paragraph";
+import { Paragraph } from "@/components/textos/Paragraph";
 import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
 
 const About: React.FC = () => {

@@ -6,8 +6,8 @@ import {
   IPutProfileData,
 } from "../../interfaces/global";
 import { Lock, FileUser, Pencil, X, Save, Baby, Loader, User } from "lucide-react";
-import H1 from "@/components/H1";
-import { Paragraph } from "@/components/Paragraph";
+import H1 from "@/components/textos/H1";
+import { Paragraph } from "@/components/textos/Paragraph";
 import { useForm } from "react-hook-form";
 import { useLocation, useParams } from "react-router-dom";
 import InputLogin from "@/components/InputLogin";

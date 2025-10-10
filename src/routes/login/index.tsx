@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import H1 from "@/components/H1";
+import H1 from "@/components/textos/H1";
 import Button from "@/components/Button";
-import { Paragraph } from "@/components/Paragraph";
+import { Paragraph } from "@/components/textos/Paragraph";
 import { FileUser, Lock, Mail } from "lucide-react";
 import InputLogin from "@/components/InputLogin";
 import { ILoginContext, IprofileData, NameValues } from "@/interfaces/global";

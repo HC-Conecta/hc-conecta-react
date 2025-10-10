@@ -3,9 +3,9 @@ import Button from "../../components/Button";
 import { ImportantNotice } from "@/components/ImportantNotice";
 import { LiTips } from "@/components/LiTips";
 import { useLocation, useNavigate } from "react-router-dom";
-import H1 from "@/components/H1";
+import H1 from "@/components/textos/H1";
 import { ISteps } from "@/interfaces/global";
-import { Paragraph } from "@/components/Paragraph";
+import { Paragraph } from "@/components/textos/Paragraph";
 import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
 
 const Appointment: React.FC = () => {

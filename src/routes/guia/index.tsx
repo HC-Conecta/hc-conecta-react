@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { ImportantNotice } from "@/components/ImportantNotice";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Paragraph } from "@/components/Paragraph";
-import H1 from "@/components/H1";
+import { Paragraph } from "@/components/textos/Paragraph";
+import H1 from "@/components/textos/H1";
 import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
 import Button from "@/components/Button";
 

@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import H1 from "@/components/H1";
+import H1 from "@/components/textos/H1";
 import Button from "@/components/Button";
 
 const NotFound = () => {

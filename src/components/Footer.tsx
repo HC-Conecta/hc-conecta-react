@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Phone, Mail, MoveUp, ChevronUp } from 'lucide-react';
 import { LiFooter } from './LiFooter';
-import { Paragraph } from './Paragraph';
+import { Paragraph } from './textos/Paragraph';
 
 const Footer: React.FC = () => {
 
