@@ -7,7 +7,7 @@ import { FileUser, Lock, Mail } from "lucide-react";
 import InputLogin from "@/components/ui/input/InputLogin";
 import { ILoginContext, IprofileData, NameValues } from "@/interfaces/global";
 import { useForm } from "react-hook-form";
-import { cpfMask } from "@/utils/cpfMask";
+import { cpfMask } from "@/utils/mask/cpfMask";
 
 const Login = () => {
   const location = useLocation();

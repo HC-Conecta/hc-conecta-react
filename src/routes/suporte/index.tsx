@@ -7,7 +7,7 @@ import { Paragraph } from "@/components/ui/textos/Paragraph";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 import emailjs from "@emailjs/browser";
-import { phoneMask } from "@/utils/phoneMask";
+import { phoneMask } from "@/utils/mask/phoneMask";
 import TextToSpeechButton from "@/components/tts/TextToSpeechButton";
 
 const Support: React.FC = () => {

@@ -11,7 +11,7 @@ import { Paragraph } from "@/components/ui/textos/Paragraph";
 import { useForm } from "react-hook-form";
 import { useLocation, useParams } from "react-router-dom";
 import InputLogin from "@/components/ui/input/InputLogin";
-import { cpfMask } from "@/utils/cpfMask";
+import { cpfMask } from "@/utils/mask/cpfMask";
 
 const Profile: React.FC = () => {
   const [profile, setProfile] = useState<IprofileData | null>(null);

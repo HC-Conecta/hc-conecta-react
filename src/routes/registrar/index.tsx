@@ -6,7 +6,7 @@ import { Baby, FileUser, Lock, User } from "lucide-react";
 import InputLogin from "@/components/ui/input/InputLogin";
 import { useForm } from "react-hook-form";
 import {NameValues } from "@/interfaces/global";
-import { cpfMask } from "@/utils/cpfMask";
+import { cpfMask } from "@/utils/mask/cpfMask";
 
 const Register = () => {
   const location = useLocation();
