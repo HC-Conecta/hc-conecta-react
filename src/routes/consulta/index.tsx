@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import Button from "../../components/Button";
-import { ImportantNotice } from "@/components/ImportantNotice";
-import { LiTips } from "@/components/LiTips";
+import Button from "../../components/ui/button/Button";
+import { ImportantNotice } from "@/components/section/ImportantNotice";
+import { LiTips } from "@/components/section/LiTips";
 import { useLocation, useNavigate } from "react-router-dom";
-import H1 from "@/components/textos/H1";
+import H1 from "@/components/ui/textos/H1";
 import { ISteps } from "@/interfaces/global";
-import { Paragraph } from "@/components/textos/Paragraph";
-import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
+import { Paragraph } from "@/components/ui/textos/Paragraph";
+import TextToSpeechButton from "@/components/tts/TextToSpeechButton";
 
 const Appointment: React.FC = () => {
 

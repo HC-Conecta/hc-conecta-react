@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Paragraph } from "@/components/textos/Paragraph";
-import Location from "@/components/Location";
-import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
-import Button from "@/components/Button";
-import H2 from "@/components/textos/H2";
-import { H3 } from "@/components/textos/H3";
+import { Paragraph } from "@/components/ui/textos/Paragraph";
+import Location from "@/components/section/Location";
+import TextToSpeechButton from "@/components/tts/TextToSpeechButton";
+import Button from "@/components/ui/button/Button";
+import H2 from "@/components/ui/textos/H2";
+import { H3 } from "@/components/ui/textos/H3";
 
 const Home: React.FC = () => {
   const { pathname } = useLocation();

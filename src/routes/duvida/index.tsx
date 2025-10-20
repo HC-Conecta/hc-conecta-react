@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { FAQ } from "../interfaces/global";
 import { CircleQuestionMark } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Button from "@/components/Button";
-import { ImportantNotice } from "@/components/ImportantNotice";
-import H1 from "@/components/textos/H1";
-import { Paragraph } from "@/components/textos/Paragraph";
-import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
+import Button from "@/components/ui/button/Button";
+import { ImportantNotice } from "@/components/section/ImportantNotice";
+import H1 from "@/components/ui/textos/H1";
+import { Paragraph } from "@/components/ui/textos/Paragraph";
+import TextToSpeechButton from "@/components/tts/TextToSpeechButton";
 
 const Doubt: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);

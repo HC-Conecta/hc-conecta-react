@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import H1 from "@/components/textos/H1";
-import Button from "@/components/Button";
-import { Paragraph } from "@/components/textos/Paragraph";
+import H1 from "@/components/ui/textos/H1";
+import Button from "@/components/ui/button/Button";
+import { Paragraph } from "@/components/ui/textos/Paragraph";
 import { Baby, FileUser, Lock, User } from "lucide-react";
-import InputLogin from "@/components/InputLogin";
+import InputLogin from "@/components/ui/input/InputLogin";
 import { useForm } from "react-hook-form";
 import {NameValues } from "@/interfaces/global";
 import { cpfMask } from "@/utils/cpfMask";

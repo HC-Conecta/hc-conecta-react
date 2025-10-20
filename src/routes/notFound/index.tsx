@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import H1 from "@/components/textos/H1";
-import Button from "@/components/Button";
+import H1 from "@/components/ui/textos/H1";
+import Button from "@/components/ui/button/Button";
 
 const NotFound = () => {
   const location = useLocation();

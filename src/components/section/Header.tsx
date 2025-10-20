@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { NavigationItem } from "../interfaces/global";
-import Button from "./Button";
+import { NavigationItem } from "../../interfaces/global";
+import Button from "../ui/button/Button";
 import {
   LogIn,
   LogOut,

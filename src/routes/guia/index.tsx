@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { ImportantNotice } from "@/components/ImportantNotice";
+import { ImportantNotice } from "@/components/section/ImportantNotice";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Paragraph } from "@/components/textos/Paragraph";
-import H1 from "@/components/textos/H1";
-import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
-import Button from "@/components/Button";
+import { Paragraph } from "@/components/ui/textos/Paragraph";
+import H1 from "@/components/ui/textos/H1";
+import TextToSpeechButton from "@/components/tts/TextToSpeechButton";
+import Button from "@/components/ui/button/Button";
 
 const Guide: React.FC = () => {
 

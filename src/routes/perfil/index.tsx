@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import Button from "../../components/Button";
+import Button from "../../components/ui/button/Button";
 import {
   NameValues,
   IprofileData,
   IPutProfileData,
 } from "../../interfaces/global";
 import { Lock, FileUser, Pencil, X, Save, Baby, Loader, User } from "lucide-react";
-import H1 from "@/components/textos/H1";
-import { Paragraph } from "@/components/textos/Paragraph";
+import H1 from "@/components/ui/textos/H1";
+import { Paragraph } from "@/components/ui/textos/Paragraph";
 import { useForm } from "react-hook-form";
 import { useLocation, useParams } from "react-router-dom";
-import InputLogin from "@/components/InputLogin";
+import InputLogin from "@/components/ui/input/InputLogin";
 import { cpfMask } from "@/utils/cpfMask";
 
 const Profile: React.FC = () => {

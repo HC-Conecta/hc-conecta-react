@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import Button from "../../components/Button";
+import Button from "../../components/ui/button/Button";
 import { Contact, emailData } from "../../interfaces/global";
 import { Phone, Mail, MapPin } from "lucide-react";
-import H1 from "@/components/textos/H1";
-import { Paragraph } from "@/components/textos/Paragraph";
+import H1 from "@/components/ui/textos/H1";
+import { Paragraph } from "@/components/ui/textos/Paragraph";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import { phoneMask } from "@/utils/phoneMask";
-import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
+import TextToSpeechButton from "@/components/tts/TextToSpeechButton";
 
 const Support: React.FC = () => {
   const [emailSubmit, setEmailSubmit] = useState<boolean>(null);
