@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { NavigationItem } from "../../interfaces/global";
 import Button from "../ui/button/Button";
 import {
   LogIn,
   LogOut,
-  Menu,
   MenuIcon,
   UserCog,
   UserRoundPlus,
   UserRoundPlusIcon,
   X,
 } from "lucide-react";
+import { navigationItems } from "@/data/navigation-items";
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -19,16 +18,6 @@ const Header: React.FC = () => {
 
   const [isLoggedIn] = useState<string>(localStorage.getItem("loggedIn"));
 
-  const navigationItems: NavigationItem[] = [
-    { name: "Início", path: "/home" },
-    { name: "Como Acessar", path: "/guia" },
-    { name: "Agendar Consulta", path: "/consulta" },
-    { name: "Dúvidas", path: "/duvida" },
-    { name: "Suporte", path: "/suporte" },
-    { name: "Sobre Nós", path: "/sobre" },
-    { name: "Entrar", path: "/login" },
-    { name: "Criar Conta", path: "/registrar" },
-  ];
   
   const navigateProfile = (): void => {
     const userId: string | null = localStorage.getItem("userId");

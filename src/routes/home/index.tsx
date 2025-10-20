@@ -16,24 +16,6 @@ const Home: React.FC = () => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  const [isJoyrideOpen, setIsJoyrideOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    const tourCompleted = localStorage.getItem("tourCompleted");
-    if (!tourCompleted) {
-      setIsJoyrideOpen(true);
-    }
-  }, []);
-
-  const handleJoyrideCallBack = (data) => {
-    const { status } = data;
-
-    if (status === "finished" || status === "skipped") {
-      localStorage.setItem("tourCompleted", "true");
-      setIsJoyrideOpen(false);
-    }
-  };
-
   return (
     <div className="bg-white/70">
       {/* Hero Section */}

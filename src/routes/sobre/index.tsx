@@ -1,34 +1,12 @@
 import React from "react";
-import { Developer } from "../interfaces/global";
 import H1 from "@/components/ui/textos/H1";
 import { CircleCheck, CircleUser, Heart, Lightbulb, Mail } from "lucide-react";
 import { Paragraph } from "@/components/ui/textos/Paragraph";
 import TextToSpeechButton from "@/components/tts/TextToSpeechButton";
+import { developers } from "@/data/developer";
 
 const About: React.FC = () => {
-  const developers: Developer[] = [
-    {
-      name: "Enrico Delesporte - RM565760",
-      role: "Desenvolvedor Back-end",
-      description:
-        "Desenvolvedor back-end responsável pela implementação do back-end, banco de dados, e ajuda no front-end. ",
-      image: "/enrico-image.png",
-    },
-    {
-      name: "Vitor Dias - RM565422",
-      role: "Desenvolvedor Back-end",
-      description:
-        "Desenvolvedor Back-End com atuação principal na estrutura do back-end, banco de dados e suporte ao front-end.",
-      image: "/vitor-image.png",
-    },
-    {
-      name: "Iago Liziero - RM564063",
-      role: "Desenvolvedor Full Stack",
-      description:
-        "Desenvolvedor Full Stack responsável pela implementação do front-end, protótipos do site, e ajuda no back-end.",
-      image: "/iago-image.png",
-    },
-  ];
+
 
   return (
     <div className="bg-background py-16">
