@@ -21,8 +21,9 @@ const Register = () => {
   const onSubmit = async (data: NameValues) => {
     if (data) {
       data.cpf = data.cpf.replace(/\D/g, "");
-      const BASE_URL: string = "http://localhost:3000/posts";
       
+      const BASE_URL: string = `${import.meta.env.VITE_API_URL}`;
+
       const allData: NameValues = {
         ...data,
         name: data.name.charAt(0).toUpperCase() + data.name.slice(1),

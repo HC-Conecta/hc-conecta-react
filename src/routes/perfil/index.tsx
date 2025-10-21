@@ -39,7 +39,7 @@ const Profile: React.FC = () => {
 
   const { id } = useParams();
 
-  const BASE_URL: string = `http://localhost:3000/posts/${id}`;
+  const BASE_URL: string = `${import.meta.env.VITE_API_URL}${id}`;
 
   const onSubmit = (data: NameValues) => {
     if (data) {

@@ -40,7 +40,7 @@ const Login = () => {
       data.cpf = data.cpf.replace(/\D/g, "");
       handleLogin();
 
-      const BASE_URL: string = `http://localhost:3000/posts?cpf=${data.cpf}&password=${data.password}`;
+      const BASE_URL: string = `${import.meta.env.VITE_API_URL}?cpf=${data.cpf}&password=${data.password}`;
 
       try {
         const response = await fetch(BASE_URL, { method: "GET" });
