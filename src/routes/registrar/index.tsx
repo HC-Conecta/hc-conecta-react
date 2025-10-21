@@ -7,6 +7,7 @@ import InputLogin from "@/components/ui/input/InputLogin";
 import { useForm } from "react-hook-form";
 import {NameValues } from "@/interfaces/global";
 import { cpfMask } from "@/utils/mask/cpfMask";
+import { createUser } from "@/services/api";
 
 const Register = () => {
   const location = useLocation();
@@ -18,39 +19,12 @@ const Register = () => {
   } = useForm<NameValues>();
   
 
-  const onSubmit = async (data: NameValues) => {
+  const onSubmit = (data: NameValues) => {
     if (data) {
-      data.cpf = data.cpf.replace(/\D/g, "");
-      
-      const BASE_URL: string = `${import.meta.env.VITE_API_URL}`;
-
-      const allData: NameValues = {
-        ...data,
-        name: data.name.charAt(0).toUpperCase() + data.name.slice(1),
-      }
-
-      try {
-        const response = await fetch(BASE_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(allData), 
-        });
-
-        if(response.status != 201) {
-          console.error('Failed to create post:', response.statusText);
-        } else {
-          navigate("/login");
-          const data = await response.json();
-          return data;
-        }
-      } catch(error) {
-        console.log(`Error create User: ${error}`);
-      }
-
-    } else {
-      alert("Erro no cadastro, tente novamente.");
+        createUser(data);
+        navigate("/login");
+    }else {
+        alert("Erro no cadastro, tente novamente.");
     }
   };
 
