@@ -1,4 +1,4 @@
-import { IprofileData, NameValues } from "@/interfaces/global";
+import { IprofileData, IPutProfileData, NameValues } from "@/interfaces/global";
 
 export const createUser = async (data: NameValues) => {
 
@@ -31,8 +31,8 @@ export const createUser = async (data: NameValues) => {
     }
 }
 
-export const verifyUser = async (data: NameValues ) => {
-    
+export const verifyUser = async (data: NameValues) => {
+
     data.cpf = data.cpf.replace(/\D/g, "");
 
     const BASE_URL: string = `${import.meta.env.VITE_API_URL}?cpf=${data.cpf}&password=${data.password}`;
@@ -50,4 +50,36 @@ export const verifyUser = async (data: NameValues ) => {
         console.log(error);
     }
 }
+
+export const updateUser = async (data: NameValues, id: string) => {
+    data.cpf = data.cpf.replace(/\D/g, "");
+
+    const BASE_URL: string = `${import.meta.env.VITE_API_URL}${id}`;
+
+    const dataUpdate: IPutProfileData = {
+        name: data.name.trim(),
+        cpf: data.cpf.trim(),
+        age: parseInt(data.age),
+        password: data.password.trim(),
+    };
+    try {
+        const response = await fetch(BASE_URL, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(dataUpdate),
+        });
+
+        if (response.status !== 200) {
+            console.error("Failed to update user:", response.statusText);
+            return false;
+        } else {
+            const data = await response.json();
+            return data;
+        }
+    } catch (error) {
+        console.log(`Error update User: ${error}`);
+    }
+};
 
