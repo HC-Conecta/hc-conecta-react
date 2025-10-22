@@ -1,6 +1,6 @@
-interface FAQ {
+interface IFAQ {
     question: string;
     answer: string;
 }
 
-export default FAQ;
+export default IFAQ;

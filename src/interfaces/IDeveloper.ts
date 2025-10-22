@@ -1,8 +1,8 @@
-interface Developer {
+interface IDeveloper {
     name: string;
     role: string;
     description: string;
     image: string;
 }
 
-export default Developer;
+export default IDeveloper;
