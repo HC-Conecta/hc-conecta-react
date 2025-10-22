@@ -1,4 +1,4 @@
-interface IForm_data {
+interface IFormData {
     name: string;
     email: string;
     telephone: string;
@@ -7,4 +7,4 @@ interface IForm_data {
     serviceType: string;
 }
 
-export default IForm_data;
+export default IFormData;

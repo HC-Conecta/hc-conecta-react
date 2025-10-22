@@ -50,7 +50,6 @@ export interface ISteps {
   link?: true;
 }
 
-
 export interface IformValues {
   cpf: string;
   age: number;
