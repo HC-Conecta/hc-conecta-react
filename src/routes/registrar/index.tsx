@@ -3,11 +3,11 @@ import H1 from "@/components/ui/textos/H1";
 import Button from "@/components/ui/button/Button";
 import { Paragraph } from "@/components/ui/textos/Paragraph";
 import { Baby, FileUser, Lock, User } from "lucide-react";
-import InputLogin from "@/components/ui/input/InputLogin";
+import InputLogin from "@/components/ui/input/Input-login";
 import { useForm } from "react-hook-form";
-import {NameValues } from "@/interfaces/global";
-import { cpfMask } from "@/utils/mask/cpfMask";
+import { cpfMask } from "@/utils/mask/cpf-mask";
 import { createUser } from "@/services/api";
+import IProfileData from "@/interfaces/IProfile-data";
 
 const Register = () => {
   const location = useLocation();
@@ -16,10 +16,10 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<NameValues>();
+  } = useForm<IProfileData>();
   
 
-  const onSubmit = (data: NameValues) => {
+  const onSubmit = (data: IProfileData) => {
     if (data) {
         createUser(data);
         navigate("/login");

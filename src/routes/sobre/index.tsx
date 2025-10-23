@@ -7,7 +7,6 @@ import { developers } from "@/data/developer";
 
 const About: React.FC = () => {
 
-
   return (
     <div className="bg-background py-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import H1 from "@/components/ui/textos/H1";
 import Button from "@/components/ui/button/Button";
 import { Paragraph } from "@/components/ui/textos/Paragraph";
-import { FileUser, Lock, Mail } from "lucide-react";
-import InputLogin from "@/components/ui/input/InputLogin";
-import { ILoginContext, IprofileData, NameValues } from "@/interfaces/global";
+import { FileUser, Lock } from "lucide-react";
+import InputLogin from "@/components/ui/input/Input-login";
 import { useForm } from "react-hook-form";
-import { cpfMask } from "@/utils/mask/cpfMask";
+import { cpfMask } from "@/utils/mask/cpf-mask";
 import { verifyUser } from "@/services/api";
+import ILoginContext from "@/interfaces/ILogin-context";
+import IProfileData from "@/interfaces/IProfile-data";
 
 const Login = () => {
   const location = useLocation();
@@ -34,9 +35,9 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<NameValues>();
+  } = useForm<IProfileData>();
 
-  const onSubmit = async (data: NameValues) => {
+  const onSubmit = async (data: IProfileData) => {
     if (data) {
       const verify = await verifyUser(data);
       if (verify != false) {

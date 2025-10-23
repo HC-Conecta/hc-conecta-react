@@ -1,4 +1,4 @@
-import { ISteps } from "@/interfaces/global";
+import ISteps from "@/interfaces/ISteps";
 
 export const steps: ISteps[] = [
     {

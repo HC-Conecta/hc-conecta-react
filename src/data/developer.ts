@@ -1,6 +1,6 @@
-import { Developer } from "@/interfaces/global";
+import IDeveloper from "@/interfaces/IDeveloper";
 
-export const developers: Developer[] = [
+export const developers: IDeveloper[] = [
     {
       name: "Enrico Delesporte - RM565760",
       role: "Desenvolvedor Back-end",

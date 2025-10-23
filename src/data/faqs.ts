@@ -1,6 +1,6 @@
-import { FAQ } from "@/interfaces/global";
+import IFAQ from "@/interfaces/IFAQ";
 
-export const faqs: FAQ[] = [
+export const faqs: IFAQ[] = [
     {
       question: "Preciso de cadastro para agendar uma consulta?",
       answer:

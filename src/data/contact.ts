@@ -1,6 +1,7 @@
-import { Contact } from "@/interfaces/global";
+import IContact from "@/interfaces/IContact";
 
-export const contacts: Contact[] = [
+
+export const contacts: IContact[] = [
     {
       type: "phone",
       label: "Agendamento de Consultas",
