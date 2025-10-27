@@ -6,6 +6,7 @@ import H1 from "@/components/ui/textos/H1";
 import TextToSpeechButton from "@/components/tts/TextToSpeechButton";
 import Button from "@/components/ui/button/Button";
 import { steps } from "@/data/steps-guide";
+import Subtitle from "@/components/ui/textos/Subtitle";
 
 const Guide: React.FC = () => {
 
@@ -26,10 +27,10 @@ const Guide: React.FC = () => {
           <H1>
             Como Acessar o Site do Hospital das Clínicas
           </H1>
-          <p className="text-xl text-muted-foreground">
-            Siga este guia passo a passo para acessar o site oficial e marcar
-            suas consultas
-          </p>
+          <Subtitle> 
+             Encontre respostas para as perguntas mais comuns sobre os serviços
+            do Hospital das Clínicas
+          </Subtitle>
           <div className="mt-5">
             <TextToSpeechButton colorIsBlue text="Como Acessar o Site do Hospital das Clínicas? Siga este guia passo a passo para acessar o site oficial e marcar
             suas consultas" />

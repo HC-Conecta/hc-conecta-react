@@ -7,6 +7,7 @@ import H1 from "@/components/ui/textos/H1";
 import { Paragraph } from "@/components/ui/textos/Paragraph";
 import TextToSpeechButton from "@/components/tts/TextToSpeechButton";
 import { faqs } from "@/data/faqs";
+import Subtitle from "@/components/ui/textos/Subtitle";
 
 const Doubt: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -29,10 +30,10 @@ const Doubt: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-12 flex flex-col items-center justify-center">
           <H1>Dúvidas Frequentes</H1>
-          <p className="text-xl text-muted-foreground">
-            Encontre respostas para as perguntas mais comuns sobre os serviços
+          <Subtitle> 
+             Encontre respostas para as perguntas mais comuns sobre os serviços
             do Hospital das Clínicas
-          </p>
+          </Subtitle>
           <div className="mt-5">
             <TextToSpeechButton
               colorIsBlue

@@ -8,6 +8,7 @@ import { Paragraph } from "@/components/ui/textos/Paragraph";
 import TextToSpeechButton from "@/components/tts/TextToSpeechButton";
 import { steps } from "@/data/steps";
 import { requiredDocuments } from "@/data/required-documents";
+import Subtitle from "@/components/ui/textos/Subtitle";
 
 const Appointment: React.FC = () => {
 
@@ -26,10 +27,10 @@ const Appointment: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-12 flex flex-col items-center justify-center">
           <H1>Como Agendar sua Consulta</H1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <Subtitle>
             Siga este guia passo a passo para agendar sua consulta médica no
             Hospital das Clínicas de forma fácil e rápida
-          </p>
+          </Subtitle>
           <div className="mt-5">
             <TextToSpeechButton
               colorIsBlue
