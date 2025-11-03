@@ -4,7 +4,7 @@ interface H2Props {
 
 const H2 = ({children}: H2Props) => {
     return ( 
-        <h2 className="text-3xl font-bold text-foreground mb-4">
+        <h2 className="text-3xl font-bold text-foreground mb-4 text-center">
             {children}
         </h2>
      );
