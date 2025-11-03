@@ -10,6 +10,7 @@ import { cpfMask } from "@/utils/mask/cpf-mask";
 import { verifyUser } from "@/services/api";
 import ILoginContext from "@/interfaces/ILogin-context";
 import IProfileData from "@/interfaces/IProfile-data";
+import { H3 } from "@/components/ui/textos/H3";
 
 const Login = () => {
   const location = useLocation();
@@ -63,20 +64,20 @@ const Login = () => {
 
   return (
     <div className="min-h-screen p-5 flex flex-col items-center justify-center bg-gray-100 gap-10">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <H1 gradient={true}>Bem-vindo de volta</H1>
         <Paragraph>Entre na sua conta para continuar</Paragraph>
       </div>
       <div className="bg-surface rounded-xl p-8 shadow-md border border-border">
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-2">Entrar</h2>
+          <H3 isStronger={true}>Entrar</H3>
           <Paragraph>Digite suas credenciais para acessar sua conta</Paragraph>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="flex flex-col gap-6">
             {/* CPF */}
-            <div className="flex flex-col gap-2 relative">
+            <fieldset className="flex flex-col gap-2 relative">
               {/* CPF */}
               <label className="block text-md font-medium text-foreground">
                 CPF *
@@ -106,9 +107,9 @@ const Login = () => {
                   Máximo de 11 caracteres permitido.
                 </p>
               )}
-            </div>
+            </fieldset>
             {/* Password */}
-            <div className="flex flex-col gap-2">
+            <fieldset className="flex flex-col gap-2">
               {/* Password */}
               <InputLogin
                 register={register}
@@ -137,10 +138,10 @@ const Login = () => {
                   Mínimo de 8 caracteres.
                 </p>
               )}
-            </div>
+            </fieldset>
           </div>
           {/* Submit Button */}
-          <div className="flex w-full flex-col gap-4">
+          <fieldset className="flex w-full flex-col gap-4">
             <Button type="submit" size="lg" className="text-white w-full">
               Entrar
             </Button>
@@ -152,9 +153,9 @@ const Login = () => {
                 </p>
               </div>
             )}
-          </div>
+          </fieldset>
           <div className="text-center mt-4 flex gap-2 justify-center">
-            <p className="text-lg text-muted-foreground">Não tem uma conta?</p>
+            <Paragraph>Não tem uma conta?</Paragraph>
             <button
               onClick={() => navigate("/registrar")}
               type="button"
