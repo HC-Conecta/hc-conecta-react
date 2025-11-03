@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import Button from "../../components/ui/button/Button";
-import { Contact, emailData } from "../../interfaces/global";
 import { Phone, Mail, MapPin } from "lucide-react";
 import H1 from "@/components/ui/textos/H1";
 import { Paragraph } from "@/components/ui/textos/Paragraph";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 import emailjs from "@emailjs/browser";
-import { phoneMask } from "@/utils/mask/phoneMask";
+import { phoneMask } from "@/utils/mask/phone-mask";
 import TextToSpeechButton from "@/components/tts/TextToSpeechButton";
 import { contacts } from "@/data/contact";
+import IEmailData from "@/interfaces/IEmail-data";
+import sendEmailService from "@/services/email-service";
 
 const Support: React.FC = () => {
   const [emailSubmit, setEmailSubmit] = useState<boolean>(null);
@@ -20,7 +21,7 @@ const Support: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<emailData>();
+  } = useForm<IEmailData>();
 
   const { pathname } = useLocation();
 
@@ -36,33 +37,26 @@ const Support: React.FC = () => {
 
   const form = useRef<HTMLFormElement>(null);
 
-  const sendEmail = () => {
+  const sendEmail = async () => {
     setIsLoading(!isLoading);
-
     timeMessageUpdate();
 
-    const serviceID: string = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateID: string = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey: string = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceID || !templateID || !publicKey) {
+    try {
+      sendEmailService({
+        form,
+        onSuccess: () => {
+          setEmailSubmit(true);
+          form.current?.reset();
+        },
+        onError: () => {
+          setEmailSubmit(false);
+        },
+      });
+    } catch (error) { 
       setNotNullExists(true);
-      console.error("Error! Env variables not found.");
-      return;
-    } else setNotNullExists(false);
-
-    if (!form.current) return;
-
-    emailjs.sendForm(serviceID, templateID, form.current!, publicKey).then(
-      () => {
-        setEmailSubmit(true);
-        form.current?.reset();
-      },
-      (error) => {
-        setEmailSubmit(false);
-        console.error(error);
-      }
-    );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

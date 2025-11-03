@@ -1,6 +1,6 @@
-import { NavigationItem } from "@/interfaces/global";
+import INavigationItem from "@/interfaces/INavigation-item";
 
-export const navigationItems: NavigationItem[] = [
+export const navigationItems: INavigationItem[] = [
     { name: "Início", path: "/home" },
     { name: "Como Acessar", path: "/guia" },
     { name: "Agendar Consulta", path: "/consulta" },
