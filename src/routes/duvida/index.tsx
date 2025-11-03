@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CircleQuestionMark } from "lucide-react";
+import { ChevronDown, CircleQuestionMark } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Button from "@/components/ui/button/Button";
 import { ImportantNotice } from "@/components/section/ImportantNotice";
@@ -8,6 +8,7 @@ import { Paragraph } from "@/components/ui/textos/Paragraph";
 import TextToSpeechButton from "@/components/tts/TextToSpeechButton";
 import { faqs } from "@/data/faqs";
 import Subtitle from "@/components/ui/textos/Subtitle";
+import { H3 } from "@/components/ui/textos/H3";
 
 const Doubt: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -60,9 +61,9 @@ const Doubt: React.FC = () => {
               Não encontrou sua dúvida?
             </h2>
           </div>
-          <p className="text-muted-foreground mb-4 text-lg">
+          <Paragraph>
             Entre em contato conosco! Nossa equipe está pronta para ajudar você.
-          </p>
+          </Paragraph>
           <div className="flex flex-col sm:flex-row gap-3 mt-7">
             <a href="tel:1126616000" className="flex items-center font-bold">
               📞 (11) 2661-6000
@@ -95,22 +96,15 @@ const Doubt: React.FC = () => {
                 className="w-full px-6 py-4 text-left hover:bg-accent transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset"
               >
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-foreground pr-4">
+                  <Paragraph>
                     {faq.question}
-                  </h3>
+                  </Paragraph>
                   <div
                     className={`w-6 h-6 text-primary transition-transform duration-200 ${
                       activeIndex === index ? "rotate-180" : ""
                     }`}
                   >
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
+                    <ChevronDown />
                   </div>
                 </div>
               </button>
@@ -132,16 +126,16 @@ const Doubt: React.FC = () => {
         {/* Additional Resources */}
         <div className="mt-12 grid md:grid-cols-2 gap-6">
           <div className="bg-primary/5 rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-foreground mb-3">
+            <H3 isStronger={true}>
               📚 Guias Úteis
-            </h3>
+            </H3>
             <Paragraph>
               Acesse nossos guias passo a passo para usar os serviços online.
             </Paragraph>
             <Button
               size="sm"
               onClick={() => navigate("/guia")}
-              className="text-white hover:text-primary/80 font-medium"
+              className="text-white hover:text-primary/80 font-medium mt-4"
             >
               Ver Guias →
             </Button>
@@ -151,9 +145,9 @@ const Doubt: React.FC = () => {
           </div>
 
           <div className="bg-secondary/5 rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-foreground mb-3">
+            <H3 isStronger={true}>
               📞 Agendamento por Telefone
-            </h3>
+            </H3>
             <Paragraph>
               Prefere agendar por telefone? Ligue para nossa central.
             </Paragraph>
