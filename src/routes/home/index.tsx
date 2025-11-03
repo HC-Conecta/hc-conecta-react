@@ -85,9 +85,9 @@ const Home: React.FC = () => {
           </div>
         </div>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-2">
-          <h2 className="text-3xl font-bold text-foreground mb-4">
+          <H2>
             Onde encontrar o Hospital das Clínicas
-          </h2>
+          </H2>
           <p className="text-xl text-muted-foreground mb-5 max-w-4xl">
             O Hospital das Clínicas está localizado em uma região de fácil
             acesso. Veja abaixo o endereço completo e as opções de transporte.
