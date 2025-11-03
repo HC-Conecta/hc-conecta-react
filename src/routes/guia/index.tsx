@@ -6,6 +6,8 @@ import H1 from "@/components/ui/textos/H1";
 import TextToSpeechButton from "@/components/tts/TextToSpeechButton";
 import Button from "@/components/ui/button/Button";
 import { steps } from "@/data/steps-guide";
+import Subtitle from "@/components/ui/textos/Subtitle";
+import { H3 } from "@/components/ui/textos/H3";
 
 const Guide: React.FC = () => {
 
@@ -26,10 +28,10 @@ const Guide: React.FC = () => {
           <H1>
             Como Acessar o Site do Hospital das Clínicas
           </H1>
-          <p className="text-xl text-muted-foreground">
-            Siga este guia passo a passo para acessar o site oficial e marcar
-            suas consultas
-          </p>
+          <Subtitle> 
+             Encontre respostas para as perguntas mais comuns sobre os serviços
+            do Hospital das Clínicas
+          </Subtitle>
           <div className="mt-5">
             <TextToSpeechButton colorIsBlue text="Como Acessar o Site do Hospital das Clínicas? Siga este guia passo a passo para acessar o site oficial e marcar
             suas consultas" />
@@ -56,15 +58,15 @@ const Guide: React.FC = () => {
                   {step.number}
                 </div>
                 <div className="flex-grow">
-                  <h3 className="text-xl font-semibold text-foreground mb-3">
+                  <H3>
                     {step.title}
-                  </h3>
+                  </H3>
                   <Paragraph>
                     {step.description}
                   </Paragraph>
                   <div className="bg-accent py-3 rounded-lg">
                     <p className="text-md text-accent-foreground">
-                      <strong>Dica:</strong> {step.tip}
+                      <b>Dica:</b> {step.tip}
                     </p>
                   </div>
                   <div className="text-start flex flex-col items-start gap-5 lg:flex lg:flex-row lg:items-center lg:justify-between">
@@ -83,9 +85,9 @@ const Guide: React.FC = () => {
 
         {/* Additional Help */}
         <div className="mt-12 bg-surface rounded-xl p-8 shadow-md border border-border">
-          <h2 className="text-2xl font-bold text-foreground mb-4">
+          <H3 isStronger={true}>
             Precisa de Mais Ajuda?
-          </h2>
+          </H3>
           <Paragraph>
             Se você seguiu todos os passos e ainda tem dificuldades, não se
             preocupe! Temos outras formas de ajudar você.
@@ -96,18 +98,18 @@ const Guide: React.FC = () => {
           </div>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="p-4 rounded-lg">
-              <h3 className="font-semibold text-foreground mb-2 text-md">
+              <h4 className="font-semibold text-foreground mb-2 text-md">
                 Telefone de Suporte
-              </h3>
+              </h4>
               <Paragraph>
                 Ligue para nossa central de ajuda:
               </Paragraph>
               <p className="text-blue-700 font-bold text-lg">(11) 2661-0000</p>
             </div>
             <div className="bg-secondary/5 p-4 rounded-lg">
-              <h3 className="font-semibold text-foreground mb-2">
+              <h4 className="font-semibold text-foreground mb-2">
                 Agendar por Telefone
-              </h3>
+              </h4>
               <Paragraph>
                 Também pode agendar direto pelo telefone:
               </Paragraph>

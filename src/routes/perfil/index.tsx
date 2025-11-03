@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Button from "../../components/ui/button/Button";
-import {
-  NameValues,
-  IprofileData,
-  IPutProfileData,
-} from "../../interfaces/global";
 import { Lock, FileUser, Pencil, X, Save, Baby, Loader, User } from "lucide-react";
 import H1 from "@/components/ui/textos/H1";
 import { Paragraph } from "@/components/ui/textos/Paragraph";
 import { useForm } from "react-hook-form";
 import { useLocation, useParams } from "react-router-dom";
-import InputLogin from "@/components/ui/input/InputLogin";
-import { cpfMask } from "@/utils/mask/cpfMask";
-import { updateUser } from "@/services/api";
+import InputLogin from "@/components/ui/input/Input-login";
+import { cpfMask } from "@/utils/mask/cpf-mask";
+import { listUsers, updateUser } from "@/services/api";
+import INameValues from "@/interfaces/IName-values";
+import IProfileData from "@/interfaces/IProfile-data";
+import { maskPassword } from "@/utils/mask/mask-password";
 
 const Profile: React.FC = () => {
-  const [profile, setProfile] = useState<IprofileData | null>(null);
+  const [profile, setProfile] = useState<IProfileData | null>(null);
   const [cpf, setCpf] = useState<string | null>(null);
   const [age, setAge] = useState<string>(null);
   const [password, setPassword] = useState<string | null>(null);
@@ -36,17 +34,17 @@ const Profile: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<NameValues>();
+  } = useForm<IProfileData>();
 
   const { id } = useParams();
 
-  const BASE_URL: string = `${import.meta.env.VITE_API_URL}${id}`;
+  const BASE_URL: string = `${import.meta.env.VITE_API_URL}/${id}`;
 
-  const onSubmit = async (data: NameValues) => {
+  const onSubmit = async (data: IProfileData) => {
     if (data) {
 
       for (const key in data) {
-        if (!data[key as keyof NameValues].replace(/\s/g, '') || !data[key as keyof NameValues] || data[key as keyof NameValues] === "" ) {
+        if (!data[key as keyof INameValues].replace(/\s/g, '') || !data[key as keyof INameValues] || data[key as keyof INameValues] === "" ) {
           setNotNull(true);
 
           setTimeout(() => {
@@ -70,30 +68,19 @@ const Profile: React.FC = () => {
     }
   };
 
-  const maskPassword = (password: string) => {
-    let add = "";
-    for (let i = 0; i < password.length; i++) {
-      add += "•";
-    }
-    return add;
-  };
-
   useEffect(() => {
-    const getProfile = async () => {
-      const response = await fetch(BASE_URL, { method: "GET" });
-      if (response.status !== 200) {
-        console.error("Failed to Get profile:", response.statusText);
-      } else {
-        const data = await response.json();
-        setProfile(data);
-        setCpf(cpfMask(data.cpf));
-        setAge(data.age.toString());
-        setPassword(data.password);
-        setName(data.name);
-
+    const fetchProfile = async () => {
+      const users = await listUsers();
+      if (users) {
+        const userProfile = users.find((user: IProfileData) => user.id === id);
+        setProfile(userProfile);
+        setCpf(cpfMask(userProfile.cpf));
+        setAge(userProfile.age.toString());
+        setPassword(userProfile.password);
+        setName(userProfile.name);
       }
     };
-    getProfile();
+    fetchProfile();
   }, [id]);
 
   useEffect(() => {

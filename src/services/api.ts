@@ -1,12 +1,12 @@
-import { IprofileData, IPutProfileData, NameValues } from "@/interfaces/global";
+import IProfileData from "@/interfaces/IProfile-data";
 
-export const createUser = async (data: NameValues) => {
+const BASE_URL: string = `${import.meta.env.VITE_API_URL}`;
+
+export const createUser = async (data: IProfileData) => {
 
     data.cpf = data.cpf.replace(/\D/g, "");
 
-    const BASE_URL: string = `${import.meta.env.VITE_API_URL}`;
-
-    const allData: NameValues = {
+    const allData: IProfileData = {
         ...data,
         name: data.name.charAt(0).toUpperCase() + data.name.slice(1),
     }
@@ -31,17 +31,17 @@ export const createUser = async (data: NameValues) => {
     }
 }
 
-export const verifyUser = async (data: NameValues) => {
+export const verifyUser = async (data: IProfileData) => {
 
     data.cpf = data.cpf.replace(/\D/g, "");
 
-    const BASE_URL: string = `${import.meta.env.VITE_API_URL}?cpf=${data.cpf}&password=${data.password}`;
+    const URL: string = `${BASE_URL}?cpf=${data.cpf}&password=${data.password}`;
 
     try {
-        const response = await fetch(BASE_URL, { method: "GET" });
+        const response = await fetch(URL, { method: "GET" });
         const data = await response.json();
         if (data.length > 0) {
-            const user: IprofileData = data[0];
+            const user: IProfileData = data[0];
             localStorage.setItem("userId", user.id);
         } else {
             return false;
@@ -51,19 +51,20 @@ export const verifyUser = async (data: NameValues) => {
     }
 }
 
-export const updateUser = async (data: NameValues, id: string) => {
+export const updateUser = async (data: IProfileData, id: string) => {
     data.cpf = data.cpf.replace(/\D/g, "");
 
-    const BASE_URL: string = `${import.meta.env.VITE_API_URL}${id}`;
+    const URL: string = `${BASE_URL}/${id}`;
 
-    const dataUpdate: IPutProfileData = {
+    const dataUpdate: IProfileData = {
         name: data.name.trim(),
         cpf: data.cpf.trim(),
-        age: parseInt(data.age),
+        age: data.age,
         password: data.password.trim(),
     };
+
     try {
-        const response = await fetch(BASE_URL, {
+        const response = await fetch(URL, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -83,3 +84,13 @@ export const updateUser = async (data: NameValues, id: string) => {
     }
 };
 
+export const listUsers = async () => {  
+    const response = await fetch(BASE_URL, { method: "GET" });
+    if (response.status !== 200) {
+        console.error("Failed to Get profile:", response.statusText);
+        return false;
+    } else {
+        const data = await response.json();
+        return data;
+    }
+}
