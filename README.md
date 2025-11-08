@@ -1,9 +1,12 @@
 
 # HC Conecta 
 
-Projeto desenvolvido para auxiliar pacientes do Hospital das Clínicas com baixa afinidade digital, facilitando o acesso a informações, consultas e suporte através de uma interface amigável.
+O **HC Conecta** é um projeto universitário desenvolvido com o objetivo de **facilitar a experiência digital de pacientes do Hospital das Clínicas**, especialmente aqueles com **baixa afinidade tecnológica**. O sistema busca oferecer uma **navegação intuitiva, acessível e acolhedora**, promovendo inclusão digital e apoio emocional.
 
----
+## 🚀 Deploy
+
+🔗 Acesse o projeto online: [https://hc-conecta-react.vercel.app/home](https://hc-conecta-react.vercel.app/home)
+
 
 ## 🚀 Tecnologias Utilizadas
 - **React.js** (framework de UI)
@@ -11,6 +14,9 @@ Projeto desenvolvido para auxiliar pacientes do Hospital das Clínicas com baixa
 - **Vite** (ferramenta de build)
 - **TailwindCSS** (estilização)
 - **EmailJS** (envio de e-mails sem backend)
+
+☕ Java (Quarkus) — API conectada para dados e funcionalidades dinâmicas
+🌐 Integração via VITE_API_URL no .env
 
 ---
 
@@ -36,19 +42,24 @@ npm run dev
 
 ---
 
-## 🔑 Configuração do EmailJS
+## 🔑 Configuração do EmailJS e .env
 
-Crie um arquivo `.env` na raiz do projeto e adicione as chaves fornecidas pelo [EmailJS](https://www.emailjs.com/):
+Crie um arquivo `.env` na raiz do projeto e adicione as chaves fornecidas pelo [EmailJS](https://www.emailjs.com/) e Back-end:
 
 ```env
+
+# EmailJS
 VITE_EMAILJS_SERVICE_ID=seu_service_id
 VITE_EMAILJS_TEMPLATE_ID=seu_template_id
 VITE_EMAILJS_PUBLIC_KEY=sua_public_key
+
+# Backend Java
+VITE_API_URL=https://seu-servidor-java/api
+
 ```
 
 Essas variáveis já estão configuradas no código para serem lidas automaticamente.
 
----
 
 ## 📂 Estrutura de Pastas
 
@@ -67,36 +78,29 @@ hc-conecta-react/
 ├── src/
 │   ├── components/                    # Componentes reutilizáveis
 │   │   ├── TTS/                       # Text-to-Speech (acessibilidade)
-│   │   ├── AppRoutes.tsx
-│   │   ├── Button.tsx
-│   │   ├── Footer.tsx
-│   │   ├── Header.tsx
-│   │   ├── H1.tsx
-│   │   ├── ImportantNotice.tsx
-│   │   ├── InputLogin.tsx
-│   │   ├── LiFooter.tsx
-│   │   ├── LiTips.tsx
-│   │   ├── Location.tsx
-│   │   └── Paragraph.tsx
+│   │   ├── section/                   # Seções do projeto (Home, Dicas, etc)
+│   │   ├── ui/                        # Componentes visuais (botões, inputs)
 │   │
 │   ├── hooks/                         # Hooks customizados
-│   │   └── use-mobile.tsx
 │   │
 │   ├── interfaces/                    # Tipagens globais
-│   │   └── global.d.ts
 │   │
-│   ├── pages/                         # Páginas principais
-│   │   ├── About.tsx
-│   │   ├── Appointment.tsx
-│   │   ├── Doubt.tsx
-│   │   ├── Guide.tsx
-│   │   ├── Home.tsx
-│   │   ├── Layout.tsx
-│   │   ├── Login.tsx
-│   │   ├── NotFound.tsx
-│   │   ├── Profile.tsx
-│   │   ├── Register.tsx
-│   │   └── Support.tsx
+│   ├── roures /                         # Páginas principais
+│   │   ├── consulta /
+│   │   ├── duvida /
+│   │   ├── guia /
+│   │   ├── home /
+│   │   ├── layout /
+│   │   ├── login /
+│   │   ├── notFound /
+│   │   ├── pefil /
+│   │   ├── registrar /
+│   │   ├── sobre /
+│   │   └── suporte /
+│   │
+│   ├── services/                      # Comunicação com APIs
+│   │   ├── api.ts
+│   │   └── email-service.ts
 │   │
 │   ├── utils/                         # Funções utilitárias
 │   │   ├── cpfMask.ts
@@ -109,6 +113,7 @@ hc-conecta-react/
 │   └── vite-env.d.ts
 │
 ├── .env                               # Variáveis de ambiente
+├── .env.example                       # Exemplo das Variáveis de ambiente
 ├── .gitignore
 ├── db.json                            # Mock de dados (JSON Server)
 ├── eslint.config.js
@@ -116,7 +121,6 @@ hc-conecta-react/
 ├── package.json
 ├── package-lock.json
 ├── postcss.config.js
-├── README.md
 ├── tailwind.config.ts
 ├── tsconfig.app.json
 ├── tsconfig.json
@@ -149,7 +153,11 @@ hc-conecta-react/
 * Mascote exclusivo para reforçar a identidade da aplicação
 * Estrutura escalável e organizada
 
-Link Repositório: https://github.com/HC-Conecta/hc-conecta-react.git
+## 🔗 Repositório e Deploy
+
+GitHub: https://github.com/HC-Conecta/hc-conecta-react
+
+Deploy: https://hc-conecta-react.vercel.app/home
 
 # Equipe
 
