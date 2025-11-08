@@ -32,29 +32,32 @@ export const createUser = async (data: IProfileData) => {
 }
 
 export const verifyUser = async (data: IProfileData) => {
-
     data.cpf = data.cpf.replace(/\D/g, "");
-
-    const URL: string = `${BASE_URL}?cpf=${data.cpf}&password=${data.password}`;
-
+  
+    const URL: string = `${BASE_URL}/login?cpf=${data.cpf}&password=${data.password}`;
     try {
-        const response = await fetch(URL, { method: "GET" });
-        const data = await response.json();
-        if (data.length > 0) {
-            const user: IProfileData = data[0];
-            localStorage.setItem("userId", user.id);
-        } else {
-            return false;
-        }
+      const response = await fetch(URL, { method: "GET" });
+      if (response.status === 200) {
+        const user: IProfileData = await response.json();
+        localStorage.setItem("userId", user.id.toString());
+        return user; 
+      } else if (response.status === 404) {
+        console.warn("Usuário não encontrado");
+        return false;
+      } else {
+        console.error("Erro inesperado:", response.statusText);
+        return false;
+      }
     } catch (error) {
-        console.log(error);
+      console.log(`Erro ao verificar usuário: ${error}`);
+      return false;
     }
-}
+  };
 
 export const updateUser = async (data: IProfileData, id: string) => {
     data.cpf = data.cpf.replace(/\D/g, "");
 
-    const URL: string = `${BASE_URL}/${id}`;
+    const URL: string = `${BASE_URL}/atualiza-paciente/${id}`;
 
     const dataUpdate: IProfileData = {
         name: data.name.trim(),
@@ -72,7 +75,7 @@ export const updateUser = async (data: IProfileData, id: string) => {
             body: JSON.stringify(dataUpdate),
         });
 
-        if (response.status !== 200) {
+        if (response.status !== 201) {
             console.error("Failed to update user:", response.statusText);
             return false;
         } else {
@@ -84,8 +87,8 @@ export const updateUser = async (data: IProfileData, id: string) => {
     }
 };
 
-export const listUsers = async () => {  
-    const response = await fetch(BASE_URL, { method: "GET" });
+export const listUsers = async (url: string) => {  
+    const response = await fetch(url, { method: "GET" });
     if (response.status !== 200) {
         console.error("Failed to Get profile:", response.statusText);
         return false;

@@ -11,6 +11,8 @@ import { listUsers, updateUser } from "@/services/api";
 import INameValues from "@/interfaces/IName-values";
 import IProfileData from "@/interfaces/IProfile-data";
 import { maskPassword } from "@/utils/mask/mask-password";
+import { log } from "console";
+import { set } from "date-fns";
 
 const Profile: React.FC = () => {
   const [profile, setProfile] = useState<IProfileData | null>(null);
@@ -20,6 +22,7 @@ const Profile: React.FC = () => {
   const [name, setName] = useState<string | null>(null);
   const [updateExist, setUpdateExist] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [isLoding, setIsLoading] = useState<boolean>(true);
 
   const [notNull, setNotNull] = useState<boolean>(false);
 
@@ -70,14 +73,13 @@ const Profile: React.FC = () => {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const users = await listUsers();
+      const users = await listUsers(BASE_URL);
       if (users) {
-        const userProfile = users.find((user: IProfileData) => user.id === id);
-        setProfile(userProfile);
-        setCpf(cpfMask(userProfile.cpf));
-        setAge(userProfile.age.toString());
-        setPassword(userProfile.password);
-        setName(userProfile.name);
+        setProfile(users);
+        setCpf(cpfMask(users.cpf));
+        setAge(users.age.toString());
+        setPassword(users.password);
+        setName(users.name);
       }
     };
     fetchProfile();
@@ -269,12 +271,13 @@ const Profile: React.FC = () => {
               {isEditing && (
                 <div className="flex w-full flex-col sm:flex-row gap-4">
                   <Button
+                    onClick={() => setIsLoading(!true)}
                     type="submit"
                     size="lg"
                     className="text-white w-full flex justify-center gap-3 items-center"
                   >
                     <Save size={20} />
-                    Salvar
+                    {!isLoding ? "Salvando..." : "Salvar"}
                   </Button>
                 </div>
               )}
