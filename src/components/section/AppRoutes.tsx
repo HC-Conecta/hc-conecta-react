@@ -27,7 +27,7 @@ const AppRoutes = () => {
 
         <Route path="*" element={<NotFound />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/registraR" element={<Register />} />
+        <Route path="/registrar" element={<Register />} />
       </Routes>
      );
 }

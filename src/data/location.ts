@@ -1,6 +1,6 @@
-import { Ilocations } from "@/interfaces/global";
+import ILocations from "@/interfaces/ILocations";
 
-const locations: Ilocations[] = [
+const locations: ILocations[] = [
     {
       id: 1,
       title: "Hospital das Clínicas de São Paulo (HC - USP)",

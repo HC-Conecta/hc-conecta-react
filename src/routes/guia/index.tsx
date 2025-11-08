@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
-import { ImportantNotice } from "@/components/ImportantNotice";
+import { ImportantNotice } from "@/components/section/ImportantNotice";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Paragraph } from "@/components/textos/Paragraph";
-import H1 from "@/components/textos/H1";
-import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
-import Button from "@/components/Button";
+import { Paragraph } from "@/components/ui/textos/Paragraph";
+import H1 from "@/components/ui/textos/H1";
+import TextToSpeechButton from "@/components/tts/TextToSpeechButton";
+import Button from "@/components/ui/button/Button";
+import { steps } from "@/data/steps-guide";
+import Subtitle from "@/components/ui/textos/Subtitle";
+import { H3 } from "@/components/ui/textos/H3";
 
 const Guide: React.FC = () => {
 
@@ -17,61 +20,6 @@ const Guide: React.FC = () => {
     }, [pathname]);
   
 
-  const steps = [
-    {
-      number: 1,
-      title: "Abra seu navegador",
-      description:
-        "Clique no ícone do navegador (Internet Explorer, Chrome, Firefox ou Safari) na sua área de trabalho ou menu iniciar.",
-      tip: "O ícone geralmente parece com uma bússola ou tem as cores azul, verde, laranja ou vermelho.",
-      buttonColor: true,
-    },
-    {
-      number: 2,
-      title: "Digite o endereço",
-      description:
-        "Na barra de endereços (caixa branca no topo), digite: hc.fm.usp.br",
-      tip: "Certifique-se de digitar exatamente como mostrado, incluindo os pontos.",
-      buttonColor: false,
-      link: true,
-      url: "https://www.hc.fm.usp.br/hc/portal/"
-    },
-    {
-      number: 3,
-      title: "Pressione Enter",
-      description:
-        "Depois de digitar o endereço, pressione a tecla Enter no seu teclado ou clique no botão 'Ir' ou na lupa.",
-      tip: "A tecla Enter é a tecla maior do lado direito do teclado, geralmente com uma seta.",
-      buttonColor: true,
-    },
-    {
-      number: 4,
-      title: "Aguarde o carregamento",
-      description:
-        "O site irá carregar. Pode demorar alguns segundos. Você verá o logo do Hospital das Clínicas.",
-      tip: "Se o site não carregar, verifique se você digitou o endereço corretamente.",
-      buttonColor: false,
-    },
-    {
-      number: 5,
-      title: "Encontre 'Agendamento'",
-      description:
-        "Procure na página principal um link ou botão com o texto 'Agendamento' ou 'Marcar Consulta'.",
-      tip: "Geralmente fica no menu superior ou no centro da página principal.",
-      buttonColor: true,
-      link: true,
-      url: "https://app.agenda.globalhealth.mv/agendar/?key=hcsp"
-    },
-    {
-      number: 6,
-      title: "Clique em Agendamento",
-      description:
-        "Clique uma vez no link 'Agendamento'. Isso abrirá a página onde você pode marcar sua consulta.",
-      tip: "Se você clicar duas vezes muito rápido, pode abrir duas páginas. Clique apenas uma vez.",
-      buttonColor: false,
-    },
-  ];
-
   return (
     <div className="bg-background py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,10 +28,10 @@ const Guide: React.FC = () => {
           <H1>
             Como Acessar o Site do Hospital das Clínicas
           </H1>
-          <p className="text-xl text-muted-foreground">
-            Siga este guia passo a passo para acessar o site oficial e marcar
-            suas consultas
-          </p>
+          <Subtitle> 
+             Encontre respostas para as perguntas mais comuns sobre os serviços
+            do Hospital das Clínicas
+          </Subtitle>
           <div className="mt-5">
             <TextToSpeechButton colorIsBlue text="Como Acessar o Site do Hospital das Clínicas? Siga este guia passo a passo para acessar o site oficial e marcar
             suas consultas" />
@@ -110,15 +58,15 @@ const Guide: React.FC = () => {
                   {step.number}
                 </div>
                 <div className="flex-grow">
-                  <h3 className="text-xl font-semibold text-foreground mb-3">
+                  <H3>
                     {step.title}
-                  </h3>
+                  </H3>
                   <Paragraph>
                     {step.description}
                   </Paragraph>
                   <div className="bg-accent py-3 rounded-lg">
                     <p className="text-md text-accent-foreground">
-                      <strong>Dica:</strong> {step.tip}
+                      <b>Dica:</b> {step.tip}
                     </p>
                   </div>
                   <div className="text-start flex flex-col items-start gap-5 lg:flex lg:flex-row lg:items-center lg:justify-between">
@@ -137,9 +85,9 @@ const Guide: React.FC = () => {
 
         {/* Additional Help */}
         <div className="mt-12 bg-surface rounded-xl p-8 shadow-md border border-border">
-          <h2 className="text-2xl font-bold text-foreground mb-4">
+          <H3 isStronger={true}>
             Precisa de Mais Ajuda?
-          </h2>
+          </H3>
           <Paragraph>
             Se você seguiu todos os passos e ainda tem dificuldades, não se
             preocupe! Temos outras formas de ajudar você.
@@ -150,18 +98,18 @@ const Guide: React.FC = () => {
           </div>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="p-4 rounded-lg">
-              <h3 className="font-semibold text-foreground mb-2 text-md">
+              <h4 className="font-semibold text-foreground mb-2 text-md">
                 Telefone de Suporte
-              </h3>
+              </h4>
               <Paragraph>
                 Ligue para nossa central de ajuda:
               </Paragraph>
               <p className="text-blue-700 font-bold text-lg">(11) 2661-0000</p>
             </div>
             <div className="bg-secondary/5 p-4 rounded-lg">
-              <h3 className="font-semibold text-foreground mb-2">
+              <h4 className="font-semibold text-foreground mb-2">
                 Agendar por Telefone
-              </h3>
+              </h4>
               <Paragraph>
                 Também pode agendar direto pelo telefone:
               </Paragraph>

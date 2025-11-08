@@ -1,12 +1,14 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import H1 from "@/components/textos/H1";
-import Button from "@/components/Button";
-import { Paragraph } from "@/components/textos/Paragraph";
+import H1 from "@/components/ui/textos/H1";
+import Button from "@/components/ui/button/Button";
+import { Paragraph } from "@/components/ui/textos/Paragraph";
 import { Baby, FileUser, Lock, User } from "lucide-react";
-import InputLogin from "@/components/InputLogin";
+import InputLogin from "@/components/ui/input/Input-login";
 import { useForm } from "react-hook-form";
-import {NameValues } from "@/interfaces/global";
-import { cpfMask } from "@/utils/cpfMask";
+import { cpfMask } from "@/utils/mask/cpf-mask";
+import { createUser } from "@/services/api";
+import IProfileData from "@/interfaces/IProfile-data";
+import { H3 } from "@/components/ui/textos/H3";
 
 const Register = () => {
   const location = useLocation();
@@ -15,41 +17,15 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<NameValues>();
+  } = useForm<IProfileData>();
   
 
-  const onSubmit = async (data: NameValues) => {
+  const onSubmit = (data: IProfileData) => {
     if (data) {
-      data.cpf = data.cpf.replace(/\D/g, "");
-      const BASE_URL: string = "http://localhost:3000/posts";
-      
-      const allData: NameValues = {
-        ...data,
-        name: data.name.charAt(0).toUpperCase() + data.name.slice(1),
-      }
-
-      try {
-        const response = await fetch(BASE_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(allData), 
-        });
-
-        if(response.status != 201) {
-          console.error('Failed to create post:', response.statusText);
-        } else {
-          navigate("/login");
-          const data = await response.json();
-          return data;
-        }
-      } catch(error) {
-        console.log(`Error create User: ${error}`);
-      }
-
-    } else {
-      alert("Erro no cadastro, tente novamente.");
+        createUser(data);
+        navigate("/login");
+    }else {
+        alert("Erro no cadastro, tente novamente.");
     }
   };
 
@@ -64,16 +40,16 @@ const Register = () => {
         </div>
         <div className="bg-surface rounded-xl p-8 shadow-md border border-border">
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-2">
+            <H3 isStronger={true}>
               Cadastro
-            </h2>
+            </H3>
             <Paragraph>Preencha os dados abaixo para criar sua conta</Paragraph>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="flex flex-col gap-6 mb">
 
-            <div className="flex flex-col gap-2">
+            <fieldset className="flex flex-col gap-2">
                 {/* NAME */}
                 <InputLogin
                   register={register}
@@ -97,10 +73,10 @@ const Register = () => {
                     Nome é obrigatório.
                   </p>
                 )}
-              </div>
+              </fieldset>
 
               {/* CPF */}
-              <div className="flex flex-col gap-2 relative">
+              <fieldset className="flex flex-col gap-2 relative">
                 {/* CPF */}
                 <label className="block text-md font-medium text-foreground">
                   CPF *
@@ -130,9 +106,9 @@ const Register = () => {
                     Máximo de 11 caracteres permitido.
                   </p>
                 )}
-              </div>
+              </fieldset>
 
-              <div className="flex flex-col gap-2">
+              <fieldset className="flex flex-col gap-2">
                 {/* AGE */}
                 <InputLogin
                   register={register}
@@ -164,9 +140,9 @@ const Register = () => {
                     Idade deve ser entre 16 e 120 anos
                   </p>
                 )}
-              </div>
+              </fieldset>
 
-              <div className="flex flex-col gap-2">
+              <fieldset className="flex flex-col gap-2">
                 {/* Password */}
                 <InputLogin
                   register={register}
@@ -195,7 +171,7 @@ const Register = () => {
                     Mínimo de 8 caracteres.
                   </p>
                 )}
-              </div>
+              </fieldset>
             </div>
             {/* Submit Button */}
             <div className="flex w-full flex-col sm:flex-row gap-4">
@@ -204,7 +180,7 @@ const Register = () => {
               </Button>
             </div>
             <div className="text-center mt-4 flex gap-2 justify-center">
-              <p className="text-lg text-muted-foreground">Já tem uma conta?</p>
+              <Paragraph>Já tem uma conta?</Paragraph>
               <button
                 type="button"
                 className="text-lg text-blue-700 font-medium hover:underline"

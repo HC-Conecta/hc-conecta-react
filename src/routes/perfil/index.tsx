@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from "react";
-import Button from "../../components/Button";
-import {
-  NameValues,
-  IprofileData,
-  IPutProfileData,
-} from "../../interfaces/global";
+import Button from "../../components/ui/button/Button";
 import { Lock, FileUser, Pencil, X, Save, Baby, Loader, User } from "lucide-react";
-import H1 from "@/components/textos/H1";
-import { Paragraph } from "@/components/textos/Paragraph";
+import H1 from "@/components/ui/textos/H1";
+import { Paragraph } from "@/components/ui/textos/Paragraph";
 import { useForm } from "react-hook-form";
 import { useLocation, useParams } from "react-router-dom";
-import InputLogin from "@/components/InputLogin";
-import { cpfMask } from "@/utils/cpfMask";
+import InputLogin from "@/components/ui/input/Input-login";
+import { cpfMask } from "@/utils/mask/cpf-mask";
+import { listUsers, updateUser } from "@/services/api";
+import INameValues from "@/interfaces/IName-values";
+import IProfileData from "@/interfaces/IProfile-data";
+import { maskPassword } from "@/utils/mask/mask-password";
+import { log } from "console";
+import { set } from "date-fns";
 
 const Profile: React.FC = () => {
-  const [profile, setProfile] = useState<IprofileData | null>(null);
+  const [profile, setProfile] = useState<IProfileData | null>(null);
   const [cpf, setCpf] = useState<string | null>(null);
   const [age, setAge] = useState<string>(null);
   const [password, setPassword] = useState<string | null>(null);
   const [name, setName] = useState<string | null>(null);
   const [updateExist, setUpdateExist] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [isLoding, setIsLoading] = useState<boolean>(true);
 
   const [notNull, setNotNull] = useState<boolean>(false);
 
@@ -35,91 +37,52 @@ const Profile: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<NameValues>();
+  } = useForm<IProfileData>();
 
   const { id } = useParams();
 
-  const BASE_URL: string = `http://localhost:3000/posts/${id}`;
+  const BASE_URL: string = `${import.meta.env.VITE_API_URL}/${id}`;
 
-  const onSubmit = (data: NameValues) => {
+  const onSubmit = async (data: IProfileData) => {
     if (data) {
-      data.cpf = data.cpf.replace(/\D/g, "");
-      
-      for(const key in data) {
-        if(!data[key as keyof NameValues].replace(/\s/g, '') || !data[key as keyof NameValues] || data[key as keyof NameValues] === "" ) {
+
+      for (const key in data) {
+        if (!data[key as keyof INameValues].replace(/\s/g, '') || !data[key as keyof INameValues] || data[key as keyof INameValues] === "" ) {
           setNotNull(true);
 
           setTimeout(() => {
             setNotNull(false);
           }, 2000)
-          return
+          return;
         }
       }
 
-      const dataUpdate: IPutProfileData = {
-        name: data.name.trim(),
-        cpf: data.cpf.trim(),
-        age: parseInt(data.age),
-        password: data.password.trim(),
-      };
+      const update = await updateUser(data, id!);
 
-      const updateUser = async () => {
-        try {
-          const response = await fetch(BASE_URL, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(dataUpdate),
-          });
-
-          if (response.status !== 200) {
-            console.error("Failed to update user:", response.statusText);
-            setUpdateExist(false);
-          } else {
-            const data = await response.json();
-            setUpdateExist(!updateExist);
-            timeMessageUpdate();
-            setIsEditing(false);
-            setProfile(data);
-            return data;
-          }
-        } catch (error) {
-          console.log(`Error update User: ${error}`);
-        }
-      };
-
-      updateUser();
+      if (update) {
+        setProfile(update);
+        setIsEditing(false);
+        setUpdateExist(true);
+        timeMessageUpdate();
+      }
 
     } else {
       alert("error submit");
     }
   };
 
-  const maskPassword = (password: string) => {
-    let add = "";
-    for (let i = 0; i < password.length; i++) {
-      add += "•";
-    }
-    return add;
-  };
-
   useEffect(() => {
-    const getProfile = async () => {
-      const response = await fetch(BASE_URL, { method: "GET" });
-      if (response.status !== 200) {
-        console.error("Failed to Get profile:", response.statusText);
-      } else {
-        const data = await response.json();
-        setProfile(data);
-        setCpf(cpfMask(data.cpf));
-        setAge(data.age.toString());
-        setPassword(data.password);
-        setName(data.name);
-
+    const fetchProfile = async () => {
+      const users = await listUsers(BASE_URL);
+      if (users) {
+        setProfile(users);
+        setCpf(cpfMask(users.cpf));
+        setAge(users.age.toString());
+        setPassword(users.password);
+        setName(users.name);
       }
     };
-    getProfile();
+    fetchProfile();
   }, [id]);
 
   useEffect(() => {
@@ -146,9 +109,8 @@ const Profile: React.FC = () => {
                 <div>
                   <Button
                     onClick={() => setIsEditing(true)}
-                    className={`flex justify-between items-center gap-3 ${
-                      isEditing && "hidden"
-                    }`}
+                    className={`flex justify-between items-center gap-3 ${isEditing && "hidden"
+                      }`}
                     variant="outline"
                     size="sm"
                   >
@@ -163,9 +125,8 @@ const Profile: React.FC = () => {
                       setPassword(profile.password);
                       setUpdateExist(false);
                     }}
-                    className={`flex justify-between items-center gap-3 ${
-                      !isEditing && "hidden"
-                    }`}
+                    className={`flex justify-between items-center gap-3 ${!isEditing && "hidden"
+                      }`}
                     variant="outline"
                     size="sm"
                   >
@@ -181,31 +142,32 @@ const Profile: React.FC = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div key={profile.id} className="flex flex-col gap-6">
 
-              <div className="flex flex-col gap-2">
-                {/* NAME */}
-                <InputLogin
-                  register={register}
-                  rules={{
-                    required: false}}
-                  icon={
-                    <User
-                      size={20}
-                      className="absolute left-3 top-12 text-gray-500"
-                    />
-                  }
-                  id="nome"
-                  label="Nome *"
-                  placeholder={name}
-                  disabled={!isEditing}
-                  onChange={(e) => {
-                    setName(e.target.value);
-                  }}
-                  name="name"
-                  type="text"
-                  value={name}
-                  errors={errors}
-                />
-              </div>
+                <div className="flex flex-col gap-2">
+                  {/* NAME */}
+                  <InputLogin
+                    register={register}
+                    rules={{
+                      required: false
+                    }}
+                    icon={
+                      <User
+                        size={20}
+                        className="absolute left-3 top-12 text-gray-500"
+                      />
+                    }
+                    id="nome"
+                    label="Nome *"
+                    placeholder={name}
+                    disabled={!isEditing}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                    }}
+                    name="name"
+                    type="text"
+                    value={name}
+                    errors={errors}
+                  />
+                </div>
 
                 {/* CPF */}
                 <div className="flex flex-col gap-2 relative">
@@ -218,7 +180,7 @@ const Profile: React.FC = () => {
                   />
                   <input
                     disabled={!isEditing}
-                    {...register("cpf", { required: false, maxLength: 14, validate: (value: string) =>  value.length === 14 })}
+                    {...register("cpf", { required: false, maxLength: 14, validate: (value: string) => value.length === 14 })}
                     onChange={(e) => {
                       setCpf(cpfMask(e.target.value));
                     }}
@@ -309,27 +271,28 @@ const Profile: React.FC = () => {
               {isEditing && (
                 <div className="flex w-full flex-col sm:flex-row gap-4">
                   <Button
+                    onClick={() => setIsLoading(!true)}
                     type="submit"
                     size="lg"
                     className="text-white w-full flex justify-center gap-3 items-center"
                   >
                     <Save size={20} />
-                    Salvar
+                    {!isLoding ? "Salvando..." : "Salvar"}
                   </Button>
                 </div>
               )}
             </form>
-             {updateExist && (
-                <div className="mt-8 text-green-500 font-medium text-sm">
-                  Alterações salvas com sucesso!
-                </div>
-              )}
+            {updateExist && (
+              <div className="mt-8 text-green-500 font-medium text-sm">
+                Alterações salvas com sucesso!
+              </div>
+            )}
 
-              {notNull && (
-                <div className="mt-8 text-red-500 font-medium text-sm">
-                  Preencha todos os campo antes de continuar.
-                </div>
-              )}
+            {notNull && (
+              <div className="mt-8 text-red-500 font-medium text-sm">
+                Preencha todos os campo antes de continuar.
+              </div>
+            )}
           </div>
 
         ) : (
@@ -340,7 +303,7 @@ const Profile: React.FC = () => {
             </h3>
           </div>
         )}
-  
+
       </div>
     </div>
   );

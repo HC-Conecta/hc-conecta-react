@@ -1,14 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import Button from "../../components/Button";
-import { Contact, emailData } from "../../interfaces/global";
+import Button from "../../components/ui/button/Button";
 import { Phone, Mail, MapPin } from "lucide-react";
-import H1 from "@/components/textos/H1";
-import { Paragraph } from "@/components/textos/Paragraph";
+import H1 from "@/components/ui/textos/H1";
+import { Paragraph } from "@/components/ui/textos/Paragraph";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 import emailjs from "@emailjs/browser";
-import { phoneMask } from "@/utils/phoneMask";
-import TextToSpeechButton from "@/components/TTS/TextToSpeechButton";
+import { phoneMask } from "@/utils/mask/phone-mask";
+import TextToSpeechButton from "@/components/tts/TextToSpeechButton";
+import { contacts } from "@/data/contact";
+import IEmailData from "@/interfaces/IEmail-data";
+import sendEmailService from "@/services/email-service";
 
 const Support: React.FC = () => {
   const [emailSubmit, setEmailSubmit] = useState<boolean>(null);
@@ -19,7 +21,7 @@ const Support: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<emailData>();
+  } = useForm<IEmailData>();
 
   const { pathname } = useLocation();
 
@@ -27,50 +29,6 @@ const Support: React.FC = () => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  const contacts: Contact[] = [
-    {
-      type: "phone",
-      label: "Agendamento de Consultas",
-      value: "(11) 2661-6000",
-      description: "Segunda a sexta, das 7h às 17h",
-      text: "Para agendar consultas, ligue para (11) 2661-6000, de segunda a sexta, das 7h às 17h.",
-    },
-    {
-      type: "phone",
-      label: "Suporte Técnico",
-      value: "(11) 2661-0000",
-      description: "Segunda a sexta, das 8h às 18h",
-      text: "Para suporte técnico, entre em contato pelo número (11) 2661-0000, de segunda a sexta, das 8h às 18h.",
-    },
-    {
-      type: "phone",
-      label: "Emergência",
-      value: "192",
-      description: "SAMU - 24 horas por dia",
-      text: "Em caso de emergência, ligue para o SAMU no número 192, disponível 24 horas por dia.",
-    },
-    {
-      type: "email",
-      label: "Email de Suporte",
-      value: "suporte@hc.fm.usp.br",
-      description: "Resposta em até 48 horas",
-      text: "Para suporte, envie um e-mail para suporte@hc.fm.usp.br ou utilize o formulário abaixo. Resposta em até 48 horas.",
-    },
-    {
-      type: "email",
-      label: "Email Geral",
-      value: "contato@hc.fm.usp.br",
-      description: "Para informações gerais",
-      text: "Para informações gerais, envie um e-mail para contato@hc.fm.usp.br.",
-    },
-    {
-      type: "address",
-      label: "Endereço Principal",
-      value: "Rua Dr. Ovídio Pires de Campos, 225",
-      description: "Cerqueira César, São Paulo - SP",
-      text: "Endereço principal: Rua Dr. Ovídio Pires de Campos, 225, Cerqueira César, São Paulo - SP.",
-    },
-  ];
   const timeMessageUpdate = () => {
     setTimeout(() => {
       setIsLoading((prev) => !prev);
@@ -79,33 +37,26 @@ const Support: React.FC = () => {
 
   const form = useRef<HTMLFormElement>(null);
 
-  const sendEmail = () => {
+  const sendEmail = async () => {
     setIsLoading(!isLoading);
-
     timeMessageUpdate();
 
-    const serviceID: string = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateID: string = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey: string = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceID || !templateID || !publicKey) {
+    try {
+      sendEmailService({
+        form,
+        onSuccess: () => {
+          setEmailSubmit(true);
+          form.current?.reset();
+        },
+        onError: () => {
+          setEmailSubmit(false);
+        },
+      });
+    } catch (error) { 
       setNotNullExists(true);
-      console.error("Error! Env variables not found.");
-      return;
-    } else setNotNullExists(false);
-
-    if (!form.current) return;
-
-    emailjs.sendForm(serviceID, templateID, form.current!, publicKey).then(
-      () => {
-        setEmailSubmit(true);
-        form.current?.reset();
-      },
-      (error) => {
-        setEmailSubmit(false);
-        console.error(error);
-      }
-    );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

@@ -1,18 +1,5 @@
 {
   "posts": [
-    {
-      "name": "Teste",
-      "cpf": "12345678910",
-      "age": 18,
-      "password": "teste123456",
-      "id": "fdc5"
-    },
-    {
-      "name": "Nome Fulano",
-      "cpf": "12345678910",
-      "age": 18,
-      "password": "teste12345",
-      "id": "ee30"
-    }
+   
   ]
 }
