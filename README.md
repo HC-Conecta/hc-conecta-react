@@ -7,6 +7,9 @@ O **HC Conecta** é um projeto universitário desenvolvido com o objetivo de **f
 
 🔗 Acesse o projeto online: [https://hc-conecta-react.vercel.app/home](https://hc-conecta-react.vercel.app/home)
 
+## 📷 Youtube
+
+🔗  Visualize o projeto no Youtube: [youtube.com/watch?v=c__uk_CNHSo&feature=youtu.be](  youtube.com/watch?v=c__uk_CNHSo&feature=youtu.be)
 
 ## 🚀 Tecnologias Utilizadas
 - **React.js** (framework de UI)
